@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../_models/user';
 
 const API_URL = 'http://localhost:8081/api/test/';
 
@@ -29,6 +30,27 @@ export class UserService {
 
   getAcademicSupervisorBoard(): Observable<any> {
     return this.http.get(API_URL + 'academicSupervisor	', { responseType: 'text' });
+  }
+
+
+  fetchListUsers():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/crud/getListUsers");
+  }
+
+  addUser(user : User):Observable<any>{
+
+    return this.http.post<any>("http://localhost:8081/api/crud/addUser", user);
+  }
+
+  fetchUserById(id : number):Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/crud/getUserById/"+id);
+  }
+
+  deleteUserById(id : number):Observable<string>{
+
+    return this.http.delete<string>("http://localhost:8081/deleteUserById/"+id);
   }
 
 }

@@ -14,6 +14,12 @@ import { BoardStudentComponent } from './board-student/board-student.component';
 import { BoardAcademicSupervisorComponent } from './board-academic-supervisor/board-academic-supervisor.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { BoardUserComponent } from './board-user/board-user.component';
+import { UserAddComponent } from './user-add/user-add.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { CreatePDFDocumentsDeStageComponent } from './create-pdfdocuments-de-stage/create-pdfdocuments-de-stage.component';
+import { DownloadDocumentsDeStageComponent } from './download-documents-de-stage/download-documents-de-stage.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,12 @@ import { BoardUserComponent } from './board-user/board-user.component';
     BoardStudentComponent,
     BoardAcademicSupervisorComponent,
     BoardUserComponent,
+    UserAddComponent,
+    UserEditComponent,
+    UsersListComponent,
+    UserViewComponent,
+    CreatePDFDocumentsDeStageComponent,
+    DownloadDocumentsDeStageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,52 @@
+<h1>Enter the following details</h1>
+<table>
+ <tr>
+  <td><span>Nom et Prenom</span></td>
+  <td><input type="text" [(ngModel)]="dataset.nom_prenomEtudiant" name="nom_prenomEtudiant"> </td>
+ </tr>
+ <tr>
+  <td><span>Option</span></td>
+  <td><input type="text" [(ngModel)]="dataset.optionEtudiant" name="optionEtudiant"></td>
+ </tr>
+ <tr>
+  <td><span>Nom Société</span></td>
+  <td><input type="text" [(ngModel)]="dataset.nomSociete" name="nomSociete"></td>
+ </tr>
+ <tr>
+  <td><span>Adresse Société</span></td>
+  <td><input type="text" [(ngModel)]="dataset. adresseSociete" name="adresseSociete"> </td>
+ </tr>
+ <tr>
+  <td><span>Téléphone Société</span></td>
+  <td><input type="tel" [(ngModel)]="dataset.telephoneSociete" name="telephoneSociete"
+    placeholder="Enter Phone Number" required pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" #telephoneSociete="ngModel"
+    ></td>
+ </tr>
+ <tr>
+  <td><span>Email Société</span></td>
+  <td><input type="email" [(ngModel)]="dataset.emailSociete" name="emailSociete"
+    placeholder="Enter Email" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" #email="ngModel"
+    ></td>
+ </tr>
+ <tr>
+  <td><span>Encadrant Société</span></td>
+  <td><input type="text" [(ngModel)]="dataset.encadrantSociete" name="encadrantSociete"></td>
+ </tr>
+ <tr>
+  <td><span>Encadrant Académique</span></td>
+  <td><input type="text" [(ngModel)]="dataset.encadrantAcademique" name="encadrantAcademique"> </td>
+ </tr>
+ <tr>
+  <td><span>Date Debut Stage</span></td>
+  <td><input type="date" [(ngModel)]="dataset.dateDebutStage" name="dateDebutStage"></td>
+ </tr>
+ <tr>
+    <td><span>Date Fin Stage</span></td>
+    <td><input type="date" [(ngModel)]="dataset.dateFinStage" name="dateFinStage"></td>
+   </tr>
+ <tr>
+  <td></td>
+  <td><button (click)="onSubmit()">Submit</button></td>
+  <!-- <td><button routerLink="/files" (click)="onSubmit()">Submit</button></td> -->
+ </tr>
+</table>
