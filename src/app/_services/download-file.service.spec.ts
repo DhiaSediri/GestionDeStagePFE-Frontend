@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DownloadDocumentsDeStageService } from './download-documents-de-stage.service';
+import { DownloadFileService } from './download-file.service';
 
 describe('DownloadDocumentsDeStageService', () => {
-  let service: DownloadDocumentsDeStageService;
+  let service: DownloadFileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DownloadDocumentsDeStageService);
+    service = TestBed.inject(DownloadFileService);
   });
 
   it('should be created', () => {

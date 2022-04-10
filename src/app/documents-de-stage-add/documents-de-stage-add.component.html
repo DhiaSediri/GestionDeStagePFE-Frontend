@@ -1,0 +1,200 @@
+<h1>Enter the following details</h1>
+<form
+  name="form"
+  (ngSubmit)="f.form.valid"
+  #f="ngForm"
+  novalidate
+  >
+ <div>
+  <label>Nom et Prenom</label>
+  <input
+      type="text" 
+      class="form-control"
+      name="nom_prenomEtudiant" 
+      required 
+      [(ngModel)]="documentsDeStage.nom_prenomEtudiant"
+      minlength="3"
+      maxlength="20"
+      #nom_prenomEtudiant="ngModel"
+      [class.is-invalid]="nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="nom_prenomEtudiant.valid || nom_prenomEtudiant.untouched">nom_prenomEtudiant is required field</small>-->
+  <div *ngIf=" f.submitted || (nom_prenomEtudiant.errors && (nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched))">
+    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['required']">nom_prenomEtudiant is required field</small>
+    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['minlength']">nom_prenomEtudiant must be at least 3 characters</small>
+    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['maxlength']">nom_prenomEtudiant must be at most 20 characters</small>
+  </div>
+ </div>
+ <div>
+  <label>Option</label>
+  <input 
+      type="text" 
+      class="form-control"
+      name="optionEtudiant" 
+      required 
+      [(ngModel)]="documentsDeStage.optionEtudiant"
+      minlength="3"
+      maxlength="20"
+      #optionEtudiant="ngModel"
+      [class.is-invalid]="optionEtudiant.invalid && optionEtudiant.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="optionEtudiant.valid || optionEtudiant.untouched">optionEtudiant is required field</small>-->
+  <div *ngIf="f.submitted || (optionEtudiant.errors && (optionEtudiant.invalid && optionEtudiant.touched))">
+    <small class="text-danger" *ngIf="optionEtudiant.errors?.['required']">optionEtudiant is required field</small>
+    <small class="text-danger" *ngIf="optionEtudiant.errors?.['minlength']">optionEtudiant must be at least 3 characters</small>
+    <small class="text-danger" *ngIf="optionEtudiant.errors?.['maxlength']">optionEtudiant must be at most 20 characters</small>
+  </div>
+ </div>
+ <div>
+  <label>Nom Société</label>
+  <input 
+      type="text" 
+      class="form-control"
+      name="nomSociete" 
+      [(ngModel)]="documentsDeStage.nomSociete"
+      required
+      minlength="3"
+      maxlength="20"
+      #nomSociete="ngModel"
+      [class.is-invalid]="nomSociete.invalid && nomSociete.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="nomSociete.valid || nomSociete.untouched">nomSociete is required field</small>-->
+  <div *ngIf="f.submitted || (nomSociete.errors && (nomSociete.invalid && nomSociete.touched))">
+    <small class="text-danger" *ngIf="nomSociete.errors?.['required']">nomSociete is required field</small>
+    <small class="text-danger" *ngIf="nomSociete.errors?.['minlength']">nomSociete must be at least 3 characters</small>
+    <small class="text-danger" *ngIf="nomSociete.errors?.['maxlength']">nomSociete must be at most 20 characters</small>
+  </div>
+ </div>
+ <div>
+  <label>Adresse Société</label>
+  <input 
+      type="text" 
+      class="form-control"
+      name="adresseSociete" 
+      required 
+      [(ngModel)]="documentsDeStage.adresseSociete"
+      minlength="3"
+      maxlength="30"
+      #adresseSociete="ngModel"
+      [class.is-invalid]="adresseSociete.invalid && adresseSociete.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="adresseSociete.valid || adresseSociete.untouched">adresseSociete is required field</small>-->
+  <div *ngIf="f.submitted || (adresseSociete.errors && (adresseSociete.invalid && adresseSociete.touched))">
+    <small class="text-danger" *ngIf="adresseSociete.errors?.['required']">adresseSociete is required field</small>
+    <small class="text-danger" *ngIf="adresseSociete.errors?.['minlength']">adresseSociete must be at least 3 characters</small>
+    <small class="text-danger" *ngIf="adresseSociete.errors?.['maxlength']">adresseSociete must be at most 20 characters</small>
+  </div>
+ </div>
+ <div>
+  <label>Téléphone Société</label>
+  <input 
+      type="tel" 
+      class="form-control"
+      name="telephoneSociete" 
+      required 
+      [(ngModel)]="documentsDeStage.telephoneSociete" 
+      placeholder="Enter Phone Number" 
+      pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
+      #telephoneSociete="ngModel"
+      [class.is-invalid]="telephoneSociete.invalid && telephoneSociete.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="telephoneSociete.valid || telephoneSociete.untouched">telephoneSociete is required field</small>-->
+  <div *ngIf="f.submitted || (telephoneSociete.errors && (telephoneSociete.invalid && telephoneSociete.touched))">
+    <small class="text-danger" *ngIf="telephoneSociete.errors?.['required']">telephoneSociete is required field</small>
+    <small class="text-danger" *ngIf="telephoneSociete.errors?.['pattern']">Enter the valid telephoneSociete</small>
+  </div>
+ </div>
+ <div>
+  <label>Email Société</label>
+  <input 
+      type="email" 
+      class="form-control"
+      name="emailSociete" 
+      required 
+      [(ngModel)]="documentsDeStage.emailSociete" 
+      placeholder="Enter Email" 
+      pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
+      #emailSociete="ngModel"
+      [class.is-invalid]="emailSociete.invalid && emailSociete.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="emailSociete.valid || emailSociete.untouched">Email is required field</small>-->
+  <div *ngIf="f.submitted || (emailSociete.errors && (emailSociete.invalid && emailSociete.touched))">
+    <small class="text-danger" *ngIf="emailSociete.errors?.['required']">Email is required field</small>
+    <small class="text-danger" *ngIf="emailSociete.errors?.['pattern']">Enter the valid email</small>
+  </div>
+</div>
+ <div>
+  <label>Encadrant Société</label>
+  <input 
+      type="text" 
+      class="form-control"
+      name="encadrantSociete" 
+      required 
+      [(ngModel)]="documentsDeStage.encadrantSociete"
+      minlength="3"
+      maxlength="20"
+      #encadrantSociete="ngModel"
+      [class.is-invalid]="encadrantSociete.invalid && encadrantSociete.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="encadrantSociete.valid || encadrantSociete.untouched">encadrantSociete is required field</small>-->
+  <div *ngIf="f.submitted || (encadrantSociete.errors && (encadrantSociete.invalid && encadrantSociete.touched))">
+    <small class="text-danger" *ngIf="encadrantSociete.errors?.['required']">encadrantSociete is required field</small>
+    <small class="text-danger" *ngIf="encadrantSociete.errors?.['minlength']">encadrantSociete must be at least 3 characters</small>
+    <small class="text-danger" *ngIf="encadrantSociete.errors?.['maxlength']">encadrantSociete must be at most 20 characters</small>
+  </div>
+ </div>
+ <div>
+  <label>Encadrant Académique</label>
+  <input 
+      type="text" 
+      class="form-control"
+      name="encadrantAcademique" 
+      required 
+      [(ngModel)]="documentsDeStage.encadrantAcademique"
+      minlength="3"
+      maxlength="20"
+      #encadrantAcademique="ngModel"
+      [class.is-invalid]="encadrantAcademique.invalid && encadrantAcademique.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="encadrantAcademique.valid || encadrantAcademique.untouched">encadrantAcademique is required field</small>-->
+  <div *ngIf="f.submitted || (encadrantAcademique.errors && (encadrantAcademique.invalid && encadrantAcademique.touched))">
+    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['required']">encadrantAcademique is required field</small>
+    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['minlength']">encadrantAcademique must be at least 3 characters</small>
+    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['maxlength']">encadrantAcademique must be at most 20 characters</small>
+  </div>
+ </div>
+ <div>
+  <label>Date Debut Stage</label>
+  <input
+      type="date" 
+      name="dateDebutStage" 
+      required 
+      [(ngModel)]="documentsDeStage.dateDebutStage"
+      #dateDebutStage="ngModel"
+      [class.is-invalid]="dateDebutStage.invalid && dateDebutStage.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="dateDebutStage.valid || dateDebutStage.untouched">dateDebutStage is required field</small>-->
+  <div *ngIf="f.submitted || (dateDebutStage.errors && (dateDebutStage.invalid && dateDebutStage.touched))">
+    <small class="text-danger" *ngIf="dateDebutStage.errors?.['required']">dateDebutStage is required field</small>
+  </div>
+ </div>
+ <div>
+    <label>Date Fin Stage</label>
+    <input 
+        type="date" 
+        name="dateFinStage" 
+        required 
+        [(ngModel)]="documentsDeStage.dateFinStage"
+        #dateFinStage="ngModel"
+        [class.is-invalid]="dateFinStage.invalid && dateFinStage.touched"
+    />
+    <!--<small class="text-danger" [class.d-none]="dateFinStage.valid || dateFinStage.untouched">dateFinStage is required field</small>-->
+    <div *ngIf="f.submitted || (dateFinStage.errors && (dateFinStage.invalid && dateFinStage.touched))">
+      <small class="text-danger" *ngIf="dateFinStage.errors?.['required']">dateFinStage is required field</small>
+    </div>
+  </div>
+ <div>
+  <button type="submit" class="btn btn-primary" (click)="addDocumentsDeStageFormSubmit()">Submit</button>
+  <button type="button" class="btn btn-secondary" (click)="goToList()">BACK</button>
+ </div>
+</form>

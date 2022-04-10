@@ -35,22 +35,22 @@ export class UserService {
 
   fetchListUsers():Observable<any>{
 
-    return this.http.get<any>("http://localhost:8081/api/crud/getListUsers");
+    return this.http.get<any>("http://localhost:8081/api/user/getUserList");
   }
 
   addUser(user : User):Observable<any>{
 
-    return this.http.post<any>("http://localhost:8081/api/crud/addUser", user);
+    return this.http.post<any>("http://localhost:8081//api/user/addUser", user);
   }
 
   fetchUserById(id : number):Observable<any>{
 
-    return this.http.get<any>("http://localhost:8081/api/crud/getUserById/"+id);
+    return this.http.get<any>("http://localhost:8081/api/user/getUserById/"+id);
   }
 
   deleteUserById(id : number):Observable<string>{
 
-    return this.http.delete<string>("http://localhost:8081/deleteUserById/"+id);
+    return this.http.delete<string>("http://localhost:8081/api/user/deleteUserById/"+id);
   }
 
 }

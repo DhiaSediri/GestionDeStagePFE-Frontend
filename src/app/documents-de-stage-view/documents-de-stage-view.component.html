@@ -1,0 +1,32 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Nom & Prenom Etudiant</th>
+          <th>Option</th>
+          <th>Nom Société</th>
+          <th>Adresse Société</th>
+          <th>Téléphone Société</th>
+          <th>Email Société</th>
+          <th>Encadrant Société</th>
+          <th>Encadrant Academique</th>
+          <th>Date Début Stage</th>
+          <th>Date Fin Stage</th>
+          <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        , <td>{{documentsDeStage.nom_prenomEtudiant}}</td>
+          <td>{{documentsDeStage.optionEtudiant}}</td>
+          <td>{{documentsDeStage.nomSociete}}</td>
+          <td>{{documentsDeStage.adresseSociete}}</td>
+          <td>{{documentsDeStage.telephoneSociete}}</td>
+          <td>{{documentsDeStage.emailSociete}}</td>
+          <td>{{documentsDeStage.encadrantSociete}}</td>
+          <td>{{documentsDeStage.encadrantAcademique}}</td>
+          <td>{{documentsDeStage.dateDebutStage}}</td>
+          <td>{{documentsDeStage.dateFinStage}}</td>      
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary" (click)="goToList()">BACK</button>

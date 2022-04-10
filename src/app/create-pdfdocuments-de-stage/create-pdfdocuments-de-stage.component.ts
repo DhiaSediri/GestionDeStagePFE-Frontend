@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
 export class CreatePDFDocumentsDeStageComponent {
 
   dataset: DocumentsDeStage = {
+    id:0,
     nom_prenomEtudiant:'',
     optionEtudiant:'',
     nomSociete:'',
     adresseSociete:'',
-    telephoneSociete:0,
+    telephoneSociete:'',
     emailSociete:'',
     encadrantSociete:'',
     encadrantAcademique:'',
@@ -34,7 +35,7 @@ export class CreatePDFDocumentsDeStageComponent {
         this.dataset.optionEtudiant = '';
         this.dataset.nomSociete = '';
         this.dataset. adresseSociete = '';
-        this.dataset.telephoneSociete = 0;
+        this.dataset.telephoneSociete = '';
         this.dataset.emailSociete = '';
         this.dataset.encadrantSociete = '';
         this.dataset.encadrantAcademique = '';
@@ -50,7 +51,7 @@ export class CreatePDFDocumentsDeStageComponent {
         this.dataset.optionEtudiant = '';
         this.dataset.nomSociete = '';
         this.dataset. adresseSociete = '';
-        this.dataset.telephoneSociete = 0;
+        this.dataset.telephoneSociete = '';
         this.dataset.emailSociete = '';
         this.dataset.encadrantSociete = '';
         this.dataset.encadrantAcademique = '';
@@ -66,7 +67,7 @@ export class CreatePDFDocumentsDeStageComponent {
         this.dataset.optionEtudiant = '';
         this.dataset.nomSociete = '';
         this.dataset. adresseSociete = '';
-        this.dataset.telephoneSociete = 0;
+        this.dataset.telephoneSociete = '';
         this.dataset.emailSociete = '';
         this.dataset.encadrantSociete = '';
         this.dataset.encadrantAcademique = '';

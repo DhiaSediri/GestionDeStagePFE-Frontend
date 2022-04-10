@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileData } from '../_models/file-data';
-import { DownloadDocumentsDeStageService } from '../_services/download-documents-de-stage.service';
+import { DownloadFileService } from '../_services/download-file.service';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -12,7 +12,7 @@ export class DownloadDocumentsDeStageComponent implements OnInit {
 
   fileList?: FileData[];
 
-  constructor(private downloadService: DownloadDocumentsDeStageService) {
+  constructor(private downloadService: DownloadFileService) {
   }
 
   ngOnInit(): void {

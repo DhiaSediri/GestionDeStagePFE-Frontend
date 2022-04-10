@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../_models/user';
+import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UserEditComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private service : UserService, private router : Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private service : UserService, private authService: AuthService, private router : Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     const test = this.activatedRoute.snapshot.paramMap.get('id');
@@ -26,6 +27,7 @@ export class UserEditComponent implements OnInit {
       this.service.fetchUserById(id).subscribe(
         data => {
           console.log("Data update succesfully");
+          console.log(data);
           this.user=data;
         },
         error => console.log("Exception Occured")     
@@ -35,15 +37,17 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(){
     
-    this.service.addUser(this.form).subscribe(
+    this.user.role = [this.user.role];
+    console.log(this.user);
+    this.authService.editUser(this.user).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this.router.navigate(['listUsers']);
+        this.router.navigate(['listUser']);
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err?.error?.message;
         this.isSignUpFailed = true;
       }
     );
@@ -51,7 +55,7 @@ export class UserEditComponent implements OnInit {
 
   goToList(){
     console.log("Go Back");
-    this.router.navigate(['listUsers']);
+    this.router.navigate(['listUser']);
   }
 
 }

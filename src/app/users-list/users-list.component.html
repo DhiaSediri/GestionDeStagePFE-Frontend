@@ -17,7 +17,9 @@
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.password}}</td>
-            <td>{{user.role}}</td>     
+            <td>
+              <div *ngIf="user.roles">{{user.roles[0].name}}</div>
+            </td>     
           <td>
             <button type="button" class="btn btn-primary" (click)="goToEditUser(user.id)">Edit</button>&nbsp;&nbsp;
             <button type="button" class="btn btn-info" (click)="goToViewUser(user.id)">View</button>&nbsp;&nbsp;

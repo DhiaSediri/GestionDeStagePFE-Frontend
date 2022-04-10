@@ -7,7 +7,7 @@ import { FileData } from '../_models/file-data';
 @Injectable({
   providedIn: 'root'
 })
-export class DownloadDocumentsDeStageService {
+export class DownloadFileService {
 
   constructor(private http: HttpClient) {
   }
@@ -21,4 +21,5 @@ export class DownloadDocumentsDeStageService {
   list(): Observable<FileData[]> {
     return this.http.get<FileData[]>(`${environment.baseUrl}/api/files`);
   }
+  
 }

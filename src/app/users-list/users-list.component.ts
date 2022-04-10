@@ -25,6 +25,7 @@ export class UsersListComponent implements OnInit {
     this.service.fetchListUsers().subscribe(   
       data => {
         console.log("Response Recieved");
+        console.log(data);
         this.listUsers=data;
       },
       error => console.log("Exception Occured")
@@ -37,19 +38,19 @@ export class UsersListComponent implements OnInit {
 
   goToEditUser(id : number){
     console.log("id "+id);
-    this.router.navigate(['/editUser/:id', id]);
+    this.router.navigate(['/editUser', id]);
   }
 
   goToViewUser(id : number){
     console.log("id "+id);
-    this.router.navigate(['viewUser/:id', id]);
+    this.router.navigate(['/viewUser', id]);
   }
 
   deleteUser(id : number){
     this.service.deleteUserById(id).subscribe(
       data => {
         console.debug("Deleted Successfully");
-        //this._router.navigate(['/conventiondestagelist']);
+        //this._router.navigate(['/listUser']);
         this.loadData();
       },
       error => {
