@@ -42,7 +42,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { UploadAncienRapportComponent } from './upload-ancien-rapport/upload-ancien-rapport.component';
+import { UploadRapportsComponent } from './upload-rapports/upload-rapports.component';
+import { UploadRapportsDeStageComponent } from './upload-rapports-de-stage/upload-rapports-de-stage.component';
+import { UploadOffresDeStageComponent } from './upload-offres-de-stage/upload-offres-de-stage.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { UploadAncienRapportComponent } from './upload-ancien-rapport/upload-anc
     DocumentsDeStageListComponent,
     NavigationComponent,
     DashboardComponent,
-    UploadAncienRapportComponent,
+    UploadRapportsComponent,
+    UploadRapportsDeStageComponent,
+    UploadOffresDeStageComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,9 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { UploadOffresDeStageComponent } from './upload-offres-de-stage/upload-offres-de-stage.component';
+import { UploadRapportsDeStageComponent } from './upload-rapports-de-stage/upload-rapports-de-stage.component';
+import { UploadRapportsComponent } from './upload-rapports/upload-rapports.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserViewComponent } from './user-view/user-view.component';
@@ -41,7 +44,11 @@ const routes: Routes = [
   {path:'addDocumentsDeStage', component: DocumentsDeStageAddComponent},
   {path:'editDocumentsDeStage/:id', component:DocumentsDeStageEditComponent},
   {path:'viewDocumentsDeStage', component:DocumentsDeStageViewComponent},
+  {path:'viewDocumentsDeStage/:id', component:DocumentsDeStageViewComponent},
   {path:'uploadFile', component:UploadFileComponent},
+  {path:'uploadRapports', component:UploadRapportsComponent},
+  {path:'uploadRapportsDeStage', component:UploadRapportsDeStageComponent},
+  {path:'uploadOffresDeStage', component:UploadOffresDeStageComponent},
 ];
 
 @NgModule({

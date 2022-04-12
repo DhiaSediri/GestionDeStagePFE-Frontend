@@ -1,5 +1,5 @@
 export class FileData {
     filename?: string;
     contentType?: string;
-    size?: number;
+    size?: number; 
 }

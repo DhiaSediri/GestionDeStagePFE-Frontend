@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="roe">
+        <div calss="col-md-12">
+            <div class="form-group">
+                <label>File Uploads</label>
+                <input type="file" (change)="fileUploads($event)" multiple class="form-control" style="height: 100%;" accept="image/*"/>               
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-success" (click)="save()">Upload file</button>
+            </div>
+        </div>
+    </div>
+    <h4><p>Uploaded files</p></h4>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <th>File</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let image of images">
+                <td><img [src] = "image.url" style="height: 30px; width: 30px; border-radius: 50%;"></td>
+                <td>{{image.name}}</td>
+                <td>{{image.type}}</td>
+                <td>{{image.size}}</td>
+                <td><a href="javascript:void(0)" (click)="deleteImage()"><i class="fa fa-trash">Delete</i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -27,7 +27,6 @@ export class UserEditComponent implements OnInit {
       this.service.fetchUserById(id).subscribe(
         data => {
           console.log("Data update succesfully");
-          console.log(data);
           this.user=data;
         },
         error => console.log("Exception Occured")     

@@ -21,8 +21,7 @@ export class UserAddComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit(): void {
-    //console.log(this.form);
-    console.log(this.form.value);
+    
     const user =  new User();
     user.username = this.form.username;
     user.email = this.form.email;

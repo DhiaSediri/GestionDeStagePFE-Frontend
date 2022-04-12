@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DocumentsDeStage } from '../_models/documents-de-stage';
 import { Router } from '@angular/router';
+import { DocumentsDeStageService } from '../_services/documents-de-stage.service';
 
 @Component({
   selector: 'app-create-pdfdocuments-de-stage',
@@ -24,9 +25,17 @@ export class CreatePDFDocumentsDeStageComponent {
     dateFinStage: new Date()
   };
 
-  constructor(private https: HttpClient, private router: Router) { }
+  constructor(private https: HttpClient, private router: Router, private documentsDeStageService: DocumentsDeStageService) { }
 
   onSubmit() {
+
+    this.documentsDeStageService.addDocumentsDeStageToRemote(this.dataset).subscribe(
+      () => {
+        console.log("Data add succesfully");
+      },
+      () => console.log("Error")     
+    );
+    
     this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getConventionDeStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
