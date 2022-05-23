@@ -10,17 +10,32 @@ export class UploadFileService {
   constructor(private http: HttpClient) {
   }
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  uploadFileOffresDeStage(file: File): Observable<HttpEvent<any>> {
     
     const formData: FormData = new FormData();
 
     formData.append('file', file);
 
-    const req = new HttpRequest('POST', `${environment.baseUrl}/api/files/uploadFile`, formData, {
+    const req = new HttpRequest('POST', `${environment.baseUrl}/api/files/uploadFileOffresDeStage`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
 
     return this.http.request(req);
   }
+
+  uploadFileRapportsDeStage(file: File): Observable<HttpEvent<any>> {
+    
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${environment.baseUrl}/api/files/uploadFileRapportsDeStage`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
 }

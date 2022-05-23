@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-add',
@@ -15,10 +16,18 @@ export class UserAddComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private https: HttpClient) { }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void { }
+
+  emailSender(user: User) {
+    this.https.post<User>('http://localhost:8081/emailSender/getdetailsAddUser', user).subscribe(
+      res => {
+        console.log(user);
+        alert('Email Sent successfully');
+      });
+  }
 
   onSubmit(): void {
     
@@ -34,6 +43,7 @@ export class UserAddComponent implements OnInit {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.router.navigate(['listUser']);
+        this.emailSender(user);
       },
       err => {
         this.errorMessage = err.error.message;

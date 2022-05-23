@@ -31,20 +31,33 @@ import { DocumentsDeStageViewComponent } from './documents-de-stage-view/documen
 import { DocumentsDeStageListComponent } from './documents-de-stage-list/documents-de-stage-list.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { UploadRapportsComponent } from './upload-rapports/upload-rapports.component';
 import { UploadRapportsDeStageComponent } from './upload-rapports-de-stage/upload-rapports-de-stage.component';
 import { UploadOffresDeStageComponent } from './upload-offres-de-stage/upload-offres-de-stage.component';
+import { EmailComponent } from './email/email.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { DocumentsDeStageListDEPOSEEComponent } from './documents-de-stage-list-deposee/documents-de-stage-list-deposee.component';
+import { DefaultModule } from './layouts/default/default.module';
+import { AffectationAddComponent } from './affectation-add/affectation-add.component';
+import { AffectationViewComponent } from './affectation-view/affectation-view.component';
+import { AffectationListComponent } from './affectation-list/affectation-list.component';
+import { DepotComponent } from './depot/depot.component';
+import { DepotConventionDeStageComponent } from './depot-convention-de-stage/depot-convention-de-stage.component';
+import { DepotFicheDeStageComponent } from './depot-fiche-de-stage/depot-fiche-de-stage.component';
+import { DepotBilanPeriodiqueDebutDuStageComponent } from './depot-bilan-periodique-debut-du-stage/depot-bilan-periodique-debut-du-stage.component';
+import { DepotBilanPeriodiqueMilieuDuStageComponent } from './depot-bilan-periodique-milieu-du-stage/depot-bilan-periodique-milieu-du-stage.component';
+import { DepotBilanPeriodiqueFinDuStageComponent } from './depot-bilan-periodique-fin-du-stage/depot-bilan-periodique-fin-du-stage.component';
+import { DepotRapportPremiereVersionComponent } from './depot-rapport-premiere-version/depot-rapport-premiere-version.component';
+import { DepotRapportVersionFinaleComponent } from './depot-rapport-version-finale/depot-rapport-version-finale.component';
+import { DepotJournalDeStageComponent } from './depot-journal-de-stage/depot-journal-de-stage.component';
 
 @NgModule({
   declarations: [
@@ -67,11 +80,23 @@ import { UploadOffresDeStageComponent } from './upload-offres-de-stage/upload-of
     DocumentsDeStageEditComponent,
     DocumentsDeStageViewComponent,
     DocumentsDeStageListComponent,
-    NavigationComponent,
-    DashboardComponent,
-    UploadRapportsComponent,
     UploadRapportsDeStageComponent,
     UploadOffresDeStageComponent,
+    EmailComponent,
+    PieChartComponent,
+    DocumentsDeStageListDEPOSEEComponent,
+    AffectationAddComponent,
+    AffectationViewComponent,
+    AffectationListComponent,
+    DepotComponent,
+    DepotConventionDeStageComponent,
+    DepotFicheDeStageComponent,
+    DepotBilanPeriodiqueDebutDuStageComponent,
+    DepotBilanPeriodiqueMilieuDuStageComponent,
+    DepotBilanPeriodiqueFinDuStageComponent,
+    DepotRapportPremiereVersionComponent,
+    DepotRapportVersionFinaleComponent,
+    DepotJournalDeStageComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +112,8 @@ import { UploadOffresDeStageComponent } from './upload-offres-de-stage/upload-of
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    DefaultModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

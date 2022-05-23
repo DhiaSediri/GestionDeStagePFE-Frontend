@@ -15,7 +15,6 @@ export class DocumentsDeStageListComponent implements OnInit {
   constructor(private _service:DocumentsDeStageService, private _router: Router) { }
 
   ngOnInit(): void {
-
     this.loadData();
   }
 
@@ -57,6 +56,10 @@ export class DocumentsDeStageListComponent implements OnInit {
         this.loadData();
       }
     );
+  }
+
+  goToListDocumentsDeStageDEPOSEE() {
+    this._router.navigate(['/listDocumentsDeStageDEPOSEE']);
   }
 
 }

@@ -5,6 +5,12 @@
   <td><input type="text" [(ngModel)]="dataset.nom_prenomEtudiant" name="nom_prenomEtudiant"> </td>
  </tr>
  <tr>
+  <td><span>Email Etudiant</span></td>
+  <td><input type="email" [(ngModel)]="dataset.emailEtudiant" name="emailEtudiant"
+    placeholder="Enter Email" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" #email="ngModel"
+    ></td>
+ </tr>
+ <tr>
   <td><span>Option</span></td>
   <td><input type="text" [(ngModel)]="dataset.optionEtudiant" name="optionEtudiant"></td>
  </tr>

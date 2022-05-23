@@ -30,4 +30,19 @@ export class DocumentsDeStageService {
     return this._http.delete<string>("http://localhost:8081/api/documentsDeStage/deleteDocumentsDeStageById/"+id);
   }
 
+  accepterDemande(documentsDeStage : DocumentsDeStage):Observable<any>{
+
+    return this._http.post<any>("http://localhost:8081/api/documentsDeStage/accepterDemande", documentsDeStage);
+  }
+
+  refuserDemande(documentsDeStage : DocumentsDeStage):Observable<any>{
+
+    return this._http.post<any>("http://localhost:8081/api/documentsDeStage/refuserDemande", documentsDeStage);
+  }
+
+  fetchListDocumentsDeStageDEPOSEEFromRemote():Observable<any>{
+
+    return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getListDocumentsDeStageDEPOSEE");
+  }
+
 }

@@ -53,4 +53,39 @@ export class UserService {
     return this.http.delete<string>("http://localhost:8081/api/user/deleteUserById/"+id);
   }
 
+  fetchAcademicSupervisorListFromRemote():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getAcademicsSupervisorList");
+  }
+
+  fetchStudentListFromRemote():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getStudentList");
+  }
+
+  addAffectation(encadrant_id : number, etudiant_id : number):Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/addAffectation/"+encadrant_id+'/'+etudiant_id);
+  }
+
+  deleteAffectation(encadrant_id : number, etudiant_id : number):Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/deleteAffectation/"+encadrant_id+'/'+etudiant_id);
+  }
+
+  getNumberAdmins():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getNumberAdmins");
+  }
+
+  getNumberStudents():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getNumberStudents");
+  }
+
+  getNumberAcademicsSupervisors():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getNumberAcademicsSupervisors");
+  }
+
 }

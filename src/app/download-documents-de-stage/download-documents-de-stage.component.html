@@ -3,5 +3,7 @@
     <a (click)="downloadFile(fileData)" class="list-group-item list-group-item-success" style="cursor: pointer;">
         {{fileData.filename}}            
       <a class="alert-success float-right">Download</a>
+      <button class="btn btn-sm btn-primary" (click)="getFile()">View File</button>&nbsp;
+      <button class="btn btn-sm btn-primary" (click)="getFileInNewWindow()" [(ngModel)]="fileData.filename">View File in New Window</button>
     </a><br>
 </div>

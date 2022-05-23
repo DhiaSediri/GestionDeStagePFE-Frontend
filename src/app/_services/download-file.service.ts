@@ -12,14 +12,18 @@ export class DownloadFileService {
   constructor(private http: HttpClient) {
   }
 
-  download(file: string | undefined): Observable<Blob> {
-    return this.http.get(`${environment.baseUrl}/api/files/${file}`, {
+  download(file: string | undefined, emailEtudiant: string | undefined | null): Observable<Blob> {
+    return this.http.get(`${environment.baseUrl}/api/files/${file}/${emailEtudiant}`, {
       responseType: 'blob'
     });
   }
 
-  list(): Observable<FileData[]> {
-    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files`);
+  listDocumentsDeStage( ): Observable<FileData[]> {
+    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileDocumentsDeStage/${folder}`);
   }
-  
+
+  getPdfDocumentsDeStage(fileName: string, folder: string | ) {
+    return this.http.get<any>(`http://localhost:4200/api/viewPDF/getPdfDocumentsDeStage/${fileName}/${folder}`, { responseType: 'arraybuffer' as 'json' });
+  }
+
 }

@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8081'
+  baseUrl: 'http://localhost:8081',
+  pdfs: [
+    { filename: 'PDF Test File', url: 'http://localhost:8081/api/pdf/PFERendez-vouspédagogiques.pdf', selected: true },
+    { filename: 'Sample PDF File', url: 'http://localhost:8081/api/pdf/Guidepourrédigervotrejournaldebordenstage.pdf', selected: false } 
+  ]
 };
 
 /*

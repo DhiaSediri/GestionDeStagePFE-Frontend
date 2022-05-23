@@ -12,12 +12,20 @@ export class DeleteFileService {
   constructor(private http: HttpClient) {
   }
 
-  delete(file: string | undefined): Observable<any> {
-    return this.http.delete(`${environment.baseUrl}/api/files/delete/${file}`);
+  deleteFileOffresDeStage(file: string | undefined): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}/api/files/deleteFileOffresDeStage/${file}`);
   }
 
-  list(): Observable<FileData[]> {
-    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files`);
+  deleteFileRapportsDeStage(file: string | undefined): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}/api/files/deleteFileRapportsDeStage/${file}`);
+  }
+
+  listFileOffresDeStage(): Observable<FileData[]> {
+    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileOffresDeStage`);
+  }
+
+  listFileRapportsDeStage(): Observable<FileData[]> {
+    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileRapportsDeStage`);
   }
 
 }

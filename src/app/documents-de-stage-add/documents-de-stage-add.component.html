@@ -12,7 +12,7 @@
       class="form-control"
       name="nom_prenomEtudiant" 
       required 
-      [(ngModel)]="documentsDeStage.nom_prenomEtudiant"
+      [(ngModel)]="dataset.nom_prenomEtudiant"
       minlength="3"
       maxlength="20"
       #nom_prenomEtudiant="ngModel"
@@ -26,13 +26,32 @@
   </div>
  </div>
  <div>
+  <label>Email Etudiant</label>
+  <input 
+      type="email" 
+      class="form-control"
+      name="emailEtudiant" 
+      required 
+      [(ngModel)]="dataset.emailEtudiant" 
+      placeholder="Enter Email" 
+      pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
+      #emailEtudiant="ngModel"
+      [class.is-invalid]="emailEtudiant.invalid && emailEtudiant.touched"
+  />
+  <!--<small class="text-danger" [class.d-none]="emailEtudiant.valid || emailEtudiant.untouched">Email is required field</small>-->
+  <div *ngIf="f.submitted || (emailEtudiant.errors && (emailEtudiant.invalid && emailEtudiant.touched))">
+    <small class="text-danger" *ngIf="emailEtudiant.errors?.['required']">Email is required field</small>
+    <small class="text-danger" *ngIf="emailEtudiant.errors?.['pattern']">Enter the valid email</small>
+  </div>
+</div>
+ <div>
   <label>Option</label>
   <input 
       type="text" 
       class="form-control"
       name="optionEtudiant" 
       required 
-      [(ngModel)]="documentsDeStage.optionEtudiant"
+      [(ngModel)]="dataset.optionEtudiant"
       minlength="3"
       maxlength="20"
       #optionEtudiant="ngModel"
@@ -51,7 +70,7 @@
       type="text" 
       class="form-control"
       name="nomSociete" 
-      [(ngModel)]="documentsDeStage.nomSociete"
+      [(ngModel)]="dataset.nomSociete"
       required
       minlength="3"
       maxlength="20"
@@ -72,7 +91,7 @@
       class="form-control"
       name="adresseSociete" 
       required 
-      [(ngModel)]="documentsDeStage.adresseSociete"
+      [(ngModel)]="dataset.adresseSociete"
       minlength="3"
       maxlength="30"
       #adresseSociete="ngModel"
@@ -92,7 +111,7 @@
       class="form-control"
       name="telephoneSociete" 
       required 
-      [(ngModel)]="documentsDeStage.telephoneSociete" 
+      [(ngModel)]="dataset.telephoneSociete" 
       placeholder="Enter Phone Number" 
       pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
       #telephoneSociete="ngModel"
@@ -111,7 +130,7 @@
       class="form-control"
       name="emailSociete" 
       required 
-      [(ngModel)]="documentsDeStage.emailSociete" 
+      [(ngModel)]="dataset.emailSociete" 
       placeholder="Enter Email" 
       pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
       #emailSociete="ngModel"
@@ -130,7 +149,7 @@
       class="form-control"
       name="encadrantSociete" 
       required 
-      [(ngModel)]="documentsDeStage.encadrantSociete"
+      [(ngModel)]="dataset.encadrantSociete"
       minlength="3"
       maxlength="20"
       #encadrantSociete="ngModel"
@@ -150,7 +169,7 @@
       class="form-control"
       name="encadrantAcademique" 
       required 
-      [(ngModel)]="documentsDeStage.encadrantAcademique"
+      [(ngModel)]="dataset.encadrantAcademique"
       minlength="3"
       maxlength="20"
       #encadrantAcademique="ngModel"
@@ -169,7 +188,7 @@
       type="date" 
       name="dateDebutStage" 
       required 
-      [(ngModel)]="documentsDeStage.dateDebutStage"
+      [(ngModel)]="dataset.dateDebutStage"
       #dateDebutStage="ngModel"
       [class.is-invalid]="dateDebutStage.invalid && dateDebutStage.touched"
   />
@@ -184,7 +203,7 @@
         type="date" 
         name="dateFinStage" 
         required 
-        [(ngModel)]="documentsDeStage.dateFinStage"
+        [(ngModel)]="dataset.dateFinStage"
         #dateFinStage="ngModel"
         [class.is-invalid]="dateFinStage.invalid && dateFinStage.touched"
     />

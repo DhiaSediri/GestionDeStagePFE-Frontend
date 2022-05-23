@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../_models/user';
@@ -18,7 +19,7 @@ export class UserEditComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private service : UserService, private authService: AuthService, private router : Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private service : UserService, private authService: AuthService, private router : Router, private activatedRoute : ActivatedRoute, private https: HttpClient) { }
 
   ngOnInit(): void {
     const test = this.activatedRoute.snapshot.paramMap.get('id');
@@ -34,6 +35,14 @@ export class UserEditComponent implements OnInit {
     }   
   }
 
+  emailSender(user: User) {
+    this.https.post<User>('http://localhost:8081/emailSender/getdetailsAddUser', user).subscribe(
+      res => {
+        console.log(user);
+        alert('Email Sent successfully');
+      });
+  }
+
   onSubmit(){
     
     this.user.role = [this.user.role];
@@ -44,6 +53,7 @@ export class UserEditComponent implements OnInit {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.router.navigate(['listUser']);
+        this.emailSender(this.user);
       },
       err => {
         this.errorMessage = err?.error?.message;

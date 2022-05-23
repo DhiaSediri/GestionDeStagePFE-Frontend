@@ -1,0 +1,17 @@
+<div class="form-group">
+    <label for="cars">Choisir un encadrant:</label>
+    <select class="form-control" name="encadrant" [(ngModel)]="encadnat.id">
+        <option *ngFor="let listEncadrant of _listEncadrant" value="{{listEncadrant.id}}">{{listEncadrant.username}}</option>
+    </select>
+</div>  
+
+<div class="form-group">
+    <label for="cars">Choisir un étudiant:</label>
+    <select class="form-control" name="encadrant" [(ngModel)]="etudiant.id">
+        <option *ngFor="let listEtudiant of _listEtudiant" value="{{listEtudiant.id}}">{{listEtudiant.username}}</option>
+    </select>
+</div>  
+
+<div class="form-group">
+    <button class="btn btn-primary btn-block" (click)="Affecter()">Affecter</button>
+</div>

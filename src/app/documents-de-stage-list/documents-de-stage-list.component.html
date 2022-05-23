@@ -6,6 +6,7 @@
       <thead>
         <tr>
           <th>Nom & Prenom Etudiant</th>
+          <th>Email Etudiant</th>
           <th>Option</th>
           <th>Nom Société</th>
           <th>Adresse Société</th>
@@ -15,12 +16,15 @@
           <th>Encadrant Academique</th>
           <th>Date Début Stage</th>
           <th>Date Fin Stage</th>
+          <th>Date Demande Stage</th>
+          <th>Etat Demande</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let documentsDeStage of _documentsDeStagelist">
           <td>{{documentsDeStage.nom_prenomEtudiant}}</td>
+          <td>{{documentsDeStage.emailEtudiant}}</td>
           <td>{{documentsDeStage.optionEtudiant}}</td>
           <td>{{documentsDeStage.nomSociete}}</td>
           <td>{{documentsDeStage.adresseSociete}}</td>
@@ -29,7 +33,9 @@
           <td>{{documentsDeStage.encadrantSociete}}</td>
           <td>{{documentsDeStage.encadrantAcademique}}</td>
           <td>{{documentsDeStage.dateDebutStage}}</td>
-          <td>{{documentsDeStage.dateFinStage}}</td>     
+          <td>{{documentsDeStage.dateFinStage}}</td> 
+          <td>{{documentsDeStage.dateDemande}}</td>
+          <td>{{documentsDeStage.etatDemande}}</td>    
           <td>
             <button type="button" class="btn btn-primary" (click)="goToEditDocumentsDeStage(documentsDeStage.id)">Edit</button>&nbsp;&nbsp;
             <button type="button" class="btn btn-info" (click)="goToViewDocumentsDeStage(documentsDeStage.id)">View</button>&nbsp;&nbsp;
@@ -39,4 +45,5 @@
       </tbody>
     </table>
     <button type="button" class="btn btn-success" (click)="goToAddDocumentsDeStage()">Add new Documents de stage</button>
+    <button type="button" class="btn btn-success" (click)="goToListDocumentsDeStageDEPOSEE()">Documents de stage non encore traités</button>
   </div>

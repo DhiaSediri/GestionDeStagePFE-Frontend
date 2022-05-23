@@ -1,0 +1,28 @@
+<p>conventiondestagelist works!</p>
+<div class="container"> 
+    <h2>User list</h2>
+    <p>Use actions to  perform crud operations</p>            
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Encadrant</th>
+            <th>Etudiant</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of listUsers">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>
+              <div *ngIf="user.roles">{{user.roles[0].name}}</div>
+            </td>     
+          <td>
+            <button type="button" class="btn btn-info" (click)="goToViewUser(user.id)">View</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-success" (click)="goToAddUser()">Add new User</button>
+  </div>

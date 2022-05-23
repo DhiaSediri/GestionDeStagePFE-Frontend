@@ -4,6 +4,7 @@ import { FileData } from '../_models/file-data';
 import { DeleteFileService } from '../_services/delete-file.service';
 import { UploadFileService } from '../_services/upload-file.service';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-offres-de-stage',
@@ -19,7 +20,7 @@ export class UploadOffresDeStageComponent implements OnInit {
 
   fileList?: FileData[];
 
-  constructor(private uploadService: UploadFileService, private deleteFileService: DeleteFileService) {
+  constructor(private uploadService: UploadFileService, private deleteFileService: DeleteFileService, private _router: Router) {
   }
 
   selectFile(event: any): void {
@@ -35,7 +36,7 @@ export class UploadOffresDeStageComponent implements OnInit {
       if (file) {
         this.currentFile = file;
 
-        this.uploadService.upload(this.currentFile).subscribe(
+        this.uploadService.uploadFileOffresDeStage(this.currentFile).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               console.log(Math.round(100 * event.loaded / event.total));
@@ -65,15 +66,17 @@ export class UploadOffresDeStageComponent implements OnInit {
   }
 
   getFileList(): void {
-    this.deleteFileService.list().subscribe(result => {
+    this.deleteFileService.listFileOffresDeStage().subscribe(result => {
       this.fileList = result;
     });
   }
 
   deleteFile(fileData: FileData): void {
     this.deleteFileService
-      .delete(fileData.filename)
+      .deleteFileOffresDeStage(fileData.filename)
       .subscribe(blob => saveAs(blob, fileData.filename));
+      alert('File deleted successfully');
+      this._router.navigate(['uploadOffresDeStage']);
   }
 
 }
