@@ -1,0 +1,47 @@
+<div class="container"> 
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Chercher par Option/Session/Société" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit" (click)="fetchOffreDeStageListParRecherche()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="_offreDeStagelist.length">
+    <h2>Liste des offres de stage</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Session</th>
+            <th>Société</th>
+            <th>Liste des offres de stage</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let offreDeStage of _offreDeStagelist">
+              <td>{{offreDeStage.option}}</td>
+              <td>{{offreDeStage.session}}</td>
+              <td>{{offreDeStage.societe}}</td>   
+              <td>
+                <button class="btn btn-sm btn-primary" (click)="goToListFilesOffreDeStagePourAdmin(offreDeStage.societe, offreDeStage.session, offreDeStage.option)">Consulter la liste</button>
+              </td>
+            </tr>      
+        </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!_offreDeStagelist.length">
+    <p>Aucun offre de stage</p>          
+  </div> 
+
+  <button type="button" class="btn btn-success" (click)="goToAddOffreDeStage()">Add new Offre de stage</button>
+
+</div>

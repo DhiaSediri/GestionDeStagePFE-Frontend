@@ -53,4 +53,15 @@ export class AuthService {
       role: user.role
     }, httpOptions);
   }
+
+  editUserByHimself(user: User): Observable<any> {
+    console.log(user);
+    return this.http.post(AUTH_API + 'editUserByHimself', {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+    }, httpOptions);
+  }
+
 }

@@ -1,0 +1,23 @@
+<p>list-etudiants-pour-encadrant works!</p>
+<div class="container"> 
+    <h2>Student list</h2>
+    <p>Use actions to  perform operations</p>            
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of listStudents">
+            <td>{{student.username}}</td>
+            <td>{{student.email}}</td>   
+          <td>
+            <button class="btn btn-primary btn-block" (click)="deleteAffectation(student.id)">Retirer l'affectation de l'étudiant</button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

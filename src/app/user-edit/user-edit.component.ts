@@ -27,8 +27,8 @@ export class UserEditComponent implements OnInit {
       const id = parseInt(test);
       this.service.fetchUserById(id).subscribe(
         data => {
-          console.log("Data update succesfully");
-          this.user=data;
+          console.log("Data fetch succesfully");
+          this.user = data;
         },
         error => console.log("Exception Occured")     
       );
@@ -44,7 +44,6 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(){
-    
     this.user.role = [this.user.role];
     console.log(this.user);
     this.authService.editUser(this.user).subscribe(

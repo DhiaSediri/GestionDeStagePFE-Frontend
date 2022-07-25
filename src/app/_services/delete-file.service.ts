@@ -12,20 +12,32 @@ export class DeleteFileService {
   constructor(private http: HttpClient) {
   }
 
-  deleteFileOffresDeStage(file: string | undefined): Observable<any> {
-    return this.http.delete(`${environment.baseUrl}/api/files/deleteFileOffresDeStage/${file}`);
+  ///////////////////////////////////////////////////// Offres De Stage /////////////////////////////////////////////////////
+
+  listFileOffresDeStage(societe: string | undefined, session: string | undefined, option: string | undefined): Observable<FileData[]> {
+    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileOffresDeStage/${societe}/${session}/${option}`);
   }
 
-  deleteFileRapportsDeStage(file: string | undefined): Observable<any> {
-    return this.http.delete(`${environment.baseUrl}/api/files/deleteFileRapportsDeStage/${file}`);
+  getPdfOffresDeStage(fileName: string | undefined, societe: string | undefined, session: string | undefined, option: string | undefined) {
+    return this.http.get<any>(`${environment.baseUrl}/api/viewPDF/getPdfOffresDeStage/${fileName}/${societe}/${session}/${option}`, { responseType: 'arraybuffer' as 'json' });
   }
 
-  listFileOffresDeStage(): Observable<FileData[]> {
-    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileOffresDeStage`);
+  deleteFileOffresDeStage(file: string | undefined, societe: string | undefined, session: string | undefined, option: string | undefined): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}/api/files/deleteFileOffresDeStage/${file}/${societe}/${session}/${option}`);
   }
 
-  listFileRapportsDeStage(): Observable<FileData[]> {
-    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileRapportsDeStage`);
+    ///////////////////////////////////////////////////// Rapports De Stage /////////////////////////////////////////////////////
+
+  listFileRapportsDeStage(session: string | undefined, option: string | undefined, encadrant: string | undefined): Observable<FileData[]> {
+    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileRapportsDeStag/${session}/${option}/${encadrant}e`);
+  }
+
+  getPdfRapportsDeStage(fileName: string | undefined, session: string | undefined, option: string | undefined, encadrant: string | undefined) {
+    return this.http.get<any>(`${environment.baseUrl}/api/viewPDF/getPdfRapportsDeStage/${fileName}/${session}/${option}/${encadrant}`, { responseType: 'arraybuffer' as 'json' });
+  }  
+
+  deleteFileRapportsDeStage(file: string | undefined, session: string | undefined, option: string | undefined, encadrant: string | undefined): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}/api/files/deleteFileRapportsDeStage/${file}/${session}/${option}/${encadrant}`);
   }
 
 }

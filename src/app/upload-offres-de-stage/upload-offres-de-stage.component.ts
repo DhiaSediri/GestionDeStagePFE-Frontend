@@ -1,10 +1,11 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FileData } from '../_models/file-data';
 import { DeleteFileService } from '../_services/delete-file.service';
 import { UploadFileService } from '../_services/upload-file.service';
 import { saveAs } from 'file-saver';
 import { Router } from '@angular/router';
+import { OffreDeStage } from '../_models/offre-de-stage';
 
 @Component({
   selector: 'app-upload-offres-de-stage',
@@ -19,6 +20,10 @@ export class UploadOffresDeStageComponent implements OnInit {
   errorMsg = '';
 
   fileList?: FileData[];
+
+  @ViewChild('pdfViewer') pdfViewer!: ElementRef;
+
+  offreDeStage = new OffreDeStage;
 
   constructor(private uploadService: UploadFileService, private deleteFileService: DeleteFileService, private _router: Router) {
   }
@@ -36,7 +41,7 @@ export class UploadOffresDeStageComponent implements OnInit {
       if (file) {
         this.currentFile = file;
 
-        this.uploadService.uploadFileOffresDeStage(this.currentFile).subscribe(
+        this.uploadService.uploadFileOffresDeStage(this.currentFile, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               console.log(Math.round(100 * event.loaded / event.total));
@@ -59,6 +64,13 @@ export class UploadOffresDeStageComponent implements OnInit {
       }
       this.selectedFiles = undefined;
     }
+
+    this.uploadService.addOffreDeStageToRemote(this.offreDeStage).subscribe(
+      () => console.log("Data add succesfully"),
+      () => console.log("Error")     
+    );
+
+    this._router.navigate(['/listOffresDeStagePourAdmin']);
   }
 
   ngOnInit(): void {
@@ -66,17 +78,33 @@ export class UploadOffresDeStageComponent implements OnInit {
   }
 
   getFileList(): void {
-    this.deleteFileService.listFileOffresDeStage().subscribe(result => {
+    this.deleteFileService.listFileOffresDeStage(this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe(result => {
       this.fileList = result;
     });
   }
 
   deleteFile(fileData: FileData): void {
     this.deleteFileService
-      .deleteFileOffresDeStage(fileData.filename)
+      .deleteFileOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option)
       .subscribe(blob => saveAs(blob, fileData.filename));
       alert('File deleted successfully');
       this._router.navigate(['uploadOffresDeStage']);
+  }
+
+  getFile(fileData: FileData) {
+    this.deleteFileService.getPdfOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe((responseMessage) => {
+    const file = new Blob([responseMessage], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
+    this.pdfViewer.nativeElement.data = fileURL;
+    })
+  }
+  
+  getFileInNewWindow(fileData: FileData) {
+    this.deleteFileService.getPdfOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe((responseMessage) => {
+    const file = new Blob([responseMessage], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+    })
   }
 
 }

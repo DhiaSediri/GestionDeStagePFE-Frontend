@@ -1,6 +1,21 @@
-<p>conventiondestagelist works!</p>
 <div class="container"> 
-    <h2>User list</h2>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Chercher par Username/Email" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit" (click)="fetchListUsersParRecherche()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="listUsers.length">
+    <h2>Liste des utilisateurs</h2>
     <p>Use actions to  perform crud operations</p>            
     <table class="table">
       <thead>
@@ -28,5 +43,12 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-success" (click)="goToAddUser()">Add new User</button>
+  </div>
+
+  <div *ngIf="!listUsers.length">
+    <p>Aucun utilisateur</p>          
+  </div>
+
+  <button type="button" class="btn btn-success" (click)="goToAddUser()">Add new User</button>
+
   </div>

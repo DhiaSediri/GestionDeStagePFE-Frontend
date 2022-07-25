@@ -1,28 +1,45 @@
-<p>conventiondestagelist works!</p>
-<div class="container"> 
-    <h2>User list</h2>
-    <p>Use actions to  perform crud operations</p>            
-    <table class="table">
-      <thead>
-        <tr>
-            <th>Encadrant</th>
-            <th>Etudiant</th>
-            <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of listUsers">
-            <td>{{user.username}}</td>
-            <td>{{user.email}}</td>
-            <td>
-              <div *ngIf="user.roles">{{user.roles[0].name}}</div>
-            </td>     
-          <td>
-            <button type="button" class="btn btn-info" (click)="goToViewUser(user.id)">View</button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button type="button" class="btn btn-success" (click)="goToAddUser()">Add new User</button>
-  </div>
+  <div class="container"> 
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <div class="row">
+      <div class="col-xs-6 col-md-4">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Chercher par Etudiant/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+          <div class="input-group-btn">
+            <button class="btn btn-primary" type="submit" (click)="fetchAcademicsSupervisorListParRecherche()">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div *ngIf="_listEncadrant.length">
+  <h2>Liste des Encadrants Académiques</h2>         
+  <table class="table">
+    <thead>
+      <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Liste des étudiants affectés</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let listEncadrant of _listEncadrant">
+          <td>{{listEncadrant.username}}</td>
+          <td>{{listEncadrant.email}}</td>   
+        <td>
+          <button class="btn btn-primary btn-block" (click)="goToListeEtudiantPourEncadrantAffectaion(listEncadrant.id)">Consulter la liste</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!_listEncadrant.length">
+  <p>Aucun Encadrant Académique</p>          
+</div>
+
+<button class="btn btn-primary btn-block" (click)="goToAddAffectation()">Add new Affectation</button>
+
+</div>

@@ -1,0 +1,45 @@
+<div class="container"> 
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Chercher par Option/Session/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit" (click)="fetchRappportDeStageListParRecherche()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="_rapportDeStagelist.length">
+    <h2>Liste des rapports de stage</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Session</th>
+          <th>Nom & Prenom de l'encadrant</th>
+          <th>Liste des rapports de stage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rapportDeStage of _rapportDeStagelist">
+          <td>{{rapportDeStage.option}}</td>
+          <td>{{rapportDeStage.session}}</td>
+          <td>{{rapportDeStage.encadrant}}</td>   
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="goToListFilesRapportDeStagePourEtudiant(rapportDeStage.session, rapportDeStage.option, rapportDeStage.encadrant)">Consulter la liste</button>&nbsp;
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!_rapportDeStagelist.length">
+    <p>Aucun rapport de stage</p>          
+  </div> 
+
+</div>

@@ -1,0 +1,49 @@
+<div class="container"> 
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Chercher par Username/Email Etudiant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit" (click)="fetchDepotConvention_de_stageListParRecherche()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="_conventionDeStagelist.length">
+    <h2>Liste des Conventions de stage</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Nom & Prenom Etudiant</th>
+            <th>Email Etudiant</th>
+            <th>Date Depot</th>
+            <th>Etat Depot</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let conventionDeStage of _conventionDeStagelist">
+            <td>{{conventionDeStage.etudiant?.username}}</td>
+            <td>{{conventionDeStage.etudiant?.email}}</td>
+            <td>{{conventionDeStage.dateDepot}}</td>
+            <td>{{conventionDeStage.etatDepot}}</td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="goToListFileDepotConventionDeStagePourAdmin(conventionDeStage.etudiant?.email, conventionDeStage.id)">Traiter le dépot</button>
+            </td> 
+          </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!_conventionDeStagelist.length">
+    <p>Aucune Convention de stage</p>          
+  </div> 
+
+    <button type="button" class="btn btn-success" (click)="goToListDepotConventionDeStageDEPOSEEPourAdmin()">Consulter seulement les dépots non encore traités</button>
+
+</div>

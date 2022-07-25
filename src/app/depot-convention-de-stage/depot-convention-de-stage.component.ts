@@ -1,11 +1,12 @@
-import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Depot } from '../_models/depot';
+import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FileData } from '../_models/file-data';
 import { DepotService } from '../_services/depot.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
+import { Depot } from '../_models/depot';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-depot-convention-de-stage',
@@ -23,7 +24,9 @@ export class DepotConventionDeStageComponent implements OnInit {
 
   fileList?: FileData[];
 
-  constructor(private depotService: DepotService, private _router: Router, private token: TokenStorageService) {
+  @ViewChild('pdfViewer') pdfViewer!: ElementRef;
+
+  constructor(private depotService: DepotService, private _router: Router, private token: TokenStorageService, private https: HttpClient) {
   }
 
   selectFile(event: any): void {
@@ -39,7 +42,7 @@ export class DepotConventionDeStageComponent implements OnInit {
       if (file) {
         this.currentFile = file;
 
-        this.depotService.uploadFileDepot(this.currentFile, this.currentUser.email).subscribe(
+        this.depotService.uploadFileDepotConvention_de_stage(this.currentFile, this.currentUser.email).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               console.log(Math.round(100 * event.loaded / event.total));
@@ -62,9 +65,25 @@ export class DepotConventionDeStageComponent implements OnInit {
       }
       this.selectedFiles = undefined;
     }
+    
+    this.depotService.addDepotConvention_de_stageToRemote(this.currentUser.id).subscribe(
+      (resultat) => {
+        console.log("Data add succesfully");
+        const etudiant = new User();
+        etudiant.id = this.currentUser.id;
+        resultat.user = etudiant;
+        this.emailSenderUploadDepotConventionDeStageToAdmin(resultat);
+      },
+      () => console.log("Error")     
+    );
+  }
 
-    const depot = new Depot();
-    this.depotService.addDepotConvention_de_stageToRemote(depot);
+  emailSenderUploadDepotConventionDeStageToAdmin(depotConvention_de_stage: Depot) {
+    this.https.post<Depot>('http://localhost:8081/emailSender/getdetailsUploadDepotConventionDeStageToAdmin', depotConvention_de_stage).subscribe(
+      res => {
+        console.log(depotConvention_de_stage);
+        alert('Email Sent successfully');
+      });
   }
 
   ngOnInit(): void {
@@ -73,7 +92,7 @@ export class DepotConventionDeStageComponent implements OnInit {
   }
 
   getFileList(): void {
-    this.depotService.listFileDepotEtudiant(this.currentUser.email).subscribe(result => {
+    this.depotService.listFileDepotConvention_de_stage(this.currentUser.email).subscribe(result => {
       this.fileList = result;
     });
   }
@@ -81,12 +100,32 @@ export class DepotConventionDeStageComponent implements OnInit {
   deleteFile(fileData: FileData): void {
     this.depotService
       
-    .deleteFileDepot(fileData.filename, this.currentUser.email)
+    .deleteFileDepotConvention_de_stage(fileData.filename, this.currentUser.email)
       .subscribe(blob => saveAs(blob, fileData.filename));
       alert('File deleted successfully');
       this._router.navigate(['Convention_de_stage']);
 
-      //this.depotService.deleteDepotByIdFromRemote(id);
+      this.depotService.deleteDepotConvention_de_stageByEtudiantIdFromRemote(this.currentUser.id).subscribe(
+        () => console.log("Data deleted succesfully"),
+        () => console.log("Error")     
+      );
+  }
+
+  getFile(fileData: FileData) {
+    this.depotService.getPdfConvention_de_stage(fileData.filename, this.currentUser.email).subscribe((responseMessage) => {
+    const file = new Blob([responseMessage], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
+    this.pdfViewer.nativeElement.data = fileURL;
+    })
+  }
+  
+
+  getFileInNewWindow(fileData: FileData) {
+    this.depotService.getPdfConvention_de_stage(fileData.filename, this.currentUser.email).subscribe((responseMessage) => {
+    const file = new Blob([responseMessage], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+    })
   }
 
 }

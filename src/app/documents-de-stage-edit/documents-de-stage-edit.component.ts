@@ -103,17 +103,29 @@ export class DocumentsDeStageEditComponent implements OnInit {
 
   }
 
+  emailSenderAddDemandeDeStageToAdmin(documentsDeStage: DocumentsDeStage) {
+    this.https.post<DocumentsDeStage>('http://localhost:8081/emailSender/getdetailsAddDemandeDeStageToAdmin', documentsDeStage).subscribe(
+      res => {
+        console.log(documentsDeStage);
+        alert('Email Sent successfully');
+      });
+  }
+
   updateDocumentsDeStageFormSubmit(){
+
+    this.createPDFDemandeDeStage();
     
     this._service.addDocumentsDeStageToRemote(this.dataset).subscribe(
       () => {
-        console.log("Data update succesfully");
-        this._router.navigate(['listDocumentsDeStage']);
+        console.log("Data update succesfully");   
       },
       () => console.log("Error")     
     );
-    this.createPDFDemandeDeStage();
-    this._router.navigate(['/downloadDocumentsDeStage']);
+
+    this.createPDFDemandeDeStage();    
+    this._router.navigate(['/downloadDocumentsDeStage', this.dataset.emailEtudiant]);
+
+    this.emailSenderAddDemandeDeStageToAdmin(this.dataset);
   }
 
   goToList(){

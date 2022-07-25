@@ -29,9 +29,13 @@ export class UserService {
   }
 
   getAcademicSupervisorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'academicSupervisor	', { responseType: 'text' });
+    return this.http.get(API_URL + 'Academic_Supervisor', { responseType: 'text' });
   }
 
+  fetchListUsersParRechercheFromRemote(mots_cles: string | undefined):Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getUserListParRecherche/"+mots_cles);
+  }
 
   fetchListUsers():Observable<any>{
 
@@ -40,7 +44,7 @@ export class UserService {
 
   addUser(user : User):Observable<any>{
 
-    return this.http.post<any>("http://localhost:8081//api/user/addUser", user);
+    return this.http.post<any>("http://localhost:8081//api/user/addUser/", user);
   }
 
   fetchUserById(id : number):Observable<any>{
@@ -53,17 +57,9 @@ export class UserService {
     return this.http.delete<string>("http://localhost:8081/api/user/deleteUserById/"+id);
   }
 
-  fetchAcademicSupervisorListFromRemote():Observable<any>{
+  ////////////////////////////////////// Affectaion ///////////////////////////////////////////
 
-    return this.http.get<any>("http://localhost:8081/api/user/getAcademicsSupervisorList");
-  }
-
-  fetchStudentListFromRemote():Observable<any>{
-
-    return this.http.get<any>("http://localhost:8081/api/user/getStudentList");
-  }
-
-  addAffectation(encadrant_id : number, etudiant_id : number):Observable<any>{
+  addAffectation(encadrant_id : number | undefined, etudiant_id : number | undefined):Observable<any>{
 
     return this.http.get<any>("http://localhost:8081/api/user/addAffectation/"+encadrant_id+'/'+etudiant_id);
   }
@@ -72,6 +68,23 @@ export class UserService {
 
     return this.http.get<any>("http://localhost:8081/api/user/deleteAffectation/"+encadrant_id+'/'+etudiant_id);
   }
+
+  fetchAcademicsSupervisorListFromRemote():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getAcademicsSupervisorList");
+  }
+
+  fetchStudentsListFromRemote():Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getStudentsList");
+  }
+
+  fetchlistEtudiantsAffectesAEncadrant(encadrant_id: number):Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/getlistEtudiantsAffectesAEncadrant/"+encadrant_id);
+  }
+
+  ////////////////////////////////////// Statistique ///////////////////////////////////////////
 
   getNumberAdmins():Observable<any>{
 

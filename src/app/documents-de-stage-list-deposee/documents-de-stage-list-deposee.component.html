@@ -1,7 +1,21 @@
-<p>conventiondestagelist works!</p>
 <div class="container"> 
-    <h2>Convention de stage list</h2>
-    <p>Choisir une action pour traiter une demande</p>            
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Chercher par Etudiant/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit" (click)="fetchListDocumentsDeStageDEPOSEEParRecherche()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="_ListdocumentsDeStageDEPOSEE.length">
+    <h2>Liste des Demandes de stage déposées</h2>
     <table class="table">
       <thead>
         <tr>
@@ -43,5 +57,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div *ngIf="!_ListdocumentsDeStageDEPOSEE.length">
+    <p>Aucune Demande de stage déposée</p>          
+  </div>
+
     <button type="button" class="btn btn-primary" (click)="goToListDocumentsDeStage()">BACK</button>
+
   </div>

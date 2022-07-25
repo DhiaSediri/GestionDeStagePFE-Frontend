@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FileData } from '../_models/file-data';
 import { DownloadFileService } from '../_services/download-file.service';
 import { saveAs } from 'file-saver';
@@ -14,6 +14,8 @@ export class DownloadDocumentsDeStageComponent implements OnInit {
   fileList?: FileData[];
 
   myParam?: string | null;
+
+  @ViewChild('pdfViewer') pdfViewer!: ElementRef;
 
   constructor(private downloadService: DownloadFileService, private route: ActivatedRoute) {
   }
@@ -42,21 +44,21 @@ export class DownloadDocumentsDeStageComponent implements OnInit {
       .subscribe(blob => saveAs(blob, fileData.filename));
   }
 
-  getFile() {
+  getFile(fileData: FileData) {
     this.downloadService.getPdfDocumentsDeStage(fileData.filename, this.myParam).subscribe((responseMessage) => {
-    let file = new Blob([responseMessage], { type: 'application/pdf' });
-    var fileURL = URL.createObjectURL(file);
+    const file = new Blob([responseMessage], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
     this.pdfViewer.nativeElement.data = fileURL;
     })
   }
   
 
-  getFileInNewWindow() {
-    this.downloadService.getPdfDocumentsDeStage(this.fileName, this.fileType).subscribe((responseMessage) => {
-    let file = new Blob([responseMessage], { type: 'application/pdf' });
-    var fileURL = URL.createObjectURL(file);
+  getFileInNewWindow(fileData: FileData) {
+    this.downloadService.getPdfDocumentsDeStage(fileData.filename, this.myParam).subscribe((responseMessage) => {
+    const file = new Blob([responseMessage], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
     window.open(fileURL);
-    })   
+    })
   }
 
 }

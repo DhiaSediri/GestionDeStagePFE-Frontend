@@ -10,6 +10,8 @@ import { DocumentsDeStageService } from '../_services/documents-de-stage.service
 })
 export class DocumentsDeStageListComponent implements OnInit {
 
+  mots_cles?: string;
+
   _documentsDeStagelist : DocumentsDeStage[]=[];
 
   constructor(private _service:DocumentsDeStageService, private _router: Router) { }
@@ -19,9 +21,19 @@ export class DocumentsDeStageListComponent implements OnInit {
   }
 
   loadData(): void {
-
     this._documentsDeStagelist=[];
     this._service.fetchDocumentsDeStageListFromRemote().subscribe(   
+      (data: DocumentsDeStage[]) => {
+        console.log("Response Recieved");
+        this._documentsDeStagelist=data;
+      },
+      () => console.log("Exception Occured")
+    );
+  }
+
+  fetchDocumentsDeStageListParRecherche(): void {
+    this._documentsDeStagelist=[];
+    this._service.fetchDocumentsDeStageListParRechercheFromRemote(this.mots_cles).subscribe(   
       (data: DocumentsDeStage[]) => {
         console.log("Response Recieved");
         this._documentsDeStagelist=data;

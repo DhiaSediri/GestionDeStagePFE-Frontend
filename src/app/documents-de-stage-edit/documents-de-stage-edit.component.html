@@ -14,7 +14,7 @@
       required 
       [(ngModel)]="dataset.nom_prenomEtudiant"
       minlength="3"
-      maxlength="20"
+      maxlength="50"
       #nom_prenomEtudiant="ngModel"
       [class.is-invalid]="nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched"
   />
@@ -22,7 +22,7 @@
   <div *ngIf=" f.submitted || (nom_prenomEtudiant.errors && (nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched))">
     <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['required']">nom_prenomEtudiant is required field</small>
     <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['minlength']">nom_prenomEtudiant must be at least 3 characters</small>
-    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['maxlength']">nom_prenomEtudiant must be at most 20 characters</small>
+    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['maxlength']">nom_prenomEtudiant must be at most 50 characters</small>
   </div>
  </div>
  <div>
@@ -44,27 +44,31 @@
     <small class="text-danger" *ngIf="emailEtudiant.errors?.['pattern']">Enter the valid email</small>
   </div>
 </div>
- <div>
+<div class="form-group">
   <label>Option</label>
-  <input 
-      type="text" 
-      class="form-control"
-      name="optionEtudiant" 
-      required 
-      [(ngModel)]="dataset.optionEtudiant"
-      minlength="3"
-      maxlength="20"
-      #optionEtudiant="ngModel"
-      [class.is-invalid]="optionEtudiant.invalid && optionEtudiant.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="optionEtudiant.valid || optionEtudiant.untouched">optionEtudiant is required field</small>-->
-  <div *ngIf="f.submitted || (optionEtudiant.errors && (optionEtudiant.invalid && optionEtudiant.touched))">
-    <small class="text-danger" *ngIf="optionEtudiant.errors?.['required']">optionEtudiant is required field</small>
-    <small class="text-danger" *ngIf="optionEtudiant.errors?.['minlength']">optionEtudiant must be at least 3 characters</small>
-    <small class="text-danger" *ngIf="optionEtudiant.errors?.['maxlength']">optionEtudiant must be at most 20 characters</small>
+  <select
+    type="text"
+    class="form-control"
+    name="optionEtudiant"
+    required
+    [(ngModel)]="dataset.optionEtudiant"
+    #optionEtudiant="ngModel"
+    [class.is-invalid]="optionEtudiant.invalid && optionEtudiant.touched"
+  >
+      <option value="Software Architecture Engineering">Software Architecture Engineering</option>
+      <option value="Développement Web">Développement Web</option>
+      <option value="Développement Mobile">Développement Mobile</option>
+      <option value="Data Science">Data Science</option>
+      <option value="Big Data">Big Data</option>
+      <option value="Business Intelligence">Business Intelligence</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Intelligence Artificielle et Machine Learning">Intelligence Artificielle et Machine Learning</option>
+  </select>
+  <div *ngIf=" f.submitted || (optionEtudiant.errors && (optionEtudiant.invalid && optionEtudiant.touched))">
+    <small class="text-danger" *ngIf="optionEtudiant.errors?.['required']">Option is required field</small>
   </div>
- </div>
- <div>
+</div>
+<div>
   <label>Nom Société</label>
   <input 
       type="text" 
@@ -73,7 +77,7 @@
       [(ngModel)]="dataset.nomSociete"
       required
       minlength="3"
-      maxlength="20"
+      maxlength="100"
       #nomSociete="ngModel"
       [class.is-invalid]="nomSociete.invalid && nomSociete.touched"
   />
@@ -81,7 +85,7 @@
   <div *ngIf="f.submitted || (nomSociete.errors && (nomSociete.invalid && nomSociete.touched))">
     <small class="text-danger" *ngIf="nomSociete.errors?.['required']">nomSociete is required field</small>
     <small class="text-danger" *ngIf="nomSociete.errors?.['minlength']">nomSociete must be at least 3 characters</small>
-    <small class="text-danger" *ngIf="nomSociete.errors?.['maxlength']">nomSociete must be at most 20 characters</small>
+    <small class="text-danger" *ngIf="nomSociete.errors?.['maxlength']">nomSociete must be at most 100 characters</small>
   </div>
  </div>
  <div>
@@ -93,7 +97,7 @@
       required 
       [(ngModel)]="dataset.adresseSociete"
       minlength="3"
-      maxlength="30"
+      maxlength="100"
       #adresseSociete="ngModel"
       [class.is-invalid]="adresseSociete.invalid && adresseSociete.touched"
   />
@@ -101,7 +105,7 @@
   <div *ngIf="f.submitted || (adresseSociete.errors && (adresseSociete.invalid && adresseSociete.touched))">
     <small class="text-danger" *ngIf="adresseSociete.errors?.['required']">adresseSociete is required field</small>
     <small class="text-danger" *ngIf="adresseSociete.errors?.['minlength']">adresseSociete must be at least 3 characters</small>
-    <small class="text-danger" *ngIf="adresseSociete.errors?.['maxlength']">adresseSociete must be at most 20 characters</small>
+    <small class="text-danger" *ngIf="adresseSociete.errors?.['maxlength']">adresseSociete must be at most 100 characters</small>
   </div>
  </div>
  <div>
@@ -151,7 +155,7 @@
       required 
       [(ngModel)]="dataset.encadrantSociete"
       minlength="3"
-      maxlength="20"
+      maxlength="50"
       #encadrantSociete="ngModel"
       [class.is-invalid]="encadrantSociete.invalid && encadrantSociete.touched"
   />
@@ -159,7 +163,7 @@
   <div *ngIf="f.submitted || (encadrantSociete.errors && (encadrantSociete.invalid && encadrantSociete.touched))">
     <small class="text-danger" *ngIf="encadrantSociete.errors?.['required']">encadrantSociete is required field</small>
     <small class="text-danger" *ngIf="encadrantSociete.errors?.['minlength']">encadrantSociete must be at least 3 characters</small>
-    <small class="text-danger" *ngIf="encadrantSociete.errors?.['maxlength']">encadrantSociete must be at most 20 characters</small>
+    <small class="text-danger" *ngIf="encadrantSociete.errors?.['maxlength']">encadrantSociete must be at most 50 characters</small>
   </div>
  </div>
  <div>
@@ -171,7 +175,7 @@
       required 
       [(ngModel)]="dataset.encadrantAcademique"
       minlength="3"
-      maxlength="20"
+      maxlength="50"
       #encadrantAcademique="ngModel"
       [class.is-invalid]="encadrantAcademique.invalid && encadrantAcademique.touched"
   />
@@ -179,7 +183,7 @@
   <div *ngIf="f.submitted || (encadrantAcademique.errors && (encadrantAcademique.invalid && encadrantAcademique.touched))">
     <small class="text-danger" *ngIf="encadrantAcademique.errors?.['required']">encadrantAcademique is required field</small>
     <small class="text-danger" *ngIf="encadrantAcademique.errors?.['minlength']">encadrantAcademique must be at least 3 characters</small>
-    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['maxlength']">encadrantAcademique must be at most 20 characters</small>
+    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['maxlength']">encadrantAcademique must be at most 50 characters</small>
   </div>
  </div>
  <div>

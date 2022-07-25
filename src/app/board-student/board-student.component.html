@@ -1,7 +1,13 @@
 <div class="container">
     <header class="jumbotron">
       <p>{{ content }}</p>
-      <a routerLink="/demanderDocumentsDeStage">Demander les documents de stage</a><br>
-      <a routerLink="/gererDepot">Gerer les Dépots</a><br>
+      <a routerLink="/editUserByHimself">Modifier mon compte</a><br>
+      <a routerLink="/addDocumentsDeStage">Demander les documents de stage</a><br>
+      <a (click)="goToDownloadDocumentsDeStage()">Consulter les documents de stage</a><br>
+      <a (click)="testerDemandeDeStage()">Gérer les Dépots</a><br>
+      <a routerLink="/listOffresDeStagePourEtudiant">Consulter la bibliothèque des Offres de stage PFE</a><br>
+      <a routerLink="/listRapportsDeStagePourEtudiant">Consulter la bibliothèque des Rapports de stage PFE</a><br>
+      <a routerLink="/rendez-vousDeStage">Consulter les Rendez-vous de stage PFE</a><br>
+      <a routerLink="/fichesDeStage">Consulter les fiches de stage PFE</a><br>
     </header>
   </div>

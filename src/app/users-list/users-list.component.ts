@@ -10,17 +10,17 @@ import { UserService } from '../_services/user.service';
 })
 export class UsersListComponent implements OnInit {
 
+  mots_cles?: string;
+
   listUsers: User[]=[];
 
   constructor(private service:UserService, private router: Router) { }
 
   ngOnInit(): void {
-
     this.loadData();
   }
 
   loadData(): void {
-
     this.listUsers=[];
     this.service.fetchListUsers().subscribe(   
       data => {
@@ -29,6 +29,17 @@ export class UsersListComponent implements OnInit {
         this.listUsers=data;
       },
       error => console.log("Exception Occured")
+    );
+  }
+
+  fetchListUsersParRecherche(): void {
+    this.listUsers=[];
+    this.service.fetchListUsersParRechercheFromRemote(this.mots_cles).subscribe(   
+      (data: User[]) => {
+        console.log("Response Recieved");
+        this.listUsers=data;
+      },
+      () => console.log("Exception Occured")
     );
   }
 

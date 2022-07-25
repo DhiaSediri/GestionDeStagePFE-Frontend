@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
 
@@ -10,54 +10,46 @@ import { UserService } from '../_services/user.service';
 })
 export class AffectationListComponent implements OnInit {
 
-  listUsers: User[]=[];
+  mots_cles?: string;
 
-  constructor(private service:UserService, private router: Router) { }
+  _listEncadrant : User[]=[];
+
+  encadrant_id : any;
+
+  constructor(private service:UserService, private router: Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.loadData();
   }
 
   loadData(): void {
-
-    this.listUsers=[];
-    this.service.fetchListUsers().subscribe(   
-      data => {
+    this.service.fetchAcademicsSupervisorListFromRemote().subscribe(   
+      (data: User[]) => {
         console.log("Response Recieved");
-        console.log(data);
-        this.listUsers=data;
+        this._listEncadrant=data;
       },
-      error => console.log("Exception Occured")
+      () => console.log("Exception Occured")
     );
   }
 
-  goToAddUser(){
-    this.router.navigate(['/addUser']);
-  }
-
-  goToEditUser(id : number){
-    console.log("id "+id);
-    this.router.navigate(['/editUser', id]);
-  }
-
-  goToViewUser(id : number){
-    console.log("id "+id);
-    this.router.navigate(['/viewUser', id]);
-  }
-
-  deleteUser(id : number){
-    this.service.deleteUserById(id).subscribe(
-      data => {
-        console.debug("Deleted Successfully");
-        //this._router.navigate(['/listUser']);
-        this.loadData();
+  fetchAcademicsSupervisorListParRecherche(): void {
+    this._listEncadrant=[];
+    this.service.fetchListUsersParRechercheFromRemote(this.mots_cles).subscribe(   
+      (data: User[]) => {
+        console.log("Response Recieved");
+        this._listEncadrant=data;
       },
-      error => {
-        console.log("Exception Occured");
-        this.loadData();
-      }
+      () => console.log("Exception Occured")
     );
+  }
+
+  goToListeEtudiantPourEncadrantAffectaion(encadrant_id : any) {
+    console.log("encadrant_id "+encadrant_id);
+    this.router.navigate(['/listeEtudiantsPourEncadrantAffectaion', encadrant_id]);
+  }
+
+  goToAddAffectation(){
+    this.router.navigate(['/addAffectation']);
   }
 
 }

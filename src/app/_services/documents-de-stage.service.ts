@@ -10,6 +10,11 @@ export class DocumentsDeStageService {
 
   constructor(private _http :HttpClient) { }
 
+  fetchDocumentsDeStageListParRechercheFromRemote(mots_cles: string | undefined):Observable<any>{
+
+    return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getDocumentsDeStageListParRecherche/"+mots_cles);
+  }
+
   fetchDocumentsDeStageListFromRemote():Observable<any>{
 
     return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getDocumentsDeStageList");
@@ -30,6 +35,18 @@ export class DocumentsDeStageService {
     return this._http.delete<string>("http://localhost:8081/api/documentsDeStage/deleteDocumentsDeStageById/"+id);
   }
 
+  ///////////////////////////////////////////// Traitement Demande de stage /////////////////////////////////////////////
+
+  fetchListDocumentsDeStageDEPOSEEParRechercheFromRemote(mots_cles: string | undefined):Observable<any>{
+
+    return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getDocumentsDeStageDEPOSEEListParRecherche/"+mots_cles);
+  }
+
+  fetchListDocumentsDeStageDEPOSEEFromRemote():Observable<any>{
+
+    return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getListDocumentsDeStageDEPOSEE");
+  }
+
   accepterDemande(documentsDeStage : DocumentsDeStage):Observable<any>{
 
     return this._http.post<any>("http://localhost:8081/api/documentsDeStage/accepterDemande", documentsDeStage);
@@ -38,11 +55,6 @@ export class DocumentsDeStageService {
   refuserDemande(documentsDeStage : DocumentsDeStage):Observable<any>{
 
     return this._http.post<any>("http://localhost:8081/api/documentsDeStage/refuserDemande", documentsDeStage);
-  }
-
-  fetchListDocumentsDeStageDEPOSEEFromRemote():Observable<any>{
-
-    return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getListDocumentsDeStageDEPOSEE");
   }
 
 }
