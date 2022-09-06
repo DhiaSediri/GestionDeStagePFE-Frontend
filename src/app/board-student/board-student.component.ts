@@ -46,16 +46,54 @@ export class BoardStudentComponent implements OnInit {
               console.log(dataEtat);
 
               if(dataEtat == 1){
+                alert('Vous avez fait une demande de stage, vous devez patienter le traitement');
+              }  
+
+              if(dataEtat == 2){
+                alert('Votre Demande de stage est validée par l administrateur, vous pouvez faire qu une seule demande de stage');
+              }
+
+              if(dataEtat == 0){
+                alert('Votre Demande de stage n est pas validée par l administrateur, Vous devais faire une nouvelle demande');
+                this._router.navigate(['addDocumentsDeStage']);
+              } 
+
+            },
+            error => console.log("Exception Occured")        
+          );
+        } 
+        
+        if(dataExiste == false){
+          alert('Vous devais faire une Demande de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
+          this._router.navigate(['addDocumentsDeStage']);
+        } 
+      },
+      error => console.log("Exception Occured")        
+    );
+  }
+
+  testerDemandeDeStagePourGererDepots() {
+    this.depotService.existeDemandeDeStage(this.currentUser.id).subscribe(
+      dataExiste => {
+        console.log(dataExiste);   
+
+        if(dataExiste == true){
+
+          this.depotService.etatDemandeDeStage(this.currentUser.id).subscribe(
+            dataEtat => {
+              console.log(dataEtat);
+
+              if(dataEtat == 1){
                 alert('Votre Demande de stage est déposée, vous devez patienter le traitement');
               }  
 
               if(dataEtat == 2){
-                alert('Votre Demande de stage est acceptée, vous pouvez maintenant déposer vos livrables');
+                alert('Votre Demande de stage est validée par l administrateur, vous pouvez maintenant déposer vos livrables');
                 this._router.navigate(['gererDepot']);
               }
 
               if(dataEtat == 0){
-                alert('Votre Demande de stage est réfusée, Vous devais faire une nouvelle demande');
+                alert('Votre Demande de stage n est pas validée par l administrateur, Vous devais faire une nouvelle demande');
               } 
 
             },

@@ -1,0 +1,10 @@
+<input
+    type="text" 
+    class="form-control"
+    name="contenu"
+    [(ngModel)]="commentaire.contenu"
+    #contenu="ngModel"
+  />
+
+<button type="button" class="btn btn-warning" (click)="onSubmit()">Modifier le commentaire</button>
+<button type="button" class="btn btn-danger" (click)="annuler()">Annuler</button>

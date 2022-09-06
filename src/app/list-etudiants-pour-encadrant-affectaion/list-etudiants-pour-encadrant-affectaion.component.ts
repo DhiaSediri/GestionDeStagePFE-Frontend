@@ -34,6 +34,7 @@ export class ListEtudiantsPourEncadrantAffectaionComponent implements OnInit {
     this.service.deleteAffectation(this.encadrant_id, etudiant_id).subscribe(
       () => {
         console.log("Data deleted succesfully");
+        alert('Cette opération a été effectuée avec succès');
       },
       () => console.log("Error")     
     );
@@ -44,6 +45,10 @@ export class ListEtudiantsPourEncadrantAffectaionComponent implements OnInit {
   goToListEtudiantPourEncadrantAffectaion(encadrant_id : any) {
     console.log("encadrant_id "+encadrant_id);
     this.router.navigate(['/listEtudiantsPourEncadrantAffectaion', encadrant_id]);
+  }
+
+  goToListAffectations() {
+    this.router.navigate(['listeAffectations']);
   }
 
 }

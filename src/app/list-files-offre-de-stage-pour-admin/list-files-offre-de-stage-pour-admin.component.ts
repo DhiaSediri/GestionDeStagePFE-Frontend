@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FileData } from '../_models/file-data';
 import { DeleteFileService } from '../_services/delete-file.service';
 import { saveAs } from 'file-saver';
+import { UploadFileService } from '../_services/upload-file.service';
 
 @Component({
   selector: 'app-list-files-offre-de-stage-pour-admin',
@@ -11,6 +12,7 @@ import { saveAs } from 'file-saver';
 })
 export class ListFilesOffreDeStagePourAdminComponent implements OnInit {
 
+  offre_id: any;
   societe : any;
   session : any;
   option : any;
@@ -19,9 +21,10 @@ export class ListFilesOffreDeStagePourAdminComponent implements OnInit {
 
   @ViewChild('pdfViewer') pdfViewer!: ElementRef;
 
-  constructor(private deleteFileService: DeleteFileService, private _router: Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private deleteFileService: DeleteFileService, private uploadFileService: UploadFileService, private _router: Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.offre_id = this.activatedRoute.snapshot.paramMap.get('offre_id');
     this.societe = this.activatedRoute.snapshot.paramMap.get('societe');
     this.session = this.activatedRoute.snapshot.paramMap.get('session');
     this.option = this.activatedRoute.snapshot.paramMap.get('option');
@@ -35,11 +38,21 @@ export class ListFilesOffreDeStagePourAdminComponent implements OnInit {
   }
 
   deleteFile(fileData: FileData): void {
-    this.deleteFileService
-      .deleteFileOffresDeStage(fileData.filename,this.societe, this.session, this.option)
-      .subscribe(blob => saveAs(blob, fileData.filename));
-      alert('File deleted successfully');
-      this._router.navigate(['uploadOffresDeStage']);
+    this.deleteFileService.deleteFileOffresDeStage(fileData.filename,this.societe, this.session, this.option).subscribe(
+      blob => saveAs(blob, fileData.filename)
+    );
+
+      this.uploadFileService.deleteOffreDeStageByIdFromRemote(this.offre_id).subscribe(
+        () => {
+          console.debug("Deleted Successfully");
+        },
+        () => {
+          console.log("Exception Occured");
+        }
+      );
+
+      alert('Cette opération a été effectuée avec succès');
+      this._router.navigate(['listOffresDeStagePourAdmin']);
   }
 
   getFile(fileData: FileData) {
@@ -59,7 +72,7 @@ export class ListFilesOffreDeStagePourAdminComponent implements OnInit {
   }
 
   goToListOffreDeStagePourAdmin() {
-    this._router.navigate(['/listOffreDeStagePourAdmin']);
+    this._router.navigate(['/listOffresDeStagePourAdmin']);
   }
 
 }

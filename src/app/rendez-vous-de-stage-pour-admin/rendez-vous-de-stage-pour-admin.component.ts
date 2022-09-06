@@ -74,11 +74,8 @@ export class RendezVousDeStagePourAdminComponent implements OnInit {
   }
 
   deleteFile(fileData: FileData): void {
-    this.downloadFileService
-      
-    .deleteFileRendezVousDeStage(fileData.filename)
-      .subscribe(blob => saveAs(blob, fileData.filename));
-      alert('File deleted successfully');
+    this.downloadFileService.deleteFileRendezVousDeStage(fileData.filename).subscribe(blob => saveAs(blob, fileData.filename));
+      alert('Cette opération a été effectuée avec succès');
       this._router.navigate(['rendez-vousDeStagePourAdmin']);
   }
 

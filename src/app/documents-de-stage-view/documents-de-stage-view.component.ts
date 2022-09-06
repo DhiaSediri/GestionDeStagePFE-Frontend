@@ -21,7 +21,7 @@ export class DocumentsDeStageViewComponent implements OnInit {
       const id = parseInt(test);
       this._service.fetchDocumentsDeStageByIdFromRemote(id).subscribe(
         (data: any) => {
-          console.log("Data update succesfully");
+          console.log("Data fetch succesfully");
           this.documentsDeStage=data;
         },
         () => console.log("Exception Occured")     

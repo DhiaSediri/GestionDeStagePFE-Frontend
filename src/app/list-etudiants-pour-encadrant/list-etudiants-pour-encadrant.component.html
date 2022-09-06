@@ -1,7 +1,7 @@
-<p>list-etudiants-pour-encadrant works!</p>
 <div class="container"> 
-    <h2>Student list</h2>
-    <p>Use actions to  perform operations</p>            
+
+    <br>
+    <h2>Liste des Etudiants</h2>
     <table class="table">
       <thead>
         <tr>
@@ -15,7 +15,7 @@
             <td>{{student.username}}</td>
             <td>{{student.email}}</td>   
           <td>
-            <button class="btn btn-primary btn-block" (click)="goToEncadrantDepot(student.id, student.email)">Traitement Des Dépots</button>
+            <button class="btn btn-light" style="color: dimgray; font-size: 20px" (click)="goToEncadrantDepot(student.id, student.email)">Traiter les Dépots</button>
           </td>
         </tr>
       </tbody>

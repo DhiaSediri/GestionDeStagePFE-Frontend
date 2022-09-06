@@ -1,10 +1,13 @@
-<div class="container"> 
+<div class="container">
+  <!-- Pour les icons des bouttons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-  <div class="row">
+  <div class="row" *ngIf="_offreDeStagelist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Chercher par Option/Session/Société" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <input type="text" class="form-control" placeholder="Recherche par Option / Session / Société" id="txtSearch" [(ngModel)]="mots_cles"/>
         <div class="input-group-btn">
           <button class="btn btn-primary" type="submit" (click)="fetchOffreDeStageListParRecherche()">
             <span class="glyphicon glyphicon-search"></span>
@@ -12,17 +15,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><br>
 
   <div *ngIf="_offreDeStagelist.length">
-    <h2>Liste des offres de stage</h2>
+    <h2>Liste des Offres de stages</h2>
     <table class="table">
         <thead>
           <tr>
             <th>Option</th>
             <th>Session</th>
             <th>Société</th>
-            <th>Liste des offres de stage</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -31,15 +34,15 @@
             <td>{{offreDeStage.session}}</td>
             <td>{{offreDeStage.societe}}</td>   
             <td>
-              <button class="btn btn-sm btn-primary" (click)="goToListFilesOffreDeStagePourEtudiant(offreDeStage.societe, offreDeStage.session, offreDeStage.option)">Consulter la liste</button>&nbsp;
+              <button class="btn btn-secondary" (click)="goToListFilesOffreDeStagePourEtudiant(offreDeStage.societe, offreDeStage.session, offreDeStage.option)"><i class="fa fa-eye"></i></button>
             </td>
           </tr>
         </tbody>
     </table>
-  </div>
+  </div><br>
 
   <div *ngIf="!_offreDeStagelist.length">
-    <p>Aucun offre de stage</p>          
+    <p>Pas d'Offres de stages</p>          
   </div> 
 
 </div>

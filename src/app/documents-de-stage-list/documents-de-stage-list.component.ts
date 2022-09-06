@@ -60,12 +60,11 @@ export class DocumentsDeStageListComponent implements OnInit {
     this._service.deleteDocumentsDeStageByIdFromRemote(id).subscribe(
       () => {
         console.debug("Deleted Successfully");
-        //this._router.navigate(['/listDocumentsDeStage']);
+        alert('Cette opération a été effectuée avec succès');
         this.loadData();
       },
       () => {
         console.log("Exception Occured");
-        this.loadData();
       }
     );
   }

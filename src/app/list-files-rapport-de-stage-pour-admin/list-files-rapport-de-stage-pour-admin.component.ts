@@ -4,6 +4,7 @@ import { FileData } from '../_models/file-data';
 import { DeleteFileService } from '../_services/delete-file.service';
 import { saveAs } from 'file-saver';
 import { RapportDeStage } from '../_models/rapport-de-stage';
+import { UploadFileService } from '../_services/upload-file.service';
 
 @Component({
   selector: 'app-list-files-rapport-de-stage-pour-admin',
@@ -12,6 +13,7 @@ import { RapportDeStage } from '../_models/rapport-de-stage';
 })
 export class ListFilesRapportDeStagePourAdminComponent implements OnInit {
 
+  rapport_id: any;
   session : any;
   option : any;
   encadrant : any;
@@ -22,27 +24,38 @@ export class ListFilesRapportDeStagePourAdminComponent implements OnInit {
 
   @ViewChild('pdfViewer') pdfViewer!: ElementRef;
 
-  constructor(private deleteFileService: DeleteFileService, private _router: Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private deleteFileService: DeleteFileService, private uploadFileService: UploadFileService, private _router: Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.rapport_id = this.activatedRoute.snapshot.paramMap.get('rapport_id');
     this.session = this.activatedRoute.snapshot.paramMap.get('session');
     this.option = this.activatedRoute.snapshot.paramMap.get('option');
     this.encadrant = this.activatedRoute.snapshot.paramMap.get('encadrant'); 
-    this.getFileList();
+    this.getFileeRapportsDeStageList();
   }
 
-  getFileList(): void {
+  getFileeRapportsDeStageList(): void {
     this.deleteFileService.listFileRapportsDeStage(this.session, this.option, this.encadrant).subscribe(result => {
       this.fileList = result;
     });
   }
 
   deleteFile(fileData: FileData): void {
-    this.deleteFileService
-      .deleteFileRapportsDeStage(fileData.filename, this.session, this.option, this.encadrant)
-      .subscribe(blob => saveAs(blob, fileData.filename));
-      alert('File deleted successfully');
-      this._router.navigate(['uploadRapportsDeStage']);
+    this.deleteFileService.deleteFileRapportsDeStage(fileData.filename, this.session, this.option, this.encadrant).subscribe(
+      blob => saveAs(blob, fileData.filename)
+    );
+
+      this.uploadFileService.deleteRapportDeStageByIdFromRemote(this.rapport_id).subscribe(
+        () => {
+          console.debug("Deleted Successfully");
+        },
+        () => {
+          console.log("Exception Occured");
+        }
+      );
+
+      alert('Cette opération a été effectuée avec succès');
+      this._router.navigate(['listRapportsDeStagePourAdmin']);
   }
 
   getFile(fileData: FileData) {
@@ -62,7 +75,7 @@ export class ListFilesRapportDeStagePourAdminComponent implements OnInit {
   }
 
   goToListRapportDeStagePourAdmin() {
-    this._router.navigate(['/listRapportDeStagePourAdmin']);
+    this._router.navigate(['/listRapportsDeStagePourAdmin']);
   }
 
 }

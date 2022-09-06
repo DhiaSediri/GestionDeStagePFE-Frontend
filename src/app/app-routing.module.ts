@@ -21,6 +21,13 @@ import { DocumentsDeStageListDEPOSEEComponent } from './documents-de-stage-list-
 import { DocumentsDeStageListComponent } from './documents-de-stage-list/documents-de-stage-list.component';
 import { DocumentsDeStageViewComponent } from './documents-de-stage-view/documents-de-stage-view.component';
 import { DownloadDocumentsDeStageComponent } from './download-documents-de-stage/download-documents-de-stage.component';
+import { EditCommentaireBilanPeriodiqueDebutDeStageComponent } from './edit-commentaire-bilan-periodique-debut-de-stage/edit-commentaire-bilan-periodique-debut-de-stage.component';
+import { EditCommentaireBilanPeriodiqueFinDeStageComponent } from './edit-commentaire-bilan-periodique-fin-de-stage/edit-commentaire-bilan-periodique-fin-de-stage.component';
+import { EditCommentaireBilanPeriodiqueMilieuDeStageComponent } from './edit-commentaire-bilan-periodique-milieu-de-stage/edit-commentaire-bilan-periodique-milieu-de-stage.component';
+import { EditCommentaireFicheDeStageComponent } from './edit-commentaire-fiche-de-stage/edit-commentaire-fiche-de-stage.component';
+import { EditCommentaireJournalDeStageComponent } from './edit-commentaire-journal-de-stage/edit-commentaire-journal-de-stage.component';
+import { EditCommentaireRapportPremiereVersionComponent } from './edit-commentaire-rapport-premiere-version/edit-commentaire-rapport-premiere-version.component';
+import { EditCommentaireRapportVersionFinalComponent } from './edit-commentaire-rapport-version-final/edit-commentaire-rapport-version-final.component';
 import { EncadrantDepotBilanPeriodiqueDebutDuStageComponent } from './encadrant-depot-bilan-periodique-debut-du-stage/encadrant-depot-bilan-periodique-debut-du-stage.component';
 import { EncadrantDepotBilanPeriodiqueFinDuStageComponent } from './encadrant-depot-bilan-periodique-fin-du-stage/encadrant-depot-bilan-periodique-fin-du-stage.component';
 import { EncadrantDepotBilanPeriodiqueMilieuDuStageComponent } from './encadrant-depot-bilan-periodique-milieu-du-stage/encadrant-depot-bilan-periodique-milieu-du-stage.component';
@@ -30,6 +37,12 @@ import { EncadrantDepotJournalDeStageComponent } from './encadrant-depot-journal
 import { EncadrantDepotRapportPremiereVersionComponent } from './encadrant-depot-rapport-premiere-version/encadrant-depot-rapport-premiere-version.component';
 import { EncadrantDepotRapportVersionFinaleComponent } from './encadrant-depot-rapport-version-finale/encadrant-depot-rapport-version-finale.component';
 import { EncadrantDepotComponent } from './encadrant-depot/encadrant-depot.component';
+import { EncadrantEditCommentaireBilanPeriodiqueDebutDeStageComponent } from './encadrant-edit-commentaire-bilan-periodique-debut-de-stage/encadrant-edit-commentaire-bilan-periodique-debut-de-stage.component';
+import { EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent } from './encadrant-edit-commentaire-bilan-periodique-fin-de-stage/encadrant-edit-commentaire-bilan-periodique-fin-de-stage.component';
+import { EncadrantEditCommentaireBilanPeriodiqueMilieuDeStageComponent } from './encadrant-edit-commentaire-bilan-periodique-milieu-de-stage/encadrant-edit-commentaire-bilan-periodique-milieu-de-stage.component';
+import { EncadrantEditCommentaireFicheDeStageComponent } from './encadrant-edit-commentaire-fiche-de-stage/encadrant-edit-commentaire-fiche-de-stage.component';
+import { EncadrantEditCommentaireJournalDeStageComponent } from './encadrant-edit-commentaire-journal-de-stage/encadrant-edit-commentaire-journal-de-stage.component';
+import { EncadrantEditCommentaireRapportPremiereVersionComponent } from './encadrant-edit-commentaire-rapport-premiere-version/encadrant-edit-commentaire-rapport-premiere-version.component';
 import { FichesDeStagePourAdminComponent } from './fiches-de-stage-pour-admin/fiches-de-stage-pour-admin.component';
 import { FichesDeStageComponent } from './fiches-de-stage/fiches-de-stage.component';
 import { HomeComponent } from './home/home.component';
@@ -105,7 +118,7 @@ const routes: Routes = [
   {path:'depotJournal_de_stage', component:DepotJournalDeStageComponent},
   {path:'listEtudiantsPourEncadrant', component:ListEtudiantsPourEncadrantComponent},
   {path:'encadrantDepot/:id/:email', component:EncadrantDepotComponent},
-  {path:'encadrantDepotConvention_de_stage/:email', component:EncadrantDepotConventionDeStageComponent},
+  {path:'encadrantDepotConvention_de_stage/:email/:id', component:EncadrantDepotConventionDeStageComponent},
   {path:'encadrantDepotFiche_de_stage/:email/:id', component:EncadrantDepotFicheDeStageComponent},
   {path:'encadrantDepotBilan_periodique_debut_du_stage/:email/:id', component:EncadrantDepotBilanPeriodiqueDebutDuStageComponent},
   {path:'encadrantDepotBilan_periodique_milieu_du_stage/:email/:id', component:EncadrantDepotBilanPeriodiqueMilieuDuStageComponent},
@@ -119,11 +132,24 @@ const routes: Routes = [
   {path:'listRapportsDeStagePourAdmin', component:ListRapportDeStagePourAdminComponent},
   {path:'listFilesOffreDeStagePourEtudiant/:societe/:session/:option', component:ListFilesOffreDeStagePourEtudiantComponent},
   {path:'listFilesRapportDeStagePourEtudiant/:session/:option/:encadrant', component:ListFilesRapportDeStagePourEtudiantComponent},
-  {path:'listFilesOffreDeStagePourAdmin/:societe/:session/:option', component:ListFilesOffreDeStagePourAdminComponent},
-  {path:'listFilesRapportDeStagePourAdmin/:session/:option/:encadrant', component:ListFilesRapportDeStagePourAdminComponent},
+  {path:'listFilesOffreDeStagePourAdmin/:offre_id/:societe/:session/:option', component:ListFilesOffreDeStagePourAdminComponent},
+  {path:'listFilesRapportDeStagePourAdmin/:rapport_id/:session/:option/:encadrant', component:ListFilesRapportDeStagePourAdminComponent},
   {path:'listDepotConventionDeStagePourAdmin', component:ListDepotConventionDeStagePouAdminComponent},
-  {path:'listFileDepotConventionDeStagePourAdmin/:etudiant_email/:depot_id', component:ListFileDepotConventionDeStagePourAdminComponent},
+  {path:'listFileDepotConventionDeStagePourAdmin/:etudiant_id/:etudiant_email/:depot_id', component:ListFileDepotConventionDeStagePourAdminComponent},
   {path:'listDepotConventionDeStageDEPOSEEPourAdmin', component:ListDepotConventionDeStageDEPOSEEPourAdminComponent},
+  {path:'editCommentaireFiche_de_stage/:id', component:EditCommentaireFicheDeStageComponent},
+  {path:'editCommentaireBilan_periodique_debut_du_stage/:id', component:EditCommentaireBilanPeriodiqueDebutDeStageComponent},
+  {path:'editCommentaireBilan_periodique_milieu_du_stage/:id', component:EditCommentaireBilanPeriodiqueMilieuDeStageComponent},
+  {path:'editCommentaireBilan_periodique_fin_du_stage/:id', component:EditCommentaireBilanPeriodiqueFinDeStageComponent},
+  {path:'editCommentaireRapport_premiere_version/:id', component:EditCommentaireRapportPremiereVersionComponent},
+  {path:'editCommentaireRapport_version_finale/:id', component:EditCommentaireRapportVersionFinalComponent},
+  {path:'editCommentaireJournal_de_stage/:id', component:EditCommentaireJournalDeStageComponent},
+  {path:'encadrantEditCommentaireFiche_de_stage/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireFicheDeStageComponent},
+  {path:'encadrantEditCommentaireBilan_periodique_debut_du_stage/:id', component:EncadrantEditCommentaireBilanPeriodiqueDebutDeStageComponent},
+  {path:'encadrantEditCommentaireBilan_periodique_milieu_du_stage/:id', component:EncadrantEditCommentaireBilanPeriodiqueMilieuDeStageComponent},
+  {path:'encadrantEditCommentaireBilan_periodique_fin_du_stage/:id', component:EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent},
+  {path:'encadrantEditCommentaireRapport_premiere_version/:id', component:EncadrantEditCommentaireRapportPremiereVersionComponent},
+  {path:'encadrantEditCommentaireJournal_de_stage/:id', component:EncadrantEditCommentaireJournalDeStageComponent},
   {
     path: 'dashboardAdmin',
     component: DefaultComponent,
@@ -134,7 +160,7 @@ const routes: Routes = [
       path: 'posts',
       component: PostsComponent
     }]
-  }
+  },
 ];
 
 @NgModule({

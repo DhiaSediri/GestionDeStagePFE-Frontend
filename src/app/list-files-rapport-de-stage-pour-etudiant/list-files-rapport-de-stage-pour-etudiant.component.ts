@@ -53,7 +53,7 @@ export class ListFilesRapportDeStagePourEtudiantComponent implements OnInit {
   }
 
   goToListRapportDeStagePourEtudiant() {
-    this._router.navigate(['/listRapportDeStagePourEtudiant']);
+    this._router.navigate(['/listRapportsDeStagePourEtudiant']);
   }
 
 }

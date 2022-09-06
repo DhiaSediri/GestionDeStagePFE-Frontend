@@ -385,12 +385,12 @@ export class DepotService {
 
   accepterDepotConventionDeStage(depot_id : number):Observable<any>{
 
-    return this._http.post<any>(`http://localhost:8081/api/depot/accepterDepotConventionDeStage/${depot_id}`,null);
+    return this._http.get<any>(`http://localhost:8081/api/depot/accepterDepotConventionDeStage/${depot_id}`);
   }
 
-  refuserDepotConventionDeStage(depot_id : number):Observable<any>{
+  refuserDepotConventionDeStage(depot_id : number):Observable<any>{  
 
-    return this._http.post<any>(`http://localhost:8081/api/depot/refuserDepotConventionDeStage/${depot_id}`, null);
+    return this._http.get<any>(`http://localhost:8081/api/depot/refuserDepotConventionDeStage/${depot_id}`);
   }
 
   declarerTraitementDepotFiche_de_stage(etudiant_id : number):Observable<any>{

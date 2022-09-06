@@ -5,7 +5,7 @@
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         class="profile-img-card"
       />
-      <form
+      <form class="test"
         *ngIf="!isSuccessful"
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        <label for="cars">Choose a role:</label>
+        <label for="cars">Choisir un rôle</label>
         <select 
           class="form-control"
           name="role"
@@ -79,11 +79,11 @@
         </select>
         <div class="alert-danger" *ngIf="f.submitted && role.invalid">
           <div *ngIf="role.errors?.['required']">Role is required</div>
-        </div>
+        </div><br>
       
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Update User</button>
-          <button type="button" class="btn btn-primary" (click)="goToList()">BACK</button>
+        <div class="form-group float-right">
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Modifier</button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="goToList()">Annuler</button>
         </div>
   
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

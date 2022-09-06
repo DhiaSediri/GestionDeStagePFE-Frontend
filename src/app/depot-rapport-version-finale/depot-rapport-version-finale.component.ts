@@ -7,6 +7,8 @@ import { DepotService } from '../_services/depot.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { saveAs } from 'file-saver';
 import { User } from '../_models/user';
+import { CommentaireService } from '../_services/commentaire.service';
+import { Commentaire } from '../_models/commentaire';
 
 @Component({
   selector: 'app-depot-rapport-version-finale',
@@ -24,9 +26,17 @@ export class DepotRapportVersionFinaleComponent implements OnInit {
 
   fileList?: FileData[];
 
+  _commentairelist : Commentaire[]=[];
+
+  commentaire = new Commentaire();
+
+  depotRapport_version_finale = new Depot();
+
+  etatRapport_version_finale = false;
+
   @ViewChild('pdfViewer') pdfViewer!: ElementRef;
 
-  constructor(private depotService: DepotService, private _router: Router, private token: TokenStorageService, private https: HttpClient) {
+  constructor(private depotService: DepotService, private _router: Router, private token: TokenStorageService, private https: HttpClient, private commentaireService:CommentaireService) {
   }
 
   selectFile(event: any): void {
@@ -46,6 +56,7 @@ export class DepotRapportVersionFinaleComponent implements OnInit {
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               console.log(Math.round(100 * event.loaded / event.total));
+              this._router.navigate(['/depotRapport_version_finale']);
 
             } else if (event instanceof HttpResponse) {
               this.message = event.body.responseMessage;
@@ -89,7 +100,43 @@ export class DepotRapportVersionFinaleComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     this.getFileList();
+    this.getCommentaireRapport_version_finaleList();
+    this.loadDetailsDepotRapport_version_finale();
+    this.testerEtatRapport_version_finale();
   }
+
+  loadDetailsDepotRapport_version_finale() {
+    this.depotService.fetchDetailsDepotRapport_version_finaleByEtudiantIdFromRemote(this.currentUser.id).subscribe(
+      data => {
+        console.log("Data load succesfully");
+        this.depotRapport_version_finale = data;
+      },
+      error => console.log("Exception Occured")        
+    );
+  }
+
+  testerEtatRapport_version_finale() {
+    this.depotService.existeRapport_version_finale(this.currentUser.id).subscribe(
+      dataExisteRapport_version_finale => {
+        console.log(dataExisteRapport_version_finale);   
+            
+        if(dataExisteRapport_version_finale == true){
+            
+          this.depotService.etatRapport_version_finale(this.currentUser.id).subscribe(
+            dataEtatRapport_version_finale => {
+              console.log(dataEtatRapport_version_finale); 
+
+              if(dataEtatRapport_version_finale == 2){
+                this.etatRapport_version_finale = true;
+              }
+            },
+          error => console.log("Exception Occured")        
+          );
+        }  
+      },
+    error => console.log("Exception Occured")        
+    );       
+  } 
 
   getFileList(): void {
     this.depotService.listFileDepotRapport_version_finale(this.currentUser.email).subscribe(result => {
@@ -98,12 +145,11 @@ export class DepotRapportVersionFinaleComponent implements OnInit {
   }
 
   deleteFile(fileData: FileData): void {
-    this.depotService
-      
-    .deleteFileDepotRapport_version_finale(fileData.filename, this.currentUser.email)
-      .subscribe(blob => saveAs(blob, fileData.filename));
+
+    this.depotService.deleteFileDepotRapport_version_finale(fileData.filename, this.currentUser.email).subscribe(
+      blob => saveAs(blob, fileData.filename));
       alert('File deleted successfully');
-      this._router.navigate(['Rapport_version_finale']);
+      this._router.navigate(['/depotRapport_version_finale']);
 
       this.depotService.deleteDepotRapport_version_finaleByEtudiantIdFromRemote(this.currentUser.id).subscribe(
         () => console.log("Data deleted succesfully"),
@@ -126,6 +172,44 @@ export class DepotRapportVersionFinaleComponent implements OnInit {
     const fileURL = URL.createObjectURL(file);
     window.open(fileURL);
     })
+  }
+
+  getCommentaireRapport_version_finaleList(): void {
+    this._commentairelist=[];
+    this.commentaireService.fetchCommentaireRapport_version_finaleListFromRemote(this.currentUser.id).subscribe(   
+      (data: Commentaire[]) => {
+        console.log("Response Recieved");
+        this._commentairelist=data;
+      },
+      () => console.log("Exception Occured")
+    );
+  }
+
+  addCommentaireRapport_version_finaleFormSubmit(){ 
+    this.commentaireService.addCommentaireRapport_version_finaleToRemote(this.currentUser.id, this.commentaire.contenu).subscribe(
+      () => {
+        console.log("Data add succesfully");
+        this._router.navigate(['/depotRapport_version_finale']);
+      },
+      () => console.log("Error")     
+    );
+  }
+
+  goToEditCommentaireRapport_version_finale(id : number){
+    console.log("id "+id);
+    this._router.navigate(['/editCommentaireRapport_version_finale', id]);
+  }
+
+  deleteCommentaireRapport_version_finale(id : number){
+    this.commentaireService.deleteCommentaireByIdFromRemote(id).subscribe(
+      () => {
+        console.debug("Deleted Successfully");
+        this._router.navigate(['/depotRapport_version_finale']);
+      },
+      () => {
+        console.log("Exception Occured");
+      }
+    );
   }
 
 }

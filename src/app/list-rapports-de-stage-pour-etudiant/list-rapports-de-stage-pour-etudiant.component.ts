@@ -46,7 +46,7 @@ export class ListRapportsDeStagePourEtudiantComponent implements OnInit {
   }
 
   goToListFilesRapportDeStagePourEtudiant(session: any, option: any, encadrant: any) {
-    this._router.navigate(['/listFilesOffreDeStagePourEtudiant', session, option, encadrant]);
+    this._router.navigate(['/listFilesRapportDeStagePourEtudiant', session, option, encadrant]);
   }
 
 }

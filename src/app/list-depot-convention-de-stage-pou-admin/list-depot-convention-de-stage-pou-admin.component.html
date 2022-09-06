@@ -1,10 +1,10 @@
 <div class="container"> 
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-  <div class="row">
+  <div class="row" *ngIf="_conventionDeStagelist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Chercher par Username/Email Etudiant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <input type="text" class="form-control" placeholder="Recherche par Etudiant / Email / Date" id="txtSearch" [(ngModel)]="mots_cles"/>
         <div class="input-group-btn">
           <button class="btn btn-primary" type="submit" (click)="fetchDepotConvention_de_stageListParRecherche()">
             <span class="glyphicon glyphicon-search"></span>
@@ -12,38 +12,38 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><br>
 
   <div *ngIf="_conventionDeStagelist.length">
-    <h2>Liste des Conventions de stage</h2>
+    <h2>Liste des conventions de stages</h2>
     <table class="table">
         <thead>
           <tr>
-            <th>Nom & Prenom Etudiant</th>
-            <th>Email Etudiant</th>
-            <th>Date Depot</th>
-            <th>Etat Depot</th>
-            <th>Actions</th>
+            <th>Etudiant</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Etat</th>
+            <!--<th>Actions</th>-->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let conventionDeStage of _conventionDeStagelist">
             <td>{{conventionDeStage.etudiant?.username}}</td>
             <td>{{conventionDeStage.etudiant?.email}}</td>
-            <td>{{conventionDeStage.dateDepot}}</td>
+            <td>{{conventionDeStage.toDisplayDateDepot}}</td>
             <td>{{conventionDeStage.etatDepot}}</td>
-            <td>
-              <button type="button" class="btn btn-success" (click)="goToListFileDepotConventionDeStagePourAdmin(conventionDeStage.etudiant?.email, conventionDeStage.id)">Traiter le dépot</button>
-            </td> 
+            <!--<td>
+              <button class="btn btn-light" style="color: dimgray; font-size: 20px" (click)="goToListFileDepotConventionDeStagePourAdmin(conventionDeStage.etudiant?.id, conventionDeStage.etudiant?.email, conventionDeStage.id)">Traiter</button>
+            </td>-->
           </tr>
         </tbody>
     </table>
-  </div>
+  </div><br>
 
   <div *ngIf="!_conventionDeStagelist.length">
-    <p>Aucune Convention de stage</p>          
-  </div> 
+    <p>Pas de Conventions de stages</p>          
+  </div><br>
 
-    <button type="button" class="btn btn-success" (click)="goToListDepotConventionDeStageDEPOSEEPourAdmin()">Consulter seulement les dépots non encore traités</button>
+    <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListDepotConventionDeStageDEPOSEEPourAdmin()">Traiter les dépôts non encore traités</button>
 
 </div>

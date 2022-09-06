@@ -50,6 +50,8 @@ export class ListRapportDeStagePourAdminComponent implements OnInit {
     this.uploadFileService.deleteRapportDeStageByIdFromRemote(id).subscribe(
       () => {
         console.debug("Deleted Successfully");
+        alert('Cette opération a été effectuée avec succès');
+        this._router.navigate(['/listRapportsDeStagePourAdmin']);
       },
       () => {
         console.log("Exception Occured");
@@ -61,8 +63,8 @@ export class ListRapportDeStagePourAdminComponent implements OnInit {
     this._router.navigate(['/uploadRapportsDeStage']);
   }
 
-  goToListFilesRapportDeStagePourAdmin(session: any, option:any, encadrant:any) {
-    this._router.navigate(['/listFilesRapportDeStagePourAdmin', session, option, encadrant]);
+  goToListFilesRapportDeStagePourAdmin(rapport_id: any, session: any, option:any, encadrant:any) {
+    this._router.navigate(['/listFilesRapportDeStagePourAdmin', rapport_id, session, option, encadrant]);
   }
 
 }

@@ -25,7 +25,7 @@ export class UserAddComponent implements OnInit {
     this.https.post<User>('http://localhost:8081/emailSender/getdetailsAddUser', user).subscribe(
       res => {
         console.log(user);
-        alert('Email Sent successfully');
+        //alert('Email Sent successfully');
       });
   }
 
@@ -42,6 +42,7 @@ export class UserAddComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        alert('Cette opération a été effectuée avec succès');
         this.router.navigate(['listUser']);
         this.emailSender(user);
       },

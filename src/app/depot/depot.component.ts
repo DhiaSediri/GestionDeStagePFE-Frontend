@@ -13,7 +13,7 @@ export class DepotComponent implements OnInit {
 
   currentUser: any;
 
-  test?: boolean;
+  existeDEPOSEConvention = false;
 
   depotConvention_de_stage = new Depot();
   depotFiche_de_stage = new Depot();
@@ -119,28 +119,31 @@ export class DepotComponent implements OnInit {
     );
   }
 
-  /*testerConvention_de_stage() {
+  testerConvention_de_stage() {
     this.depotService.existeConvention_de_stage(this.currentUser.id).subscribe(
-      dataExiste => {
-        console.log(dataExiste);   
+      dataExisteEtatConvention_de_stage => {
+        console.log(dataExisteEtatConvention_de_stage);   
 
-        if(dataExiste == true){
+        if(dataExisteEtatConvention_de_stage == true){
+
+          this.existeDEPOSEConvention = true;
 
           this.depotService.etatConvention_de_stage(this.currentUser.id).subscribe(
-            dataEtat => {
-              console.log(dataEtat);
+            dataEtatEtatConvention_de_stage => {
+              console.log(dataEtatEtatConvention_de_stage);
 
-              if(dataEtat == 1){
-                alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
+              if(dataEtatEtatConvention_de_stage == 1){
+                alert('Vous pouvez modifier votre convention de stage tant qu elle n est pas encore traitée par l administrateur');
                 this._router.navigate(['depotConvention_de_stage']);
               }  
 
-              if(dataEtat == 2){
-                alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
+              if(dataEtatEtatConvention_de_stage == 2){
+                alert('Votre convention de stage est validée par l administrateur, vous ne pouvez pas la modifier');
+                this._router.navigate(['depotConvention_de_stage']);
               }
 
-              if(dataEtat == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+              if(dataEtatEtatConvention_de_stage == 0){
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
                 this._router.navigate(['depotConvention_de_stage']);
               } 
 
@@ -149,8 +152,8 @@ export class DepotComponent implements OnInit {
           );
         } 
         
-        if(dataExiste == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer vos livrables');
+        if(dataExisteEtatConvention_de_stage == false){
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
           this._router.navigate(['depotConvention_de_stage']);
         } 
       },
@@ -170,7 +173,7 @@ export class DepotComponent implements OnInit {
               console.log(dataEtatConvention_de_stage); 
 
               if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
+                alert('Veuillez attendre le traitement de votre convention de stage par l administrateur');
               }  
 
               if(dataEtatConvention_de_stage == 2){
@@ -186,18 +189,14 @@ export class DepotComponent implements OnInit {
                           console.log(dataEtatFiche_de_stage); 
             
                           if(dataEtatFiche_de_stage == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
+                            alert('Vous pouvez modifier votre fiche de stage tant qu elle n est pas encore traitée par votre encadrant académique');
                             this._router.navigate(['depotFiche_de_stage']);
                           }  
             
                           if(dataEtatFiche_de_stage == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
-                          }
-            
-                          if(dataEtatFiche_de_stage == 0){
-                            alert('Votre Fiche de stage est réfusée, Vous devais déposer un nouveau livrable');
+                            alert('Votre fiche de stage est déjà traitée par votre encadrant académique, vous ne pouvez pas la modifier');
                             this._router.navigate(['depotFiche_de_stage']);
-                          } 
+                          }
             
                         },
                         error => console.log("Exception Occured")        
@@ -214,7 +213,7 @@ export class DepotComponent implements OnInit {
               }
 
               if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
               } 
 
             },
@@ -223,7 +222,7 @@ export class DepotComponent implements OnInit {
         } 
         
         if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
         } 
       },
       error => console.log("Exception Occured")        
@@ -242,7 +241,7 @@ export class DepotComponent implements OnInit {
               console.log(dataEtatConvention_de_stage); 
 
               if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
+                alert('Veuillez attendre le traitement de votre convention de stage par l administrateur');
               }  
 
               if(dataEtatConvention_de_stage == 2){
@@ -258,18 +257,14 @@ export class DepotComponent implements OnInit {
                           console.log(dataEtatBilan_périodique_début_du_stage); 
             
                           if(dataEtatBilan_périodique_début_du_stage == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
-                            this._router.navigate(['depotBilan_périodique_début_du_stage']);
+                            alert('Vous pouvez modifier votre Bilan périodique début du stage tant qu il n est pas encore traité par votre encadrant académique');
+                            this._router.navigate(['depotBilan_periodique_debut_du_stage']);
                           }  
             
                           if(dataEtatBilan_périodique_début_du_stage == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
+                            alert('Votre Bilan périodique début du stage est déjà traité par votre encadrant académique, vous ne pouvez pas le modifier');
+                            this._router.navigate(['depotBilan_periodique_debut_du_stage']);
                           }
-            
-                          if(dataEtatBilan_périodique_début_du_stage == 0){
-                            alert('Votre Bilan_périodique_début_du_stage est réfusé, Vous devais déposer un nouveau livrable');
-                            this._router.navigate(['depotBilan_périodique_début_du_stage']);
-                          } 
             
                         },
                         error => console.log("Exception Occured")        
@@ -277,7 +272,7 @@ export class DepotComponent implements OnInit {
                     } 
                     
                     if(dataExisteBilan_périodique_début_du_stage == false){
-                      this._router.navigate(['depotBilan_périodique_début_du_stage']);
+                      this._router.navigate(['depotBilan_periodique_debut_du_stage']);
                     } 
                   },
                   error => console.log("Exception Occured")        
@@ -286,7 +281,7 @@ export class DepotComponent implements OnInit {
               }
 
               if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
               } 
 
             },
@@ -295,7 +290,7 @@ export class DepotComponent implements OnInit {
         } 
         
         if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
         } 
       },
       error => console.log("Exception Occured")        
@@ -314,51 +309,47 @@ export class DepotComponent implements OnInit {
               console.log(dataEtatConvention_de_stage); 
 
               if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
+                alert('Veuillez attendre le traitement de votre convention de stage par l administrateur');
               }  
 
               if(dataEtatConvention_de_stage == 2){
-                //////////////////////////// Début Test Bilan_périodique_milieu_du_stage ////////////////////////////
+                //////////////////////////// Début Test Bilan_periodique_milieu_du_stage ////////////////////////////
                 this.depotService.existeBilan_périodique_milieu_du_stage(this.currentUser.id).subscribe(
-                  dataExisteBilan_périodique_milieu_du_stage => {
-                    console.log(dataExisteBilan_périodique_milieu_du_stage);   
+                  dataExisteBilan_periodique_milieu_du_stage => {
+                    console.log(dataExisteBilan_periodique_milieu_du_stage);   
             
-                    if(dataExisteBilan_périodique_milieu_du_stage == true){
+                    if(dataExisteBilan_periodique_milieu_du_stage == true){
             
-                      this.depotService.etatBilan_périodique_début_du_stage(this.currentUser.id).subscribe(
-                        dataEtatBilan_périodique_milieu_du_stage => {
-                          console.log(dataEtatBilan_périodique_milieu_du_stage); 
+                      this.depotService.etatBilan_périodique_milieu_du_stage(this.currentUser.id).subscribe(
+                        dataEtatBilan_periodique_milieu_du_stage => {
+                          console.log(dataEtatBilan_periodique_milieu_du_stage); 
             
-                          if(dataEtatBilan_périodique_milieu_du_stage == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
-                            this._router.navigate(['depotBilan_périodique_milieu_du_stage']);
+                          if(dataEtatBilan_periodique_milieu_du_stage == 1){
+                            alert('Vous pouvez modifier votre Bilan periodique milieu du stage tant qu il n est pas encore traité par votre encadrant académique');
+                            this._router.navigate(['depotBilan_periodique_milieu_du_stage']);
                           }  
             
-                          if(dataEtatBilan_périodique_milieu_du_stage == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
+                          if(dataEtatBilan_periodique_milieu_du_stage == 2){
+                            alert('Votre Bilan périodique milieu du stage est déjà traité par votre encadrant académique, vous ne pouvez pas le modifier');
+                            this._router.navigate(['depotBilan_periodique_milieu_du_stage']);
                           }
-            
-                          if(dataEtatBilan_périodique_milieu_du_stage == 0){
-                            alert('Votre Bilan_périodique_milieu_du_stage est réfusé, Vous devais déposer un nouveau livrable');
-                            this._router.navigate(['depotBilan_périodique_milieu_du_stage']);
-                          } 
             
                         },
                         error => console.log("Exception Occured")        
                       );
                     } 
                     
-                    if(dataExisteBilan_périodique_milieu_du_stage == false){
-                      this._router.navigate(['depotBilan_périodique_milieu_du_stage']);
+                    if(dataExisteBilan_periodique_milieu_du_stage == false){
+                      this._router.navigate(['depotBilan_periodique_milieu_du_stage']);
                     } 
                   },
                   error => console.log("Exception Occured")        
                 );
-                //////////////////////////// Fin Test Bilan_périodique_milieu_du_stage ////////////////////////////
+                //////////////////////////// Fin Test Bilan_periodique_milieu_du_stage ////////////////////////////
               }
 
               if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
               } 
 
             },
@@ -367,7 +358,7 @@ export class DepotComponent implements OnInit {
         } 
         
         if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
         } 
       },
       error => console.log("Exception Occured")        
@@ -386,7 +377,7 @@ export class DepotComponent implements OnInit {
               console.log(dataEtatConvention_de_stage); 
 
               if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
+                alert('Veuillez attendre le traitement de votre convention de stage par l administrateur');
               }  
 
               if(dataEtatConvention_de_stage == 2){
@@ -402,18 +393,14 @@ export class DepotComponent implements OnInit {
                           console.log(dataEtatBilan_périodique_fin_du_stage); 
             
                           if(dataEtatBilan_périodique_fin_du_stage == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
-                            this._router.navigate(['depotBilan_périodique_fin_du_stage']);
+                            alert('Vous pouvez modifier votre Bilan periodique fin du stage tant qu il n est pas encore traité par votre encadrant académique');
+                            this._router.navigate(['depotBilan_periodique_fin_du_stage']);
                           }  
             
                           if(dataEtatBilan_périodique_fin_du_stage == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
+                            alert('Votre Bilan périodique fin du stage est déjà traité par votre encadrant académique, vous ne pouvez pas le modifier');
+                            this._router.navigate(['depotBilan_periodique_fin_du_stage']);
                           }
-            
-                          if(dataEtatBilan_périodique_fin_du_stage == 0){
-                            alert('Votre Bilan_périodique_fin_du_stage est réfusé, Vous devais déposer un nouveau livrable');
-                            this._router.navigate(['depotBilan_périodique_fin_du_stage']);
-                          } 
             
                         },
                         error => console.log("Exception Occured")        
@@ -421,7 +408,7 @@ export class DepotComponent implements OnInit {
                     } 
                     
                     if(dataExisteBilan_périodique_fin_du_stage == false){
-                      this._router.navigate(['depotBilan_périodique_fin_du_stage']);
+                      this._router.navigate(['depotBilan_periodique_fin_du_stage']);
                     } 
                   },
                   error => console.log("Exception Occured")        
@@ -430,7 +417,7 @@ export class DepotComponent implements OnInit {
               }
 
               if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
               } 
 
             },
@@ -439,7 +426,7 @@ export class DepotComponent implements OnInit {
         } 
         
         if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
         } 
       },
       error => console.log("Exception Occured")        
@@ -458,7 +445,7 @@ export class DepotComponent implements OnInit {
               console.log(dataEtatConvention_de_stage); 
 
               if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
+                alert('Veuillez attendre le traitement de votre convention de stage par l administrateur');
               }  
 
               if(dataEtatConvention_de_stage == 2){
@@ -474,18 +461,14 @@ export class DepotComponent implements OnInit {
                           console.log(dataEtatRapport_premiere_version); 
             
                           if(dataEtatRapport_premiere_version == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
+                            alert('Vous pouvez modifier votre Rapport de stage tant qu il n est pas encore traité par votre encadrant académique');
                             this._router.navigate(['depotRapport_premiere_version']);
                           }  
             
                           if(dataEtatRapport_premiere_version == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
-                          }
-            
-                          if(dataEtatRapport_premiere_version == 0){
-                            alert('Votre Rapport_premiere_version est réfusé, Vous devais déposer un nouveau livrable');
+                            alert('Votre Rapport de stage est déjà traité par votre encadrant académique, vous ne pouvez pas le modifier');
                             this._router.navigate(['depotRapport_premiere_version']);
-                          } 
+                          }
             
                         },
                         error => console.log("Exception Occured")        
@@ -502,7 +485,7 @@ export class DepotComponent implements OnInit {
               }
 
               if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
               } 
 
             },
@@ -511,79 +494,7 @@ export class DepotComponent implements OnInit {
         } 
         
         if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
-        } 
-      },
-      error => console.log("Exception Occured")        
-    );
-  }
-
-  testerRapport_version_finale() {
-    this.depotService.existeConvention_de_stage(this.currentUser.id).subscribe(
-      dataExisteConvention_de_stage => {
-        console.log(dataExisteConvention_de_stage);   
-
-        if(dataExisteConvention_de_stage == true){
-
-          this.depotService.etatConvention_de_stage(this.currentUser.id).subscribe(
-            dataEtatConvention_de_stage => {
-              console.log(dataEtatConvention_de_stage); 
-
-              if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
-              }  
-
-              if(dataEtatConvention_de_stage == 2){
-                //////////////////////////// Début Test Rapport_version_finale ////////////////////////////
-                this.depotService.existeRapport_version_finale(this.currentUser.id).subscribe(
-                  dataExisteRapport_version_finale => {
-                    console.log(dataExisteRapport_version_finale);   
-            
-                    if(dataExisteRapport_version_finale == true){
-            
-                      this.depotService.etatRapport_version_finale(this.currentUser.id).subscribe(
-                        dataEtatRapport_version_finale => {
-                          console.log(dataEtatRapport_version_finale); 
-            
-                          if(dataEtatRapport_version_finale == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
-                            this._router.navigate(['depotRapport_version_finale']);
-                          }  
-            
-                          if(dataEtatRapport_version_finale == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
-                          }
-            
-                          if(dataEtatRapport_version_finale == 0){
-                            alert('Votre Rapport_version_finale est réfusé, Vous devais déposer un nouveau livrable');
-                            this._router.navigate(['depotRapport_version_finale']);
-                          } 
-            
-                        },
-                        error => console.log("Exception Occured")        
-                      );
-                    } 
-                    
-                    if(dataExisteRapport_version_finale == false){
-                      this._router.navigate(['depotRapport_version_finale']);
-                    } 
-                  },
-                  error => console.log("Exception Occured")        
-                );
-                //////////////////////////// Fin Test Rapport_version_finale ////////////////////////////
-              }
-
-              if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
-              } 
-
-            },
-            error => console.log("Exception Occured")        
-          );
-        } 
-        
-        if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
         } 
       },
       error => console.log("Exception Occured")        
@@ -602,7 +513,7 @@ export class DepotComponent implements OnInit {
               console.log(dataEtatConvention_de_stage); 
 
               if(dataEtatConvention_de_stage == 1){
-                alert('Votre Convention de stage n est pas encore traité');
+                alert('Veuillez attendre le traitement de votre convention de stage par l administrateur');
               }  
 
               if(dataEtatConvention_de_stage == 2){
@@ -618,18 +529,14 @@ export class DepotComponent implements OnInit {
                           console.log(dataEtatJournal_de_stage); 
             
                           if(dataEtatJournal_de_stage == 1){
-                            alert('Vous pouvez modifier votre livrable tant qu il n est pas encore traité');
+                            alert('Vous pouvez modifier votre Journal de stage tant qu il n est pas encore traité par votre encadrant académique');
                             this._router.navigate(['depotJournal_de_stage']);
                           }  
             
                           if(dataEtatJournal_de_stage == 2){
-                            alert('Votre livrable est déjà traité, vous ne pouvez pas le modifier');
-                          }
-            
-                          if(dataEtatJournal_de_stage == 0){
-                            alert('Votre Journal_de_stage est réfusé, Vous devais déposer un nouveau livrable');
+                            alert('Votre Journal de stage est déjà traité par votre encadrant académique, vous ne pouvez pas le modifier');
                             this._router.navigate(['depotJournal_de_stage']);
-                          } 
+                          }
             
                         },
                         error => console.log("Exception Occured")        
@@ -646,7 +553,7 @@ export class DepotComponent implements OnInit {
               }
 
               if(dataEtatConvention_de_stage == 0){
-                alert('Votre convention de stage est réfusée, Vous devais déposer un nouveau livrable');
+                alert('Votre convention de stage n est pas validée par l administrateur, Vous devez déposer un nouveau livrable');
               } 
 
             },
@@ -655,10 +562,10 @@ export class DepotComponent implements OnInit {
         } 
         
         if(dataExisteConvention_de_stage == false){
-          alert('Vous devais déposer une convetion de stage pour que vous puissez déposer le reste des livrables');
+          alert('Vous devez déposer une convetion de stage qui doit être validée par l administrateur, dans ce cas vous pouvez déposer vos livrables');
         } 
       },
       error => console.log("Exception Occured")        
     );
-  }*/
+  }
 }

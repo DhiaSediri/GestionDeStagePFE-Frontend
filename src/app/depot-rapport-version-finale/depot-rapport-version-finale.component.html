@@ -1,4 +1,5 @@
-<div class="row">
+<br>
+<div *ngIf="!etatRapport_version_finale" class="row">
     <div class="col-8">
         <label class="btn btn-default p-0">
             <input type="file" (change)="selectFile($event)"/>
@@ -18,14 +19,27 @@
 
 
 <div *ngFor="let fileData of fileList" class="list-group">
-    <a (click)="deleteFile(fileData)" class="list-group-item list-group-item-success" style="cursor: pointer;">
-        {{fileData.filename}}            
-      <a class="alert-success float-right">Delete</a>
+    <label>Version {{depotRapport_version_finale.toDisplayDateDepot}}</label>
+    <a  class="list-group-item list-group-item-success" style="cursor: pointer;" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">
+        {{fileData.filename}}   
+      <a *ngIf="!etatRapport_version_finale" class="alert-success float-right" (click)="deleteFile(fileData)">Delete</a>
     </a><br>
-    <button class="btn btn-sm btn-primary" (click)="getFile(fileData)">View File</button>&nbsp;
-    <button class="btn btn-sm btn-primary" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">View File in New Window</button>
+    <!-- <button class="btn btn-sm btn-primary" (click)="getFile(fileData)">View File</button>&nbsp;
+    <button class="btn btn-sm btn-primary" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">View File in New Window</button> -->
 </div>
 
-<div class="col-lg-12" style="height: 680px;">
-    <object #pdfViewer type="application/pdf" width="100%" height="100%"></object>
+<div *ngIf="fileList?.length && !etatRapport_version_finale">
+    <input type="text" class="form-control" placeholder="Ajouter un nouveau commentaire" [(ngModel)]="commentaire.contenu"/>
+    <button type="button" class="btn btn-success float-right" (click)="addCommentaireRapport_version_finaleFormSubmit()">Ajouter un nouveau commentaire</button>&nbsp;
 </div>
+
+<div *ngFor="let commentaire of _commentairelist">
+    <h1>{{commentaire.commentateur?.username}}</h1> <p>{{commentaire.contenu}}</p>
+    <button type="button" class="btn btn-warning" (click)="goToEditCommentaireRapport_version_finale(commentaire.id)">Modifier le commentaire</button>&nbsp;
+    <button type="button" class="btn btn-danger" (click)="deleteCommentaireRapport_version_finale(commentaire.id)">Supprimer le commentaire</button>
+</div>
+
+
+<!-- <div class="col-lg-12" style="height: 680px;">
+    <object #pdfViewer type="application/pdf" width="100%" height="100%"></object>
+</div> -->

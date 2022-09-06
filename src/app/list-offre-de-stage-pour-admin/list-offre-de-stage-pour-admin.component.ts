@@ -40,6 +40,11 @@ export class ListOffreDeStagePourAdminComponent implements OnInit {
       (data: OffreDeStage[]) => {
         console.log("Response Recieved");
         this._offreDeStagelist=data;
+
+        if(!this._offreDeStagelist.length){
+          alert('Votre recherche pour '+this.mots_cles+' n a pas de correspondance');
+          this.loadData();
+        }
       },
       () => console.log("Exception Occured")
     );
@@ -49,6 +54,8 @@ export class ListOffreDeStagePourAdminComponent implements OnInit {
     this.uploadFileService.deleteOffreDeStageByIdFromRemote(id).subscribe(
       () => {
         console.debug("Deleted Successfully");
+        alert('Cette opération a été effectuée avec succès');
+        this._router.navigate(['/listOffresDeStagePourAdmin']);
       },
       () => {
         console.log("Exception Occured");
@@ -60,8 +67,8 @@ export class ListOffreDeStagePourAdminComponent implements OnInit {
     this._router.navigate(['/uploadOffresDeStage']);
   }
 
-  goToListFilesOffreDeStagePourAdmin(societe: any, session: any, option: any) {
-    this._router.navigate(['/listFilesOffreDeStagePourAdmin', societe, session, option]);
+  goToListFilesOffreDeStagePourAdmin(offre_id: any, societe: any, session: any, option: any) {
+    this._router.navigate(['/listFilesOffreDeStagePourAdmin', offre_id, societe, session, option]);
   }
 
 }

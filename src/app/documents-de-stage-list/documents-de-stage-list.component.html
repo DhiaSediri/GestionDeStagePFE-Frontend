@@ -1,10 +1,13 @@
 <div class="container"> 
+  <!-- Pour les icons des bouttons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-  <div class="row">
+  <div class="row" *ngIf="_documentsDeStagelist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Chercher par Etudiant/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <input type="text" class="form-control" placeholder="Recherche par Etudiant / Date" id="txtSearch" [(ngModel)]="mots_cles"/>
         <div class="input-group-btn">
           <button class="btn btn-primary" type="submit" (click)="fetchDocumentsDeStageListParRecherche()">
             <span class="glyphicon glyphicon-search"></span>
@@ -12,30 +15,19 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div *ngIf="!mots_cles?.length">
-    //afficher la table est désafficher "Aucune Demande de stage"
-  </div>
+  </div><br>
 
   <div *ngIf="_documentsDeStagelist.length">
-    <h2>Liste des Demandes de stage</h2>
+    <h2>Liste des demandes de stages</h2>
     <table class="table">
       <thead>
         <tr>
-          <th>Nom & Prenom Etudiant</th>
-          <th>Email Etudiant</th>
+          <th>Etudiant</th>
+          <th>Email</th>
           <th>Option</th>
-          <th>Nom Société</th>
-          <th>Adresse Société</th>
-          <th>Téléphone Société</th>
-          <th>Email Société</th>
-          <th>Encadrant Société</th>
-          <th>Encadrant Academique</th>
-          <th>Date Début Stage</th>
-          <th>Date Fin Stage</th>
-          <th>Date Demande Stage</th>
-          <th>Etat Demande</th>
+          <th>Société</th>
+          <th>Date</th>
+          <th>Etat</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -45,19 +37,23 @@
           <td>{{documentsDeStage.emailEtudiant}}</td>
           <td>{{documentsDeStage.optionEtudiant}}</td>
           <td>{{documentsDeStage.nomSociete}}</td>
-          <td>{{documentsDeStage.adresseSociete}}</td>
-          <td>{{documentsDeStage.telephoneSociete}}</td>
-          <td>{{documentsDeStage.emailSociete}}</td>
-          <td>{{documentsDeStage.encadrantSociete}}</td>
-          <td>{{documentsDeStage.encadrantAcademique}}</td>
-          <td>{{documentsDeStage.dateDebutStage}}</td>
-          <td>{{documentsDeStage.dateFinStage}}</td> 
           <td>{{documentsDeStage.dateDemande}}</td>
           <td>{{documentsDeStage.etatDemande}}</td>    
           <td>
-            <button type="button" class="btn btn-primary" (click)="goToEditDocumentsDeStage(documentsDeStage.id)">Edit</button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-info" (click)="goToViewDocumentsDeStage(documentsDeStage.id)">View</button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-danger" (click)="deleteDocumentsDeStage(documentsDeStage.id)">Delete</button>
+            <button class="btn btn-secondary" (click)="goToViewDocumentsDeStage(documentsDeStage.id)">
+              <i class="fa fa-eye"></i>
+            </button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" (click)="goToEditDocumentsDeStage(documentsDeStage.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+            </svg> 
+            </button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="deleteDocumentsDeStage(documentsDeStage.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -65,10 +61,11 @@
   </div>
 
   <div *ngIf="!_documentsDeStagelist.length">
-    <p>Aucune Demande de stage</p>          
+    <p>Pas de demandes de stages</p>          
   </div> 
 
-    <button type="button" class="btn btn-success" (click)="goToAddDocumentsDeStage()">Add new Documents de stage</button>
-    <button type="button" class="btn btn-success" (click)="goToListDocumentsDeStageDEPOSEE()">Documents de stage non encore traités</button>
+  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToAddDocumentsDeStage()">Ajouter une nouvelle demande de stage <i class="fa fa-plus"></i></button><br><br><br>
+
+  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListDocumentsDeStageDEPOSEE()">Traiter les demandes de stages déposées</button>
 
   </div>

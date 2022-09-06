@@ -1,10 +1,13 @@
-<div class="container"> 
+<div class="container">
+  <!-- Pour les icons des bouttons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-  <div class="row">
+  <div class="row" *ngIf="_rapportDeStagelist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Chercher par Option/Session/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <input type="text" class="form-control" placeholder="Recherche par Option / Session / Encadrant Académique" id="txtSearch" [(ngModel)]="mots_cles"/>
         <div class="input-group-btn">
           <button class="btn btn-primary" type="submit" (click)="fetchRappportDeStageListParRecherche()">
             <span class="glyphicon glyphicon-search"></span>
@@ -12,17 +15,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><br>
 
   <div *ngIf="_rapportDeStagelist.length">
-    <h2>Liste des rapports de stage</h2>
+    <h2>Liste des Rapports de stages</h2>
     <table class="table">
       <thead>
         <tr>
           <th>Option</th>
           <th>Session</th>
-          <th>Nom & Prenom de l'encadrant</th>
-          <th>Liste des rapports de stage</th>
+          <th>Encadrant Académique</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +34,7 @@
           <td>{{rapportDeStage.session}}</td>
           <td>{{rapportDeStage.encadrant}}</td>   
           <td>
-            <button class="btn btn-sm btn-primary" (click)="goToListFilesRapportDeStagePourEtudiant(rapportDeStage.session, rapportDeStage.option, rapportDeStage.encadrant)">Consulter la liste</button>&nbsp;
+            <button class="btn btn-secondary" (click)="goToListFilesRapportDeStagePourEtudiant(rapportDeStage.session, rapportDeStage.option, rapportDeStage.encadrant)"><i class="fa fa-eye"></i></button>
           </td>
         </tr>
       </tbody>
@@ -39,7 +42,7 @@
   </div>
 
   <div *ngIf="!_rapportDeStagelist.length">
-    <p>Aucun rapport de stage</p>          
+    <p>Pas de Rapports de stages</p>          
   </div> 
 
 </div>

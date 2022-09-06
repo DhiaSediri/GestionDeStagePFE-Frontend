@@ -61,7 +61,7 @@ export class UsersListComponent implements OnInit {
     this.service.deleteUserById(id).subscribe(
       data => {
         console.debug("Deleted Successfully");
-        //this._router.navigate(['/listUser']);
+        alert('Cette opération a été effectuée avec succès');
         this.loadData();
       },
       error => {

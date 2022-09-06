@@ -44,7 +44,15 @@ export class UploadOffresDeStageComponent implements OnInit {
         this.uploadService.uploadFileOffresDeStage(this.currentFile, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
-              console.log(Math.round(100 * event.loaded / event.total));
+              //console.log(Math.round(100 * event.loaded / event.total));
+              //this.goToListFilesOffreDeStagePourAdmin(this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option);
+              this.uploadService.addOffreDeStageToRemote(this.offreDeStage).subscribe(
+                () =>{
+                  console.log("Data add succesfully");
+                  this._router.navigate(['/listOffresDeStagePourAdmin']);
+                },
+                () => console.log("Error")     
+              );
 
             } else if (event instanceof HttpResponse) {
               this.message = event.body.responseMessage;
@@ -65,12 +73,6 @@ export class UploadOffresDeStageComponent implements OnInit {
       this.selectedFiles = undefined;
     }
 
-    this.uploadService.addOffreDeStageToRemote(this.offreDeStage).subscribe(
-      () => console.log("Data add succesfully"),
-      () => console.log("Error")     
-    );
-
-    this._router.navigate(['/listOffresDeStagePourAdmin']);
   }
 
   ngOnInit(): void {
@@ -84,27 +86,18 @@ export class UploadOffresDeStageComponent implements OnInit {
   }
 
   deleteFile(fileData: FileData): void {
-    this.deleteFileService
-      .deleteFileOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option)
-      .subscribe(blob => saveAs(blob, fileData.filename));
-      alert('File deleted successfully');
+    this.deleteFileService.deleteFileOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe(blob => saveAs(blob, fileData.filename));
+      alert('Cette opération a été effectuée avec succès');
       this._router.navigate(['uploadOffresDeStage']);
   }
 
-  getFile(fileData: FileData) {
-    this.deleteFileService.getPdfOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe((responseMessage) => {
-    const file = new Blob([responseMessage], { type: 'application/pdf' });
-    const fileURL = URL.createObjectURL(file);
-    this.pdfViewer.nativeElement.data = fileURL;
-    })
+  goToList(){
+    console.log("Go Back");
+    this._router.navigate(['listOffresDeStagePourAdmin']);
   }
-  
-  getFileInNewWindow(fileData: FileData) {
-    this.deleteFileService.getPdfOffresDeStage(fileData.filename, this.offreDeStage.societe, this.offreDeStage.session, this.offreDeStage.option).subscribe((responseMessage) => {
-    const file = new Blob([responseMessage], { type: 'application/pdf' });
-    const fileURL = URL.createObjectURL(file);
-    window.open(fileURL);
-    })
+
+  goToListFilesOffreDeStagePourAdmin(societe: any, session: any, option: any) {
+    this._router.navigate(['/listFilesOffreDeStagePourAdmin', societe, session, option]);
   }
 
 }

@@ -42,8 +42,8 @@ export class ListDepotConventionDeStagePouAdminComponent implements OnInit {
     );
   }
 
-  goToListFileDepotConventionDeStagePourAdmin(etudiant_email: any, depot_id: any) {
-    this._router.navigate(['/listFileDepotConventionDeStagePourAdmin', etudiant_email, depot_id]);
+  goToListFileDepotConventionDeStagePourAdmin(etudiant_id: any, etudiant_email: any, depot_id: any) {
+    this._router.navigate(['/listFileDepotConventionDeStagePourAdmin', etudiant_id, etudiant_email, depot_id]);
   }
 
   goToListDepotConventionDeStageDEPOSEEPourAdmin() {

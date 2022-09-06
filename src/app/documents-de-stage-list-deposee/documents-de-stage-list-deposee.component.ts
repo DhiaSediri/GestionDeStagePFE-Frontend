@@ -48,7 +48,7 @@ export class DocumentsDeStageListDEPOSEEComponent implements OnInit {
     this.https.post<DocumentsDeStage>('http://localhost:8081/emailSender/getdetailsDemandeDeStageAcceptee', documentsDeStage).subscribe(
       res => {
         console.log(documentsDeStage);
-        alert('Email Sent successfully');
+        //alert('Email Sent successfully');
       });
   }
 
@@ -56,7 +56,7 @@ export class DocumentsDeStageListDEPOSEEComponent implements OnInit {
     this.https.post<DocumentsDeStage>('http://localhost:8081/emailSender/getdetailsDemandeDeStageRefusee', documentsDeStage).subscribe(
       res => {
         console.log(documentsDeStage);
-        alert('Email Sent successfully');
+        //alert('E-mail envoyé avec succès');
       });
   }
 
@@ -65,8 +65,9 @@ export class DocumentsDeStageListDEPOSEEComponent implements OnInit {
     this._service.accepterDemande(documentsDeStage).subscribe(
       () => {
         console.log("Data add succesfully");
-        this._router.navigate(['listDocumentsDeStage']);
         this.emailSenderDemandeDeStageAcceptee(documentsDeStage);
+        alert('Cette opération a été effectuée avec succès');
+        this._router.navigate(['listDocumentsDeStage']); 
       },
       () => console.log("Error")     
     );
@@ -77,8 +78,9 @@ export class DocumentsDeStageListDEPOSEEComponent implements OnInit {
     this._service.refuserDemande(documentsDeStage).subscribe(
       () => {
         console.log("Data add succesfully");
-        this._router.navigate(['listDocumentsDeStage']);
         this.emailSenderDemandeDeStageRefusee(documentsDeStage);
+        alert('Cette opération a été effectuée avec succès');
+        this._router.navigate(['listDocumentsDeStage']); 
       },
       () => console.log("Error")     
     );

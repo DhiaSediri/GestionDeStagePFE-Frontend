@@ -1,0 +1,15 @@
+<br>
+<div class="card card-container">
+  <input
+    type="text" 
+    class="form-control"
+    name="contenu"
+    [(ngModel)]="commentaire.contenu"
+    #contenu="ngModel"
+  />
+  <br>
+  <div class="form-group float-right">
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Modifier</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="annuler()">Annuler</button>
+  </div>
+</div>

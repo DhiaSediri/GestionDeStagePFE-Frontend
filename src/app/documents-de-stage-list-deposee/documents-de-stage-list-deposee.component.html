@@ -1,10 +1,13 @@
 <div class="container"> 
+  <!-- Pour les icons des bouttons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-  <div class="row">
+  <div class="row" *ngIf="_ListdocumentsDeStageDEPOSEE.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Chercher par Etudiant/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+        <input type="text" class="form-control" placeholder="Recherche par Etudiant / Date" id="txtSearch" [(ngModel)]="mots_cles"/>
         <div class="input-group-btn">
           <button class="btn btn-primary" type="submit" (click)="fetchListDocumentsDeStageDEPOSEEParRecherche()">
             <span class="glyphicon glyphicon-search"></span>
@@ -12,47 +15,37 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><br>
 
   <div *ngIf="_ListdocumentsDeStageDEPOSEE.length">
-    <h2>Liste des Demandes de stage déposées</h2>
+    <h2>Liste des demandes de stages déposées non encore traitées</h2>
     <table class="table">
       <thead>
         <tr>
-          <th>Nom & Prenom Etudiant</th>
-          <th>Email Etudiant</th>
+          <th>Etudiant</th>
+          <th>Email</th>
           <th>Option</th>
-          <th>Nom Société</th>
-          <th>Adresse Société</th>
-          <th>Téléphone Société</th>
-          <th>Email Société</th>
-          <th>Encadrant Société</th>
-          <th>Encadrant Academique</th>
-          <th>Date Début Stage</th>
-          <th>Date Fin Stage</th>
-          <th>Date Demande</th>
-          <th>Etat Demande</th>
+          <th>Société</th>
+          <th>Date Demande Stage/th>
+          <th>Etat</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let documentsDeStageDEPOSEE of _ListdocumentsDeStageDEPOSEE">
+        <tr *ngFor="let documentsDeStageDEPOSEE of _ListdocumentsDeStageDEPOSEE">  
           <td>{{documentsDeStageDEPOSEE.nom_prenomEtudiant}}</td>
           <td>{{documentsDeStageDEPOSEE.emailEtudiant}}</td>
           <td>{{documentsDeStageDEPOSEE.optionEtudiant}}</td>
           <td>{{documentsDeStageDEPOSEE.nomSociete}}</td>
-          <td>{{documentsDeStageDEPOSEE.adresseSociete}}</td>
-          <td>{{documentsDeStageDEPOSEE.telephoneSociete}}</td>
-          <td>{{documentsDeStageDEPOSEE.emailSociete}}</td>
-          <td>{{documentsDeStageDEPOSEE.encadrantSociete}}</td>
-          <td>{{documentsDeStageDEPOSEE.encadrantAcademique}}</td>
-          <td>{{documentsDeStageDEPOSEE.dateDebutStage}}</td>
-          <td>{{documentsDeStageDEPOSEE.dateFinStage}}</td> 
           <td>{{documentsDeStageDEPOSEE.dateDemande}}</td>
-          <td>{{documentsDeStageDEPOSEE.etatDemande}}</td>     
+          <td>{{documentsDeStageDEPOSEE.etatDemande}}</td>
           <td>
-            <button type="button" class="btn btn-primary" (click)="accepterDemande(documentsDeStageDEPOSEE)">Accepter</button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-danger" (click)="refuserDemande(documentsDeStageDEPOSEE)">Refuser</button>
+            <button type="button" class="btn btn-light" (click)="accepterDemande(documentsDeStageDEPOSEE)">Accepter <i class="fa fa-check" aria-hidden="true"></i></button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-light" (click)="refuserDemande(documentsDeStageDEPOSEE)">Refuser
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -60,9 +53,8 @@
   </div>
 
   <div *ngIf="!_ListdocumentsDeStageDEPOSEE.length">
-    <p>Aucune Demande de stage déposée</p>          
-  </div>
+    <p>Pas de Demandes de stages déposées</p>          
+  </div><br>
 
-    <button type="button" class="btn btn-primary" (click)="goToListDocumentsDeStage()">BACK</button>
-
+  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListDocumentsDeStage()"><i class="fa fa-angle-double-left"></i> Retour à la liste des demandes de stages</button>
   </div>

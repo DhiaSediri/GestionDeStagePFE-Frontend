@@ -1,17 +1,18 @@
-<p>list-files-rapport-de-stage-pour-etudiant works!</p>
+<br>
+<!-- Pour les icons des bouttons -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div *ngFor="let fileData of fileList" class="list-group">
-    <a class="list-group-item list-group-item-success" style="cursor: pointer;">
+    <a class="list-group-item list-group-item-success" style="cursor: pointer;" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">
         {{fileData.filename}}            
     </a><br>
-    <button class="btn btn-sm btn-primary" (click)="getFile(fileData)">View File</button>&nbsp;
-    <button class="btn btn-sm btn-primary" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">View File in New Window</button>
-</div>
+    <!--<button class="btn btn-sm btn-primary" (click)="getFile(fileData)">View File</button>&nbsp;
+    <button class="btn btn-sm btn-primary" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">View File in New Window</button>-->
+</div><br>
 
+<button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListRapportDeStagePourEtudiant()"><i class="fa fa-angle-double-left"></i> Retour à la liste des rapports de stages</button>
 
-<button class="btn btn-sm btn-primary" (click)="goToListRapportDeStagePourEtudiant()">Back to list  Rapport de stage</button>&nbsp;
-
-
-<div class="col-lg-12" style="height: 680px;">
+<!--<div class="col-lg-12" style="height: 680px;">
     <object #pdfViewer type="application/pdf" width="100%" height="100%"></object>
-</div>
+</div>-->

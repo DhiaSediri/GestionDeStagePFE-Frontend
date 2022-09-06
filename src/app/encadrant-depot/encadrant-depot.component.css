@@ -27,7 +27,7 @@ div.scrollmenu {
     white-space: nowrap;
 
     margin: auto;
-    width: 50%;
+    width: 75%;
   }
   
   div.scrollmenu a {
@@ -41,3 +41,9 @@ div.scrollmenu {
   div.scrollmenu a:hover {
     background-color: #777;
   }
+
+  .text-glow {/*Definig font could be useful!*/
+    font-size:4em;
+    color: #FFFFFF;
+    font-family:Arial;
+    }

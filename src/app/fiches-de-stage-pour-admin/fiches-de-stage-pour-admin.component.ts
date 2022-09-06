@@ -74,12 +74,9 @@ export class FichesDeStagePourAdminComponent implements OnInit {
   }
 
   deleteFile(fileData: FileData): void {
-    this.downloadFileService
-      
-    .deleteFileFichesDeStage(fileData.filename)
-      .subscribe(blob => saveAs(blob, fileData.filename));
-      alert('File deleted successfully');
-      this._router.navigate(['fichesDeStagePourAdmin']);
+    this.downloadFileService.deleteFileFichesDeStage(fileData.filename).subscribe(blob => saveAs(blob, fileData.filename));
+    alert('Cette opération a été effectuée avec succès');
+    this._router.navigate(['fichesDeStagePourAdmin']);
   }
 
   getFile(fileData: FileData) {

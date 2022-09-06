@@ -5,6 +5,7 @@ export class Depot {
 	id!: number;
 	typeDepot?:string;
 	etatDepot?:string;	
-	dateDepot?:Date;
+	toOrderDateDepot?: Date;
+    toDisplayDateDepot?: string;
 	etudiant?:User;
 }

@@ -42,7 +42,7 @@ export class DocumentsDeStageAddComponent implements OnInit {
     this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getConventionDeStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
-        alert('PDF created successfully');
+        //alert('PDF created successfully');
         this.dataset.nom_prenomEtudiant = '';
         this.dataset.emailEtudiant = '';
         this.dataset.optionEtudiant = '';
@@ -59,7 +59,7 @@ export class DocumentsDeStageAddComponent implements OnInit {
       this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getDemandeDeStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
-        alert('PDF created successfully');
+        //alert('PDF created successfully');
         this.dataset.nom_prenomEtudiant = '';
         this.dataset.emailEtudiant = '';
         this.dataset.optionEtudiant = '';
@@ -76,7 +76,7 @@ export class DocumentsDeStageAddComponent implements OnInit {
       this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getLettreAffectationStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
-        alert('PDF created successfully');
+        //alert('PDF created successfully');
         this.dataset.nom_prenomEtudiant = '';
         this.dataset.emailEtudiant = '';
         this.dataset.optionEtudiant = '';
@@ -96,28 +96,36 @@ export class DocumentsDeStageAddComponent implements OnInit {
     this.https.post<DocumentsDeStage>('http://localhost:8081/emailSender/getdetailsAddDemandeDeStageToAdmin', documentsDeStage).subscribe(
       res => {
         console.log(documentsDeStage);
-        alert('Email Sent successfully');
+        //alert('Email Sent successfully');
       });
   }
 
   addDocumentsDeStageFormSubmit(){
-    
-    this._service.addDocumentsDeStageToRemote(this.dataset).subscribe(
-      () => {
-        console.log("Data add succesfully");
-      },
-      () => console.log("Error")     
+
+    this._service.verifierDureeDeStage(this.dataset).subscribe(
+      (test:any) => {
+
+        if(test == true){
+          console.log("la durée du stage est valide");
+
+          this._service.addDocumentsDeStageToRemote(this.dataset).subscribe(
+            () => {
+              console.log("Data add succesfully");
+              this.createPDFDemandeDeStage();
+              this.emailSenderAddDemandeDeStageToAdmin(this.dataset);
+              alert('Cette opération a été effectuée avec succès');
+              this._router.navigate(['/downloadDocumentsDeStage', this.dataset.emailEtudiant]);             
+            },
+            () => console.log("Error")     
+          );
+        } 
+        
+        if(test == false){
+          console.log("la durée du stage est invalide")
+          alert('La durée du stage ingénieur doit être supèrieure ou égale à 6 mois');
+        }
+      }
     );
-
-    this.createPDFDemandeDeStage();
-    this._router.navigate(['/downloadDocumentsDeStage', this.dataset.emailEtudiant]);
-
-    this.emailSenderAddDemandeDeStageToAdmin(this.dataset);
-  }
-
-  goToList(){
-    console.log("Go Back");
-    this._router.navigate(['listDocumentsDeStage']);
   }
 
 }

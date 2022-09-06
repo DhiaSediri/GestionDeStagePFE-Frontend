@@ -53,7 +53,7 @@ export class DocumentsDeStageEditComponent implements OnInit {
     this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getConventionDeStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
-        alert('PDF created successfully');
+        //alert('PDF created successfully');
         this.dataset.nom_prenomEtudiant = '';
         this.dataset.emailEtudiant = '';
         this.dataset.optionEtudiant = '';
@@ -70,7 +70,7 @@ export class DocumentsDeStageEditComponent implements OnInit {
       this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getDemandeDeStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
-        alert('PDF created successfully');
+        //alert('PDF created successfully');
         this.dataset.nom_prenomEtudiant = '';
         this.dataset.emailEtudiant = '';
         this.dataset.optionEtudiant = '';
@@ -87,7 +87,7 @@ export class DocumentsDeStageEditComponent implements OnInit {
       this.https.post<DocumentsDeStage>('http://localhost:8081/createPDF/getLettreAffectationStage', this.dataset).subscribe(
       res => {
         this.dataset = res;
-        alert('PDF created successfully');
+        //alert('PDF created successfully');
         this.dataset.nom_prenomEtudiant = '';
         this.dataset.emailEtudiant = '';
         this.dataset.optionEtudiant = '';
@@ -107,7 +107,7 @@ export class DocumentsDeStageEditComponent implements OnInit {
     this.https.post<DocumentsDeStage>('http://localhost:8081/emailSender/getdetailsAddDemandeDeStageToAdmin', documentsDeStage).subscribe(
       res => {
         console.log(documentsDeStage);
-        alert('Email Sent successfully');
+        //alert('Email Sent successfully');
       });
   }
 
@@ -117,20 +117,14 @@ export class DocumentsDeStageEditComponent implements OnInit {
     
     this._service.addDocumentsDeStageToRemote(this.dataset).subscribe(
       () => {
-        console.log("Data update succesfully");   
+        console.log("Data update succesfully"); 
+        this.createPDFDemandeDeStage();  
+        this.emailSenderAddDemandeDeStageToAdmin(this.dataset);
+        alert('Cette opération a été effectuée avec succès'); 
+        this._router.navigate(['/downloadDocumentsDeStage', this.dataset.emailEtudiant]); 
       },
       () => console.log("Error")     
     );
-
-    this.createPDFDemandeDeStage();    
-    this._router.navigate(['/downloadDocumentsDeStage', this.dataset.emailEtudiant]);
-
-    this.emailSenderAddDemandeDeStageToAdmin(this.dataset);
-  }
-
-  goToList(){
-    console.log("Go Back");
-    this._router.navigate(['listDocumentsDeStage']);
   }
 
 }

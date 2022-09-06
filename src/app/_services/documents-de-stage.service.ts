@@ -10,6 +10,11 @@ export class DocumentsDeStageService {
 
   constructor(private _http :HttpClient) { }
 
+  verifierDureeDeStage(documentsDeStage : DocumentsDeStage):Observable<any>{
+
+    return this._http.post<any>("http://localhost:8081/api/documentsDeStage/verifierDureeDeStage", documentsDeStage);
+  }
+
   fetchDocumentsDeStageListParRechercheFromRemote(mots_cles: string | undefined):Observable<any>{
 
     return this._http.get<any>("http://localhost:8081/api/documentsDeStage/getDocumentsDeStageListParRecherche/"+mots_cles);

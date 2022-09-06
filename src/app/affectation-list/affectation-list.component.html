@@ -1,10 +1,13 @@
-  <div class="container"> 
+  <div class="container">
+    <!-- Pour les icons des bouttons -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <div class="row">
+    <div class="row" *ngIf="_listEncadrant.length">
       <div class="col-xs-6 col-md-4">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Chercher par Etudiant/Encadrant" id="txtSearch" [(ngModel)]="mots_cles"/>
+          <input type="text" class="form-control" placeholder="Recherche par Encadrant Académique" id="txtSearch" [(ngModel)]="mots_cles"/>
           <div class="input-group-btn">
             <button class="btn btn-primary" type="submit" (click)="fetchAcademicsSupervisorListParRecherche()">
               <span class="glyphicon glyphicon-search"></span>
@@ -12,7 +15,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div><br>
 
 <div *ngIf="_listEncadrant.length">
   <h2>Liste des Encadrants Académiques</h2>         
@@ -21,7 +24,7 @@
       <tr>
           <th>Username</th>
           <th>Email</th>
-          <th>Liste des étudiants affectés</th>
+          <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -29,17 +32,17 @@
           <td>{{listEncadrant.username}}</td>
           <td>{{listEncadrant.email}}</td>   
         <td>
-          <button class="btn btn-primary btn-block" (click)="goToListeEtudiantPourEncadrantAffectaion(listEncadrant.id)">Consulter la liste</button>
+          <button class="btn btn-light" (click)="goToListeEtudiantPourEncadrantAffectaion(listEncadrant.id)"><i class="fa fa-eye"></i> Voir la liste des Etudiants affectés</button>
         </td>
       </tr>
     </tbody>
   </table>
-</div>
+</div><br>
 
 <div *ngIf="!_listEncadrant.length">
-  <p>Aucun Encadrant Académique</p>          
-</div>
+  <p>Pas d'Affectations</p>          
+</div><br>
 
-<button class="btn btn-primary btn-block" (click)="goToAddAffectation()">Add new Affectation</button>
+<button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToAddAffectation()">Ajouter une nouvelle Affectation <i class="fa fa-plus"></i></button>&nbsp;
 
 </div>

@@ -1,28 +1,46 @@
+
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">bezKoder</a>
+    <a class="navbar-brand">Gestion des stages PFE</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
+      </li>-->
       <li class="nav-item" *ngIf="showAdminBoard">
         <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
       </li>
+
+      <li class="nav-item dropdown" *ngIf="showAdminBoard">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Board
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">   
+          <a class="dropdown-item" href="/listUser">Gérer les Utilisateurs</a>
+          <a class="dropdown-item" href="/listDocumentsDeStage">Gérer les Demandes de stages PFE</a>
+          <a class="dropdown-item" href="/listDepotConventionDeStagePourAdmin">Gérer les Conventions de stages PFE</a>
+          <a class="dropdown-item" href="/listeAffectations">Gérer les affectations</a>
+          <a class="dropdown-item" href="/listOffresDeStagePourAdmin">Gérer la Bibliothèque des Offres de stages PFE</a>
+          <a class="dropdown-item" href="/listRapportsDeStagePourAdmin">Gérer la Bibliothèque des Rapports de stages PFE</a>
+          <a class="dropdown-item" href="/rendez-vousDeStagePourAdmin">Gérer les Rendez-vous de stage PFE</a>
+          <a class="dropdown-item" href="/fichesDeStagePourAdmin">Gérer la Documentation de stage PFE</a>
+        </div>
+      </li>
+
       <li class="nav-item" *ngIf="showStudentBoard">
         <a href="/student" class="nav-link" routerLink="student">Student Board</a>
       </li>
       <li class="nav-item" *ngIf="showaAcademicSupervisorBoard">
         <a href="/Academic_Supervisor" class="nav-link" routerLink="Academic_Supervisor">Academic Supervisor Board</a>
       </li>
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
+      </li>-->
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
