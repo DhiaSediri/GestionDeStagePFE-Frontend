@@ -1,12 +1,39 @@
-<br>
-<div *ngFor="let fileData of fileList" class="list-group">
-  <a class="list-group-item list-group-item-success" style="cursor: pointer;" (click)="getFileInNewWindow(fileData)">
-      {{fileData.filename}}            
-  </a><br>
-  <!--<button class="btn btn-sm btn-primary" (click)="getFile(fileData)">View File</button>&nbsp;
-  <button class="btn btn-sm btn-primary" (click)="getFileInNewWindow(fileData)" [(ngModel)]="fileData.filename">View File in New Window</button>-->
-</div>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Pour les icons des bouttons -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!--<div class="col-lg-12" style="height: 680px;">
-  <object #pdfViewer type="application/pdf" width="100%" height="100%"></object>
-</div>-->
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Fiches de stage</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="heading">Fiches de stage</div><br><br>
+
+      <div *ngFor="let fileData of fileList" class="list-group">
+        <a class="list-group-item list-group-item-success" style="cursor: pointer;" (click)="getFileInNewWindow(fileData)">
+            {{fileData.filename}}            
+        </a> 
+      </div>
+    </div>
+
+  </body>
+  
+</html>
+
+        
+              
+              
+              
+            
+      
+

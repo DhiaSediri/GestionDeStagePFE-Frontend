@@ -127,12 +127,12 @@ export class EncadrantDepotFicheDeStageComponent implements OnInit {
     this._router.navigate(['/encadrantEditCommentaireFiche_de_stage', commentaire_id, etudiant_email, etudiant_id]);
   }
 
-  deleteCommentaireFiche_de_stage(id : number){
-    this.commentaireService.deleteCommentaireByIdFromRemote(id).subscribe(
+  deleteCommentaireFiche_de_stage(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    this.commentaireService.deleteCommentaireByIdFromRemote(commentaire_id).subscribe(
       () => {
         console.debug("Deleted Successfully");
         alert('Cette opération a été effectuée avec succès');
-        this._router.navigate(['/depotFiche_de_stage']);
+        this._router.navigate(['/encadrantDepotFiche_de_stage', etudiant_email, etudiant_id]);
       },
       () => {
         console.log("Exception Occured");

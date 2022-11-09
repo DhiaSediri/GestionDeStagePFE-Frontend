@@ -31,10 +31,10 @@ export class ListFilesRapportDeStagePourAdminComponent implements OnInit {
     this.session = this.activatedRoute.snapshot.paramMap.get('session');
     this.option = this.activatedRoute.snapshot.paramMap.get('option');
     this.encadrant = this.activatedRoute.snapshot.paramMap.get('encadrant'); 
-    this.getFileeRapportsDeStageList();
+    this.getFileRapportsDeStageList();
   }
 
-  getFileeRapportsDeStageList(): void {
+  getFileRapportsDeStageList(): void {
     this.deleteFileService.listFileRapportsDeStage(this.session, this.option, this.encadrant).subscribe(result => {
       this.fileList = result;
     });

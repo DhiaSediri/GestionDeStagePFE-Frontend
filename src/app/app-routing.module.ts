@@ -67,6 +67,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { RendezVousDeStagePourAdminComponent } from './rendez-vous-de-stage-pour-admin/rendez-vous-de-stage-pour-admin.component';
 import { RendezVousDeStageComponent } from './rendez-vous-de-stage/rendez-vous-de-stage.component';
+import { TestintefaceComponent } from './testinteface/testinteface.component';
 import { UploadOffresDeStageComponent } from './upload-offres-de-stage/upload-offres-de-stage.component';
 import { UploadRapportsDeStageComponent } from './upload-rapports-de-stage/upload-rapports-de-stage.component';
 import { UserAddComponent } from './user-add/user-add.component';
@@ -145,11 +146,12 @@ const routes: Routes = [
   {path:'editCommentaireRapport_version_finale/:id', component:EditCommentaireRapportVersionFinalComponent},
   {path:'editCommentaireJournal_de_stage/:id', component:EditCommentaireJournalDeStageComponent},
   {path:'encadrantEditCommentaireFiche_de_stage/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireFicheDeStageComponent},
-  {path:'encadrantEditCommentaireBilan_periodique_debut_du_stage/:id', component:EncadrantEditCommentaireBilanPeriodiqueDebutDeStageComponent},
-  {path:'encadrantEditCommentaireBilan_periodique_milieu_du_stage/:id', component:EncadrantEditCommentaireBilanPeriodiqueMilieuDeStageComponent},
-  {path:'encadrantEditCommentaireBilan_periodique_fin_du_stage/:id', component:EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent},
-  {path:'encadrantEditCommentaireRapport_premiere_version/:id', component:EncadrantEditCommentaireRapportPremiereVersionComponent},
-  {path:'encadrantEditCommentaireJournal_de_stage/:id', component:EncadrantEditCommentaireJournalDeStageComponent},
+  {path:'encadrantEditCommentaireBilan_periodique_debut_du_stage/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireBilanPeriodiqueDebutDeStageComponent},
+  {path:'encadrantEditCommentaireBilan_periodique_milieu_du_stage/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireBilanPeriodiqueMilieuDeStageComponent},
+  {path:'encadrantEditCommentaireBilan_periodique_fin_du_stage/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent},
+  {path:'encadrantEditCommentaireRapport_premiere_version/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireRapportPremiereVersionComponent},
+  {path:'encadrantEditCommentaireJournal_de_stage/:commentaire_id/:etudiant_email/:etudiant_id', component:EncadrantEditCommentaireJournalDeStageComponent},
+  {path:'testinterface', component:TestintefaceComponent},
   {
     path: 'dashboardAdmin',
     component: DefaultComponent,

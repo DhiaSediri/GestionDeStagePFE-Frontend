@@ -1,8 +1,9 @@
-<div class="container"> 
-  <!-- Pour les icons des bouttons -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Pour les icons des bouttons -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<br>
+<div class="container">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
   <div class="row" *ngIf="listUsers.length">
     <div class="col-xs-6 col-md-4">
@@ -60,6 +61,6 @@
     <p>Pas d'utilisateurs</p>          
   </div><br>
 
-  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToAddUser()">Ajouter un nouvel Utilisateur <i class="fa fa-plus"></i></button>
-
-  </div>
+  <a href="/addUser">Ajouter un nouvel Utilisateur <i class="fa fa-plus"></i></a>
+</div>
+  

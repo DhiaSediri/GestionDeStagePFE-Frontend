@@ -59,6 +59,11 @@ export class UserService {
 
   ////////////////////////////////////// Affectaion ///////////////////////////////////////////
 
+  testerAffectation(etudiant_id: number | undefined):Observable<any>{
+
+    return this.http.get<any>("http://localhost:8081/api/user/testerAffectation/"+etudiant_id);
+  }
+
   addAffectation(encadrant_id : number | undefined, etudiant_id : number | undefined):Observable<any>{
 
     return this.http.get<any>("http://localhost:8081/api/user/addAffectation/"+encadrant_id+'/'+etudiant_id);

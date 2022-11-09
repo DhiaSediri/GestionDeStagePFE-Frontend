@@ -1,99 +1,124 @@
-<div class="col-md-12">
-    <div class="card card-container">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
+<!DOCTYPE html>
 
-<form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+<html lang="en">
 
-    <div class="form-group">
-        <label>Option</label>
-        <select
-          type="text"
-          class="form-control"
-          name="option"
-          required
-          [(ngModel)]="rapportDeStage.option"
-          #option="ngModel"
-          [class.is-invalid]="option.invalid && option.touched"
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Ajouter un ancien rapport de stage</title>
+    </head>
+
+  <body>
+    
+    <div class="container">
+        <div class="heading">Ancien rapport de stage</div>
+
+        <form 
+            name="form" 
+            (ngSubmit)="f.form.valid" 
+            #f="ngForm" 
+            novalidate
         >
-            <option value="Software Architecture Engineering">Software Architecture Engineering</option>
-            <option value="Développement Web">Développement Web</option>
-            <option value="Développement Mobile">Développement Mobile</option>
-            <option value="Data Science">Data Science</option>
-            <option value="Big Data">Big Data</option>
-            <option value="Business Intelligence">Business Intelligence</option>
-            <option value="Cloud">Cloud</option>
-            <option value="Intelligence Artificielle et Machine Learning">Intelligence Artificielle et Machine Learning</option>
-        </select>
-        <div *ngIf=" f.submitted || (option.errors && (option.invalid && option.touched))">
-          <small class="text-danger" *ngIf="option.errors?.['required']">Option est un champ obligatoire</small>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label>Session</label>
-        <input
-            type="text" 
-            class="form-control"
-            name="session" 
-            required 
-            [(ngModel)]="rapportDeStage.session"
-            minlength="4"
-            maxlength="50"
-            #session="ngModel"
-            [class.is-invalid]="session.invalid && session.touched"
-        />
-        <div *ngIf=" f.submitted || (session.errors && (session.invalid && session.touched))">
-            <small class="text-danger" *ngIf="session.errors?.['required']">Session est un champ obligatoire</small>
-            <small class="text-danger" *ngIf="session.errors?.['minlength']">Session doit contenir au moins 4 caractères</small>
-            <small class="text-danger" *ngIf="session.errors?.['maxlength']">Session doit comporter au maximum 50 caractères</small>
-        </div>
-    </div>
+            <div class="card-details">
 
-    <div class="form-group">
-        <label>Encadrant Académique</label>
-        <select
-          type="text"
-          class="form-control"
-          name="encadrant"
-          required
-          [(ngModel)]="rapportDeStage.encadrant"
-          #encadrant="ngModel"
-          [class.is-invalid]="encadrant.invalid && encadrant.touched"
-        >
-        <option *ngFor="let listEncadrant of _listEncadrant" value="{{listEncadrant.id}}">{{listEncadrant.username}}</option>
-        </select>
-        <div *ngIf=" f.submitted || (encadrant.errors && (encadrant.invalid && encadrant.touched))">
-          <small class="text-danger" *ngIf="encadrant.errors?.['required']">Encadrant est un champ obligatoire</small>
-        </div>
-    </div>
+                <div class="card-box">
+                    <span class="details">Option</span>
+                    <select
+                            type="text"
+                            class="form-control"
+                            name="option"
+                            required
+                            [(ngModel)]="rapportDeStage.option"
+                            #option="ngModel"
+                            [class.is-invalid]="option.invalid && option.touched"
+                    >
+                            <option value="Software Architecture Engineering">Software Architecture Engineering</option>
+                            <option value="Développement Web">Développement Web</option>
+                            <option value="Développement Mobile">Développement Mobile</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Big Data">Big Data</option>
+                            <option value="Business Intelligence">Business Intelligence</option>
+                            <option value="Cloud">Cloud</option>
+                            <option value="Intelligence Artificielle et Machine Learning">Intelligence Artificielle et Machine Learning</option>             
+                    </select>
+                    <div *ngIf=" f.submitted || (option.errors && (option.invalid && option.touched))">
+                        <small class="text-danger" *ngIf="option.errors?.['required']">Option est un champ obligatoire</small>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-8">
-            <label class="btn btn-default p-0">
+                <div class="card-box">
+                    <span class="details">Session</span>
+                    <input
+                        type="text" 
+                        class="form-control"
+                        name="session" 
+                        required 
+                        [(ngModel)]="rapportDeStage.session"
+                        minlength="4"
+                        maxlength="50"
+                        #session="ngModel"
+                        [class.is-invalid]="session.invalid && session.touched"
+                    />
+                    <div *ngIf=" f.submitted || (session.errors && (session.invalid && session.touched))">
+                        <small class="text-danger" *ngIf="session.errors?.['required']">Session est un champ obligatoire</small>
+                        <small class="text-danger" *ngIf="session.errors?.['minlength']">Session doit contenir au moins 4 caractères</small>
+                        <small class="text-danger" *ngIf="session.errors?.['maxlength']">Session doit comporter au maximum 50 caractères</small>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <span class="details">Encadrant Académique</span>
+                    <select
+                        type="text"
+                        class="form-control"
+                        name="encadrant"
+                        required
+                        [(ngModel)]="rapportDeStage.encadrant"
+                        #encadrant="ngModel"
+                        [class.is-invalid]="encadrant.invalid && encadrant.touched"
+                    >
+                        <option *ngFor="let listEncadrant of _listEncadrant" value="{{listEncadrant.username}}">{{listEncadrant.username}}</option>
+                    </select>
+                    <div *ngIf=" f.submitted || (encadrant.errors && (encadrant.invalid && encadrant.touched))">
+                        <small class="text-danger" *ngIf="encadrant.errors?.['required']">Encadrant est un champ obligatoire</small>
+                    </div>
+                 </div>
+
+                 <div class="card-box">
+                    <label class="btn btn-default p-0">
+                        <input 
+                            [disabled]="option.errors?.['required'] || session.errors?.['required'] || encadrant.errors?.['required']"
+                            type="file" 
+                            (change)="selectFile($event)"/>
+                    </label>
+                 </div>
+            </div>
+
+            <div class="button">
                 <input 
                     [disabled]="option.errors?.['required'] || session.errors?.['required'] || encadrant.errors?.['required']"
-                    type="file" 
-                    (change)="selectFile($event)"/>
-            </label>
-        </div>
-    </div>
-    
-    <br>
-    <div class="form-group float-right">
-        <button 
-            [disabled]="option.errors?.['required'] || session.errors?.['required'] || encadrant.errors?.['required']"
-            type="button" 
-            class="btn btn-primary" 
-            (click)="upload()">
-            Ajouter
-        </button>&nbsp;&nbsp;
-        <button type="button" class="btn btn-secondary" (click)="goToList()">Annuler</button>
-    </div>
-    
-    <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
-    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">{{ errorMsg }}</div>
-
-</form>
+                    type="submit" 
+                    value="Confirmer"
+                    (click)="upload()"
+                >
+                <input 
+                    type="submit" 
+                    value="Annuler"
+                    (click)="goToList()"
+                >
+            </div>
+            
+            <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
+            <div *ngIf="errorMsg" class="alert alert-danger" role="alert">{{ errorMsg }}</div>
+        
+        </form>
 
     </div>
-</div>
+            
+  </body>
+
+</html>

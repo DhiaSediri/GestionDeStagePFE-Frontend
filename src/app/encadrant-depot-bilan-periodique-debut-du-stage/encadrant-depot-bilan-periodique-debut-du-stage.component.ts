@@ -123,17 +123,17 @@ export class EncadrantDepotBilanPeriodiqueDebutDuStageComponent implements OnIni
     );
   }
 
-  goToEditCommentaireBilan_periodique_debut_du_stage(id : number){
-    console.log("id "+id);
-    this._router.navigate(['/editCommentaireBilan_periodique_debut_du_stage', id]);
+  goToEditCommentaireBilan_periodique_debut_du_stage(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    console.log("commentaire_id "+commentaire_id);
+    this._router.navigate(['/encadrantEditCommentaireBilan_periodique_debut_du_stage', commentaire_id, etudiant_email, etudiant_id]);
   }
 
-  deleteCommentaireBilan_periodique_debut_du_stage(id : number){
-    this.commentaireService.deleteCommentaireByIdFromRemote(id).subscribe(
+  deleteCommentaireBilan_periodique_debut_du_stage(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    this.commentaireService.deleteCommentaireByIdFromRemote(commentaire_id).subscribe(
       () => {
         console.debug("Deleted Successfully");
         alert('Cette opération a été effectuée avec succès');
-        this._router.navigate(['/depotBilan_periodique_debut_du_stage']);
+        this._router.navigate(['/encadrantDepotBilan_periodique_debut_du_stage', etudiant_email, etudiant_id]);
       },
       () => {
         console.log("Exception Occured");

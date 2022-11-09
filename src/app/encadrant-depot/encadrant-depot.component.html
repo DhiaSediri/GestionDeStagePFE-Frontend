@@ -1,40 +1,63 @@
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
 
-    <br><br><br><br><br><br><br><br>
-    <h1 class="h1">Traitement des livrables</h1>
+<!DOCTYPE html>
 
-    <div class="scrollmenu">
-        <a (click)="goToEncadrantDepotConvention_de_stage(etudiant_email, etudiant_id)"><strong>Convention de stage</strong><br><br>
-            <img src="../assets/images/convention.png"/><br>
-            <p>{{depotConvention_de_stage.etatDepot}}</p>
-            <p *ngIf="!depotConvention_de_stage.etatDepot">VIDE</p>
-        </a>
-        <a (click)="goToEncadrantDepotFiche_de_stage(etudiant_email, etudiant_id)"><strong>Fiche de stage</strong><br><br>
-            <img src="../assets/images/fiche.png"/><br>
-            <p>{{depotFiche_de_stage.etatDepot}}</p>
-            <p *ngIf="!depotFiche_de_stage.etatDepot">VIDE</p>
-        </a>
-        <a (click)="goToEncadrantDepotBilan_periodique_debut_du_stage(etudiant_email, etudiant_id)"><strong>Bilan périodique début du stage</strong><br><br>
-            <img src="../assets/images/bilan.png"/><br>
-            <p>{{depotBilan_periodique_debut_du_stage.etatDepot}}</p>
-            <p *ngIf="!depotBilan_periodique_debut_du_stage.etatDepot">VIDE</p>
-        </a>
-        <a (click)="goToEncadrantDepotBilan_periodique_milieu_du_stage(etudiant_email, etudiant_id)"><strong>Bilan périodique milieu du stage</strong><br><br>
-            <img src="../assets/images/bilan.png"/><br>
-            <p>{{depotBilan_periodique_milieu_du_stage.etatDepot}}</p>
-            <p *ngIf="!depotBilan_periodique_milieu_du_stage.etatDepot">VIDE</p>
-        </a>
-        <a (click)="goToEncadrantDepotBilan_periodique_fin_du_stage(etudiant_email, etudiant_id)"><strong>Bilan périodique fin du stage</strong><br><br>
-            <img src="../assets/images/bilan.png"/><br>
-            <p>{{depotBilan_periodique_fin_du_stage.etatDepot}}</p>
-            <p *ngIf="!depotBilan_periodique_fin_du_stage.etatDepot">VIDE</p>
-        </a>
-        <a (click)="goToEncadrantDepotRapport_premiere_version(etudiant_email, etudiant_id)"><strong>Rapport de stage</strong><br><br>
-            <p>{{depotRapport_premiere_version.etatDepot}}</p>
-            <p *ngIf="!depotRapport_premiere_version.etatDepot">VIDE</p>
-        </a>
-        <a (click)="goToEncadrantDepotJournal_de_stage(etudiant_email, etudiant_id)"><strong>Journal de stage</strong><br><br>
-            <img src="../assets/images/journal.png"/><br>
-            <p>{{depotJournal_de_stage.etatDepot}}</p>
-            <p *ngIf="!depotJournal_de_stage.etatDepot">VIDE</p>
-        </a>
-    </div>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Traitement des livrables de stage</title>
+  </head>
+
+  <body>
+    
+    <div class="container">
+
+        <div class="heading">Traitement des livrables de stage</div><br>
+
+        <div class="scrollmenu">
+            <a (click)="goToEncadrantDepotConvention_de_stage(etudiant_email, etudiant_id)"><strong>Convention de stage</strong><br><br>
+                <img src="../assets/images/convention.png"/><br>
+                <strong>{{depotConvention_de_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotConvention_de_stage.etatDepot">VIDE</strong>
+            </a>
+            <a (click)="goToEncadrantDepotFiche_de_stage(etudiant_email, etudiant_id)"><strong>Fiche de stage</strong><br><br>
+                <img src="../assets/images/fiche.png"/><br>
+                <strong>{{depotFiche_de_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotFiche_de_stage.etatDepot">VIDE</strong>
+            </a>
+            <a (click)="goToEncadrantDepotBilan_periodique_debut_du_stage(etudiant_email, etudiant_id)"><strong>Bilan périodique début du stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotBilan_periodique_debut_du_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotBilan_periodique_debut_du_stage.etatDepot">VIDE</strong>
+            </a>
+            <a (click)="goToEncadrantDepotBilan_periodique_milieu_du_stage(etudiant_email, etudiant_id)"><strong>Bilan périodique milieu du stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotBilan_periodique_milieu_du_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotBilan_periodique_milieu_du_stage.etatDepot">VIDE</strong>
+            </a>
+            <a (click)="goToEncadrantDepotBilan_periodique_fin_du_stage(etudiant_email, etudiant_id)"><strong>Bilan périodique fin du stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotBilan_periodique_fin_du_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotBilan_periodique_fin_du_stage.etatDepot">VIDE</strong>
+            </a>
+            <a (click)="goToEncadrantDepotRapport_premiere_version(etudiant_email, etudiant_id)"><strong>Rapport de stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotRapport_premiere_version.etatDepot}}</strong>
+                <strong *ngIf="!depotRapport_premiere_version.etatDepot">VIDE</strong>
+            </a>
+            <a (click)="goToEncadrantDepotJournal_de_stage(etudiant_email, etudiant_id)"><strong>Journal de stage</strong><br><br>
+                <img src="../assets/images/journal.png"/><br>
+                <strong>{{depotJournal_de_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotJournal_de_stage.etatDepot">VIDE</strong>
+            </a>
+        </div>
+          
+    </div>            
+           
+ </body>
+
+</html>
+    

@@ -47,16 +47,27 @@ export class AffectationAddComponent implements OnInit {
   }
 
   affecter() {
-    this._service.addAffectation(this.encadrant_id, this.etudiant_id).subscribe(
-      () => {
-        console.log("Data add succesfully");
-        this.emailSenderAffectationToEtudiant(this.encadrant_id, this.etudiant_id);
-        this.emailSenderAffectationToEncadrant(this.etudiant_id);
-        alert('Cette opération a été effectuée avec succès');
-        this.router.navigate(['listeAffectations']);
+    this._service.testerAffectation(this.etudiant_id).subscribe(
+      test => {
+        if(test != this.encadrant_id){
+          this._service.addAffectation(this.encadrant_id, this.etudiant_id).subscribe(
+            () => {
+              console.log("Data add succesfully");
+              this.emailSenderAffectationToEtudiant(this.encadrant_id, this.etudiant_id);
+              this.emailSenderAffectationToEncadrant(this.etudiant_id);
+              alert('Cette opération a été effectuée avec succès');
+              this.router.navigate(['listeAffectations']);
+            },
+            () => console.log("Error")     
+          );
+        }
+
+        if(test == this.encadrant_id){
+          alert('Cette Affectation existe déjà');
+        }
       },
-      () => console.log("Error")     
-    );
+      () => console.log("Error")
+    )  
   }
 
   emailSenderAffectationToEtudiant(encadrant_id: number | undefined, etudiant_id: number | undefined) {

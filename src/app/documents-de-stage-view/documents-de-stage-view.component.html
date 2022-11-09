@@ -1,44 +1,48 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
 <!-- Pour les icons des bouttons -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <br>
-<h2>Demande de stage</h2>
-<table class="table">
-    <thead>
-      <tr>
-        <th>Etudiant</th>
-        <th>Email</th>
-        <th>Option</th>
-        <th>Société</th>
-        <th>Addresse Société</th>
-        <th>Téléphone Société</th>
-        <th>Email Société</th>
-        <th>Encadrant Société</th>
-        <th>Encadrant Académique</th>
-        <th>Date Début Stage</th>
-        <th>Date Fin Stage</th>
-        <th>Date Demande Stage</th>
-        <th>Etat</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{documentsDeStage.nom_prenomEtudiant}}</td>
-        <td>{{documentsDeStage.emailEtudiant}}</td>
-        <td>{{documentsDeStage.optionEtudiant}}</td>
-        <td>{{documentsDeStage.nomSociete}}</td>
-        <td>{{documentsDeStage.adresseSociete}}</td>
-        <td>{{documentsDeStage.telephoneSociete}}</td>
-        <td>{{documentsDeStage.emailSociete}}</td>
-        <td>{{documentsDeStage.encadrantSociete}}</td>
-        <td>{{documentsDeStage.encadrantAcademique}}</td>
-        <td>{{documentsDeStage.dateDebutStage}}</td>
-        <td>{{documentsDeStage.dateFinStage}}</td> 
-        <td>{{documentsDeStage.dateDemande}}</td>
-        <td>{{documentsDeStage.etatDemande}}</td>       
-      </tr>
-    </tbody>
-  </table><br>
-
-  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToList()"><i class="fa fa-angle-double-left"></i> Retour à la liste des demandes de stages</button>&nbsp;
+<div class="container">
+  <h2>Demande de stage</h2>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Etudiant</th>
+          <th>Email</th>
+          <th>Option</th>
+          <th>Société</th>
+          <th>Addresse Société</th>
+          <th>Téléphone Société</th>
+          <th>Email Société</th>
+          <th>Encadrant Société</th>
+          <th>Encadrant Académique</th>
+          <th>Date Début Stage</th>
+          <th>Date Fin Stage</th>
+          <th>Date Demande Stage</th>
+          <th>Etat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{documentsDeStage.nom_prenomEtudiant}}</td>
+          <td>{{documentsDeStage.emailEtudiant}}</td>
+          <td>{{documentsDeStage.optionEtudiant}}</td>
+          <td>{{documentsDeStage.nomSociete}}</td>
+          <td>{{documentsDeStage.adresseSociete}}</td>
+          <td>{{documentsDeStage.telephoneSociete}}</td>
+          <td>{{documentsDeStage.emailSociete}}</td>
+          <td>{{documentsDeStage.encadrantSociete}}</td>
+          <td>{{documentsDeStage.encadrantAcademique}}</td>
+          <td>{{documentsDeStage.dateDebutStage}}</td>
+          <td>{{documentsDeStage.dateFinStage}}</td> 
+          <td>{{documentsDeStage.dateDemande}}</td>
+          <td>{{documentsDeStage.etatDemande}}</td>       
+        </tr>
+      </tbody>
+    </table><br>
+  
+    <a href="/listDocumentsDeStage"><i class="fa fa-angle-double-left"></i> Retour à la liste des demandes de stages</a>
+</div>

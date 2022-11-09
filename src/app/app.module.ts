@@ -106,6 +106,7 @@ import { EncadrantEditCommentaireRapportPremiereVersionComponent } from './encad
 import { EncadrantEditCommentaireBilanPeriodiqueDebutDeStageComponent } from './encadrant-edit-commentaire-bilan-periodique-debut-de-stage/encadrant-edit-commentaire-bilan-periodique-debut-de-stage.component';
 import { EncadrantEditCommentaireBilanPeriodiqueMilieuDeStageComponent } from './encadrant-edit-commentaire-bilan-periodique-milieu-de-stage/encadrant-edit-commentaire-bilan-periodique-milieu-de-stage.component';
 import { EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent } from './encadrant-edit-commentaire-bilan-periodique-fin-de-stage/encadrant-edit-commentaire-bilan-periodique-fin-de-stage.component';
+import { TestintefaceComponent } from './testinteface/testinteface.component';
 
 @NgModule({
   declarations: [
@@ -183,6 +184,7 @@ import { EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent } from './en
     EncadrantEditCommentaireBilanPeriodiqueDebutDeStageComponent,
     EncadrantEditCommentaireBilanPeriodiqueMilieuDeStageComponent,
     EncadrantEditCommentaireBilanPeriodiqueFinDeStageComponent,
+    TestintefaceComponent,
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,7 @@ export class DocumentsDeStageViewComponent implements OnInit {
 
   goToList(){
     console.log("Go Back");
-    this._router.navigate(['listDocumentsDeStage']);
+    this._router.navigate(['/listDocumentsDeStage']);
   }
 
 }

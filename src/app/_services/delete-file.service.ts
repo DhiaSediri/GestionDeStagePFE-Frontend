@@ -29,7 +29,7 @@ export class DeleteFileService {
     ///////////////////////////////////////////////////// Rapports De Stage /////////////////////////////////////////////////////
 
   listFileRapportsDeStage(session: string | undefined, option: string | undefined, encadrant: string | undefined): Observable<FileData[]> {
-    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileRapportsDeStag/${session}/${option}/${encadrant}e`);
+    return this.http.get<FileData[]>(`${environment.baseUrl}/api/files/getListFileRapportsDeStage/${session}/${option}/${encadrant}`);
   }
 
   getPdfRapportsDeStage(fileName: string | undefined, session: string | undefined, option: string | undefined, encadrant: string | undefined) {

@@ -48,7 +48,7 @@ export class ListEtudiantsPourEncadrantAffectaionComponent implements OnInit {
   }
 
   goToListAffectations() {
-    this.router.navigate(['listeAffectations']);
+    this.router.navigate(['/listeAffectations']);
   }
 
 }

@@ -1,245 +1,298 @@
-<div class="col-md-12">
-  <div class="card card-container">
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
 
-<form
-  name="form"
-  (ngSubmit)="f.form.valid"
-  #f="ngForm"
-  novalidate
-  >
- <div>
-  <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demande de stage</h2><br>
-  <label>Nom et Prenom Etudiant</label>
-  <input
-      type="text" 
-      class="form-control"
-      name="nom_prenomEtudiant" 
-      required 
-      [(ngModel)]="dataset.nom_prenomEtudiant"
-      placeholder="Entrer un Nom et un Prenom" 
-      minlength="3"
-      maxlength="50"
-      #nom_prenomEtudiant="ngModel"
-      [class.is-invalid]="nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="nom_prenomEtudiant.valid || nom_prenomEtudiant.untouched">nom_prenomEtudiant is required field</small>-->
-  <div *ngIf=" f.submitted || (nom_prenomEtudiant.errors && (nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched))">
-    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['required']">Nom et Prenom Etudiant est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['minlength']">Nom et Prenom Etudiant doit contenir au moins 3 caractères</small>
-    <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['maxlength']">Nom et Prenom Etudiant doit comporter au maximum 50 caractères</small>
-  </div>
- </div>
- <div>
-  <label>Email Etudiant</label>
-  <input 
-      type="email" 
-      class="form-control"
-      name="emailEtudiant" 
-      required 
-      [(ngModel)]="dataset.emailEtudiant" 
-      placeholder="Entrer un Email" 
-      pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
-      #emailEtudiant="ngModel"
-      [class.is-invalid]="emailEtudiant.invalid && emailEtudiant.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="emailEtudiant.valid || emailEtudiant.untouched">Email is required field</small>-->
-  <div *ngIf="f.submitted || (emailEtudiant.errors && (emailEtudiant.invalid && emailEtudiant.touched))">
-    <small class="text-danger" *ngIf="emailEtudiant.errors?.['required']">Email est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="emailEtudiant.errors?.['pattern']">Entrer un email valide</small>
-  </div>
-</div>
-<div class="form-group">
-  <label>Option</label>
-  <select
-    type="text"
-    class="form-control"
-    name="optionEtudiant"
-    required
-    [(ngModel)]="dataset.optionEtudiant"
-    placeholder="Choisir une Option" 
-    #optionEtudiant="ngModel"
-    [class.is-invalid]="optionEtudiant.invalid && optionEtudiant.touched"
-  >
-      <option value="Software Architecture Engineering">Software Architecture Engineering</option>
-      <option value="Développement Web">Développement Web</option>
-      <option value="Développement Mobile">Développement Mobile</option>
-      <option value="Data Science">Data Science</option>
-      <option value="Big Data">Big Data</option>
-      <option value="Business Intelligence">Business Intelligence</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Intelligence Artificielle et Machine Learning">Intelligence Artificielle et Machine Learning</option>
-  </select>
-  <div *ngIf=" f.submitted || (optionEtudiant.errors && (optionEtudiant.invalid && optionEtudiant.touched))">
-    <small class="text-danger" *ngIf="optionEtudiant.errors?.['required']">Option est un champ obligatoire</small>
-  </div>
-</div>
-<div>
-  <label>Nom Société</label>
-  <input 
-      type="text" 
-      class="form-control"
-      name="nomSociete" 
-      [(ngModel)]="dataset.nomSociete"
-      placeholder="Entrer un Nom" 
-      required
-      minlength="3"
-      maxlength="100"
-      #nomSociete="ngModel"
-      [class.is-invalid]="nomSociete.invalid && nomSociete.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="nomSociete.valid || nomSociete.untouched">nomSociete is required field</small>-->
-  <div *ngIf="f.submitted || (nomSociete.errors && (nomSociete.invalid && nomSociete.touched))">
-    <small class="text-danger" *ngIf="nomSociete.errors?.['required']">Nom Société est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="nomSociete.errors?.['minlength']">Nom Société doit contenir au moins 3 caractères</small>
-    <small class="text-danger" *ngIf="nomSociete.errors?.['maxlength']">Nom Société doit comporter au maximum 100 caractères</small>
-  </div>
- </div>
- <div>
-  <label>Adresse Société</label>
-  <input 
-      type="text" 
-      class="form-control"
-      name="adresseSociete" 
-      required 
-      [(ngModel)]="dataset.adresseSociete"
-      placeholder="Entrer une Adresse" 
-      minlength="3"
-      maxlength="100"
-      #adresseSociete="ngModel"
-      [class.is-invalid]="adresseSociete.invalid && adresseSociete.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="adresseSociete.valid || adresseSociete.untouched">adresseSociete is required field</small>-->
-  <div *ngIf="f.submitted || (adresseSociete.errors && (adresseSociete.invalid && adresseSociete.touched))">
-    <small class="text-danger" *ngIf="adresseSociete.errors?.['required']">Adresse Société est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="adresseSociete.errors?.['minlength']">Adresse Société doit contenir au moins 3 caractères</small>
-    <small class="text-danger" *ngIf="adresseSociete.errors?.['maxlength']">Adresse Société doit comporter au maximum 100 caractères</small>
-  </div>
- </div>
- <div>
-  <label>Téléphone Société</label>
-  <input 
-      type="tel" 
-      class="form-control"
-      name="telephoneSociete" 
-      required 
-      [(ngModel)]="dataset.telephoneSociete" 
-      placeholder="Entrer un Numéro de Téléphone" 
-      pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
-      #telephoneSociete="ngModel"
-      [class.is-invalid]="telephoneSociete.invalid && telephoneSociete.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="telephoneSociete.valid || telephoneSociete.untouched">telephoneSociete is required field</small>-->
-  <div *ngIf="f.submitted || (telephoneSociete.errors && (telephoneSociete.invalid && telephoneSociete.touched))">
-    <small class="text-danger" *ngIf="telephoneSociete.errors?.['required']">Téléphone Société est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="telephoneSociete.errors?.['pattern']">Entrer un numéro de téléphone valide</small>
-  </div>
- </div>
- <div>
-  <label>Email Société</label>
-  <input 
-      type="email" 
-      class="form-control"
-      name="emailSociete" 
-      required 
-      [(ngModel)]="dataset.emailSociete" 
-      placeholder="Entrer un Email" 
-      placeholder="Entrer un Email" 
-      pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
-      #emailSociete="ngModel"
-      [class.is-invalid]="emailSociete.invalid && emailSociete.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="emailSociete.valid || emailSociete.untouched">Email is required field</small>-->
-  <div *ngIf="f.submitted || (emailSociete.errors && (emailSociete.invalid && emailSociete.touched))">
-    <small class="text-danger" *ngIf="emailSociete.errors?.['required']">Email est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="emailSociete.errors?.['pattern']">Entrer un email valide</small>
-  </div>
-</div>
- <div>
-  <label>Encadrant Société</label>
-  <input 
-      type="text" 
-      class="form-control"
-      name="encadrantSociete" 
-      required 
-      [(ngModel)]="dataset.encadrantSociete"
-      placeholder="Entrer un Nom et un Prenom" 
-      minlength="3"
-      maxlength="50"
-      #encadrantSociete="ngModel"
-      [class.is-invalid]="encadrantSociete.invalid && encadrantSociete.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="encadrantSociete.valid || encadrantSociete.untouched">encadrantSociete is required field</small>-->
-  <div *ngIf="f.submitted || (encadrantSociete.errors && (encadrantSociete.invalid && encadrantSociete.touched))">
-    <small class="text-danger" *ngIf="encadrantSociete.errors?.['required']">Encadrant Société est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="encadrantSociete.errors?.['minlength']">Encadrant Société doit contenir au moins 3 caractères</small>
-    <small class="text-danger" *ngIf="encadrantSociete.errors?.['maxlength']">Encadrant Société doit comporter au maximum 50 caractères</small>
-  </div>
- </div>
- <div>
-  <label>Encadrant Académique</label>
-  <input 
-      type="text" 
-      class="form-control"
-      name="encadrantAcademique" 
-      required 
-      [(ngModel)]="dataset.encadrantAcademique"
-      placeholder="Entrer un Nom et un Prenom"
-      minlength="3"
-      maxlength="50"
-      #encadrantAcademique="ngModel"
-      [class.is-invalid]="encadrantAcademique.invalid && encadrantAcademique.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="encadrantAcademique.valid || encadrantAcademique.untouched">encadrantAcademique is required field</small>-->
-  <div *ngIf="f.submitted || (encadrantAcademique.errors && (encadrantAcademique.invalid && encadrantAcademique.touched))">
-    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['required']">Encadrant Académique est un champ obligatoire</small>
-    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['minlength']">Encadrant Académique doit contenir au moins 3 caractères</small>
-    <small class="text-danger" *ngIf="encadrantAcademique.errors?.['maxlength']">Encadrant Académique doit comporter au maximum 50 caractères</small>
-  </div>
- </div>
- <div>
-  <label>Date Début Stage</label>
-  <input
-      type="date" 
-      name="dateDebutStage" 
-      required 
-      [(ngModel)]="dataset.dateDebutStage"
-      #dateDebutStage="ngModel"
-      [class.is-invalid]="dateDebutStage.invalid && dateDebutStage.touched"
-  />
-  <!--<small class="text-danger" [class.d-none]="dateDebutStage.valid || dateDebutStage.untouched">dateDebutStage is required field</small>-->
-  <div *ngIf="f.submitted || (dateDebutStage.errors && (dateDebutStage.invalid && dateDebutStage.touched))">
-    <small class="text-danger" *ngIf="dateDebutStage.errors?.['required']">Date Début Stage est un champ obligatoire</small>
-  </div>
- </div>
- <div>
-    <label>Date Fin Stage</label>
-    <input 
-        type="date" 
-        name="dateFinStage" 
-        required 
-        [(ngModel)]="dataset.dateFinStage"
-        #dateFinStage="ngModel"
-        [class.is-invalid]="dateFinStage.invalid && dateFinStage.touched"
-    />
-    <!--<small class="text-danger" [class.d-none]="dateFinStage.valid || dateFinStage.untouched">dateFinStage is required field</small>-->
-    <div *ngIf="f.submitted || (dateFinStage.errors && (dateFinStage.invalid && dateFinStage.touched))">
-      <small class="text-danger" *ngIf="dateFinStage.errors?.['required']">Date Fin Stage est un champ obligatoire</small>
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Ajouter une demande de stage</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="heading">Demande de stage</div>
+
+      <form 
+            name="form"
+            (ngSubmit)="f.form.valid"
+            #f="ngForm"
+            novalidate
+      >
+
+        <div class="card-details">
+
+          <div class="card-box">
+            <span class="details">Nom et Prenom Etudiant</span>
+            <input
+                  type="text" 
+                  class="form-control"
+                  name="nom_prenomEtudiant" 
+                  required 
+                  [(ngModel)]="dataset.nom_prenomEtudiant"
+                  placeholder="Entrer un Nom et un Prenom" 
+                  minlength="3"
+                  maxlength="50"
+                  #nom_prenomEtudiant="ngModel"
+                  [class.is-invalid]="nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched"
+            />
+          </div>
+          <!--<small class="text-danger" [class.d-none]="nom_prenomEtudiant.valid || nom_prenomEtudiant.untouched">nom_prenomEtudiant is required field</small>-->
+          <div *ngIf=" f.submitted || (nom_prenomEtudiant.errors && (nom_prenomEtudiant.invalid && nom_prenomEtudiant.touched))">
+            <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['required']">Nom et Prenom Etudiant est un champ obligatoire</small>
+            <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['minlength']">Nom et Prenom Etudiant doit contenir au moins 3 caractères</small>
+            <small class="text-danger" *ngIf="nom_prenomEtudiant.errors?.['maxlength']">Nom et Prenom Etudiant doit comporter au maximum 50 caractères</small>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Email Etudiant</span>
+            <input 
+                  type="email" 
+                  class="form-control"
+                  name="emailEtudiant" 
+                  required 
+                  [(ngModel)]="dataset.emailEtudiant" 
+                  placeholder="Entrer un Email" 
+                  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
+                  #emailEtudiant="ngModel"
+                  [class.is-invalid]="emailEtudiant.invalid && emailEtudiant.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="emailEtudiant.valid || emailEtudiant.untouched">Email is required field</small>-->
+            <div *ngIf="f.submitted || (emailEtudiant.errors && (emailEtudiant.invalid && emailEtudiant.touched))">
+              <small class="text-danger" *ngIf="emailEtudiant.errors?.['required']">Email est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="emailEtudiant.errors?.['pattern']">Entrer un email valide</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Option</span>
+            <select
+                  type="text"
+                  class="form-control"
+                  name="optionEtudiant"
+                  required
+                  [(ngModel)]="dataset.optionEtudiant"
+                  placeholder="Choisir une Option" 
+                  #optionEtudiant="ngModel"
+                  [class.is-invalid]="optionEtudiant.invalid && optionEtudiant.touched"
+            >
+                  <option value="Software Architecture Engineering">Software Architecture Engineering</option>
+                  <option value="Développement Web">Développement Web</option>
+                  <option value="Développement Mobile">Développement Mobile</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="Big Data">Big Data</option>
+                  <option value="Business Intelligence">Business Intelligence</option>
+                  <option value="Cloud">Cloud</option>
+                  <option value="Intelligence Artificielle et Machine Learning">Intelligence Artificielle et Machine Learning</option>
+            </select>
+            <div *ngIf=" f.submitted || (optionEtudiant.errors && (optionEtudiant.invalid && optionEtudiant.touched))">
+              <small class="text-danger" *ngIf="optionEtudiant.errors?.['required']">Option est un champ obligatoire</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Nom Société</span>
+            <input 
+                  type="text" 
+                  class="form-control"
+                  name="nomSociete" 
+                  [(ngModel)]="dataset.nomSociete"
+                  placeholder="Entrer un Nom" 
+                  required
+                  minlength="3"
+                  maxlength="100"
+                  #nomSociete="ngModel"
+                  [class.is-invalid]="nomSociete.invalid && nomSociete.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="nomSociete.valid || nomSociete.untouched">nomSociete is required field</small>-->
+            <div *ngIf="f.submitted || (nomSociete.errors && (nomSociete.invalid && nomSociete.touched))">
+              <small class="text-danger" *ngIf="nomSociete.errors?.['required']">Nom Société est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="nomSociete.errors?.['minlength']">Nom Société doit contenir au moins 3 caractères</small>
+              <small class="text-danger" *ngIf="nomSociete.errors?.['maxlength']">Nom Société doit comporter au maximum 100 caractères</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Adresse Société</span>
+            <input 
+                  type="text" 
+                  class="form-control"
+                  name="adresseSociete" 
+                  required 
+                  [(ngModel)]="dataset.adresseSociete"
+                  placeholder="Entrer une Adresse" 
+                  minlength="3"
+                  maxlength="100"
+                  #adresseSociete="ngModel"
+                  [class.is-invalid]="adresseSociete.invalid && adresseSociete.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="adresseSociete.valid || adresseSociete.untouched">adresseSociete is required field</small>-->
+            <div *ngIf="f.submitted || (adresseSociete.errors && (adresseSociete.invalid && adresseSociete.touched))">
+              <small class="text-danger" *ngIf="adresseSociete.errors?.['required']">Adresse Société est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="adresseSociete.errors?.['minlength']">Adresse Société doit contenir au moins 3 caractères</small>
+              <small class="text-danger" *ngIf="adresseSociete.errors?.['maxlength']">Adresse Société doit comporter au maximum 100 caractères</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Téléphone Société</span>
+            <input 
+                  type="tel" 
+                  class="form-control"
+                  name="telephoneSociete" 
+                  required 
+                  [(ngModel)]="dataset.telephoneSociete" 
+                  placeholder="Entrer un Numéro de Téléphone" 
+                  pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
+                  #telephoneSociete="ngModel"
+                  [class.is-invalid]="telephoneSociete.invalid && telephoneSociete.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="telephoneSociete.valid || telephoneSociete.untouched">telephoneSociete is required field</small>-->
+            <div *ngIf="f.submitted || (telephoneSociete.errors && (telephoneSociete.invalid && telephoneSociete.touched))">
+              <small class="text-danger" *ngIf="telephoneSociete.errors?.['required']">Téléphone Société est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="telephoneSociete.errors?.['pattern']">Entrer un numéro de téléphone valide</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Email Société</span>
+            <input 
+                  type="email" 
+                  class="form-control"
+                  name="emailSociete" 
+                  required 
+                  [(ngModel)]="dataset.emailSociete" 
+                  placeholder="Entrer un Email" 
+                  placeholder="Entrer un Email" 
+                  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
+                  #emailSociete="ngModel"
+                  [class.is-invalid]="emailSociete.invalid && emailSociete.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="emailSociete.valid || emailSociete.untouched">Email is required field</small>-->
+            <div *ngIf="f.submitted || (emailSociete.errors && (emailSociete.invalid && emailSociete.touched))">
+              <small class="text-danger" *ngIf="emailSociete.errors?.['required']">Email est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="emailSociete.errors?.['pattern']">Entrer un email valide</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Encadrant Société</span>
+            <input 
+                  type="text" 
+                  class="form-control"
+                  name="encadrantSociete" 
+                  required 
+                  [(ngModel)]="dataset.encadrantSociete"
+                  placeholder="Entrer un Nom et un Prenom" 
+                  minlength="3"
+                  maxlength="50"
+                  #encadrantSociete="ngModel"
+                  [class.is-invalid]="encadrantSociete.invalid && encadrantSociete.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="encadrantSociete.valid || encadrantSociete.untouched">encadrantSociete is required field</small>-->
+            <div *ngIf="f.submitted || (encadrantSociete.errors && (encadrantSociete.invalid && encadrantSociete.touched))">
+              <small class="text-danger" *ngIf="encadrantSociete.errors?.['required']">Encadrant Société est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="encadrantSociete.errors?.['minlength']">Encadrant Société doit contenir au moins 3 caractères</small>
+              <small class="text-danger" *ngIf="encadrantSociete.errors?.['maxlength']">Encadrant Société doit comporter au maximum 50 caractères</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Encadrant Académique</span>
+            <input 
+                  type="text" 
+                  class="form-control"
+                  name="encadrantAcademique" 
+                  required 
+                  [(ngModel)]="dataset.encadrantAcademique"
+                  placeholder="Entrer un Nom et un Prenom"
+                  minlength="3"
+                  maxlength="50"
+                  #encadrantAcademique="ngModel"
+                  [class.is-invalid]="encadrantAcademique.invalid && encadrantAcademique.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="encadrantAcademique.valid || encadrantAcademique.untouched">encadrantAcademique is required field</small>-->
+            <div *ngIf="f.submitted || (encadrantAcademique.errors && (encadrantAcademique.invalid && encadrantAcademique.touched))">
+              <small class="text-danger" *ngIf="encadrantAcademique.errors?.['required']">Encadrant Académique est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="encadrantAcademique.errors?.['minlength']">Encadrant Académique doit contenir au moins 3 caractères</small>
+              <small class="text-danger" *ngIf="encadrantAcademique.errors?.['maxlength']">Encadrant Académique doit comporter au maximum 50 caractères</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Date Début Stage</span>
+            <input
+                  type="date" 
+                  name="dateDebutStage" 
+                  required 
+                  [(ngModel)]="dataset.dateDebutStage"
+                  #dateDebutStage="ngModel"
+                  [class.is-invalid]="dateDebutStage.invalid && dateDebutStage.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="dateDebutStage.valid || dateDebutStage.untouched">dateDebutStage is required field</small>-->
+            <div *ngIf="f.submitted || (dateDebutStage.errors && (dateDebutStage.invalid && dateDebutStage.touched))">
+              <small class="text-danger" *ngIf="dateDebutStage.errors?.['required']">Date Début Stage est un champ obligatoire</small>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <span class="details">Date Fin Stage</span>
+            <input 
+                  type="date" 
+                  name="dateFinStage" 
+                  required 
+                  [(ngModel)]="dataset.dateFinStage"
+                  #dateFinStage="ngModel"
+                  [class.is-invalid]="dateFinStage.invalid && dateFinStage.touched"
+            />
+            <!--<small class="text-danger" [class.d-none]="dateFinStage.valid || dateFinStage.untouched">dateFinStage is required field</small>-->
+            <div *ngIf="f.submitted || (dateFinStage.errors && (dateFinStage.invalid && dateFinStage.touched))">
+              <small class="text-danger" *ngIf="dateFinStage.errors?.['required']">Date Fin Stage est un champ obligatoire</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="button">
+          <!--<input 
+                [disabled]="nom_prenomEtudiant.errors?.['required'] || emailEtudiant.errors?.['required'] || optionEtudiant.errors?.['required']
+                              || nomSociete.errors?.['required'] || adresseSociete.errors?.['required'] || telephoneSociete.errors?.['required']
+                              || emailSociete.errors?.['required'] || encadrantSociete.errors?.['required'] || encadrantAcademique.errors?.['required']
+                              || dateDebutStage.errors?.['required'] || dateFinStage.errors?.['required']" 
+                type="submit" 
+                value="Confirmer"
+                (click)="addDocumentsDeStageFormSubmit()"
+          >-->
+          <input 
+                type="submit" 
+                value="Confirmer"
+                (click)="addDocumentsDeStageFormSubmit()"
+          >
+        </div>
+
+      </form>
+
     </div>
-  </div><br>
 
-  <div class="form-group">
-    <button 
-      [disabled]="nom_prenomEtudiant.errors?.['required'] || emailEtudiant.errors?.['required'] || optionEtudiant.errors?.['required']
-                  || nomSociete.errors?.['required'] || adresseSociete.errors?.['required'] || telephoneSociete.errors?.['required']
-                  || emailSociete.errors?.['required'] || encadrantSociete.errors?.['required'] || encadrantAcademique.errors?.['required']
-                  || dateDebutStage.errors?.['required'] || dateFinStage.errors?.['required']" 
-      type="button" 
-      class="btn btn-primary btn-block" 
-      (click)="addDocumentsDeStageFormSubmit()">
-      Ajouter
-    </button>
-  </div>
-</form>
+  </body>
 
- </div>
-</div>
+</html>
+      
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

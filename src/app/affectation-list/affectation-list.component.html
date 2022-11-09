@@ -1,9 +1,10 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <br>
   <div class="container">
     <!-- Pour les icons des bouttons -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <div class="row" *ngIf="_listEncadrant.length">
       <div class="col-xs-6 col-md-4">
         <div class="input-group">
@@ -32,7 +33,7 @@
           <td>{{listEncadrant.username}}</td>
           <td>{{listEncadrant.email}}</td>   
         <td>
-          <button class="btn btn-light" (click)="goToListeEtudiantPourEncadrantAffectaion(listEncadrant.id)"><i class="fa fa-eye"></i> Voir la liste des Etudiants affectés</button>
+          <button class="btn btn-light" (click)="goToListeEtudiantPourEncadrantAffectaion(listEncadrant.id)"><i class="fa fa-eye"></i> Cosulter la liste des étudiants affectés</button>
         </td>
       </tr>
     </tbody>
@@ -43,6 +44,6 @@
   <p>Pas d'Affectations</p>          
 </div><br>
 
-<button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToAddAffectation()">Ajouter une nouvelle Affectation <i class="fa fa-plus"></i></button>&nbsp;
+<a href="/addAffectation">Ajouter une nouvelle Affectation <i class="fa fa-plus"></i></a>
 
 </div>

@@ -1,63 +1,84 @@
-<div class="col-md-12">
-    <div class="card card-container">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
-      <form
-        name="form"
-        (ngSubmit)="f.form.valid"
-        #f="ngForm"
-        novalidate
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Ajouter une affectation de stage</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="heading">Affectation de stage</div>
+
+      <form 
+            name="form"
+            (ngSubmit)="f.form.valid"
+            #f="ngForm"
+            novalidate
       >
 
-        <div class="form-group">
-            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Affectation</h2><br>
+        <div class="card-details">
 
-            <label>Choisir un Encadrant Académique</label>
+          <div class="card-box">
+            <span class="details">Choisir un Encadrant Académique</span>
             <select 
-                class="form-control" 
-                name="encadrant"  
-                required 
-                [(ngModel)]="encadrant_id"
-                #encadrant="ngModel" 
-                [class.is-invalid]="encadrant.invalid && encadrant.touched"
+                   class="form-control" 
+                   name="encadrant"  
+                   required 
+                   [(ngModel)]="encadrant_id"
+                   #encadrant="ngModel" 
+                   [class.is-invalid]="encadrant.invalid && encadrant.touched"
             >
-                <option *ngFor="let listEncadrant of _listEncadrant" value="{{listEncadrant.id}}">{{listEncadrant.username}}</option>
+                   <option *ngFor="let listEncadrant of _listEncadrant" value="{{listEncadrant.id}}">{{listEncadrant.username}}</option>
             </select>
-
             <div *ngIf=" f.submitted || (encadrant.errors && (encadrant.invalid && encadrant.touched))">
-                <small class="text-danger" *ngIf="encadrant.errors?.['required']">Choisir un Encadrant Académique est un champ obligatoire</small>
+              <small class="text-danger" *ngIf="encadrant.errors?.['required']">Choisir un Encadrant Académique est un champ obligatoire</small>
             </div>
-        </div><br>
-
-        <div class="form-group">
-            <label>Choisir un Etudiant</label>
-            <select 
-                class="form-control" 
-                name="etudiant" 
-                required
-                [(ngModel)]="etudiant_id"
-                #etudiant="ngModel"
-                [class.is-invalid]="etudiant.invalid && etudiant.touched"
-            >
-                <option *ngFor="let listEtudiant of _listEtudiant" value="{{listEtudiant.id}}">{{listEtudiant.username}}</option>
-            </select>
-
-            <div *ngIf=" f.submitted || (etudiant.errors && (etudiant.invalid && etudiant.touched))">
-                <small class="text-danger" *ngIf="etudiant.errors?.['required']">Choisir un Etudiant est un champ obligatoire</small>
-            </div>
-        </div><br>
-        
-        <div class="form-group float-right">
-            <button 
-                [disabled]="encadrant.errors?.['required'] || etudiant.errors?.['required']" 
-                type="button" 
-                class="btn btn-primary" 
-                (click)="affecter()">
-                Affecter
-            </button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="goToList()">Annuler</button>
           </div>
-        
+
+          <div class="card-box">
+            <span class="details">Choisir un Etudiant</span>
+            <select 
+                  class="form-control" 
+                   name="etudiant" 
+                   required
+                   [(ngModel)]="etudiant_id"
+                   #etudiant="ngModel"
+                   [class.is-invalid]="etudiant.invalid && etudiant.touched"
+            >
+                   <option *ngFor="let listEtudiant of _listEtudiant" value="{{listEtudiant.id}}">{{listEtudiant.username}}</option>
+            </select>
+            <div *ngIf=" f.submitted || (etudiant.errors && (etudiant.invalid && etudiant.touched))">
+              <small class="text-danger" *ngIf="etudiant.errors?.['required']">Choisir un Etudiant est un champ obligatoire</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="button">
+          <input 
+                [disabled]="encadrant.errors?.['required'] || etudiant.errors?.['required']"  
+                type="submit" 
+                value="Confirmer"
+                (click)="affecter()"
+          >&nbsp;&nbsp;
+          <input 
+                type="submit" 
+                value="Annuler"
+                (click)="goToList()"
+          >
+        </div>
+
       </form>
+
+      </div>
   
-    </div>
-  </div>
+    </body>
+  
+  </html>

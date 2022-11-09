@@ -1,27 +1,31 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
  <!-- Pour les icons des bouttons -->
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <br>
-<h2>Utilisateur</h2>
-<table class="table">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{user.username}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          <div *ngIf="user.roles">{{user.roles[0].name}}</div>
-        </td>       
-      </tr>
-    </tbody>
-  </table><br>
-
-  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToList()"><i class="fa fa-angle-double-left"></i> Retour à la liste des Utilisateurs</button>&nbsp;
-
+<div class="container">
+  <h2>Utilisateur</h2>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            <div *ngIf="user.roles">{{user.roles[0].name}}</div>
+          </td>       
+        </tr>
+      </tbody>
+    </table><br>
+  
+    <a href="/listUser"><i class="fa fa-angle-double-left"></i> Retour à la liste des Utilisateurs</a>
+  
+  
+</div>

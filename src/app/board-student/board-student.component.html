@@ -1,13 +1,15 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
 <div class="container">
     <header class="jumbotron">
       <p>{{ content }}</p>
       <!--<a routerLink="/editUserByHimself"><strong>Modifier mon compte</strong></a><br>-->
       <a routerLink="/listOffresDeStagePourEtudiant"><strong>Consulter la Bibliothèque des Offres de stages PFE</strong></a><br><br>
       <a routerLink="/listRapportsDeStagePourEtudiant"><strong>Consulter la Bibliothèque des Rapports de stages PFE</strong></a><br><br>
-      <a (click)="testerDemandeDeStage()" style="color: orangered;"><strong>Demander les Documents de stage PFE</strong></a><br><br>
+      <a (click)="testerDemandeDeStage()" style="color: orangered;"><strong>Demander un stage PFE</strong></a><br><br>
       <a (click)="goToDownloadDocumentsDeStage()" style="color: orangered;"><strong>Télécharger les Documents de stage PFE</strong></a><br><br>
       <a (click)="testerDemandeDeStagePourGererDepots()" style="color: orangered;"><strong>Gérer les Dépôts de stage PFE</strong></a><br><br>
-      <a routerLink="/rendez-vousDeStage"><strong>Consulter les Rendez-vous de stage PFE</strong></a><br><br>
+      <a routerLink="/rendez-vousDeStage"><strong>Consulter le plan d'action de stage PFE</strong></a><br><br>
       <a routerLink="/fichesDeStage"><strong>Télécharger les Fiches de stage PFE</strong></a><br><br>
     </header>
   </div>

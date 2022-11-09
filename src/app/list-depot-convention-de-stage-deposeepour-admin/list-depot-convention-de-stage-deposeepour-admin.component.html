@@ -1,9 +1,10 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<br>
 <div class="container">
   <!-- Pour les icons des bouttons -->
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
   <div class="row" *ngIf="_conventionDeStageDEPOSEElist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
@@ -47,6 +48,6 @@
     <p>Pas de Conventions de stages</p>          
   </div><br>
 
-    <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListDepotConventionDeStagePourAdmin()"><i class="fa fa-angle-double-left"></i> Retour à la liste des conventions de stages</button>
+    <a href="/listDepotConventionDeStagePourAdmin"><i class="fa fa-angle-double-left"></i> Retour à la liste des conventions de stages</a>
 
 </div>

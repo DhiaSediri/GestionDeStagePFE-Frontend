@@ -151,10 +151,10 @@ export class DepotFicheDeStageComponent implements OnInit {
       alert('Cette opération a été effectuée avec succès');
       this._router.navigate(['/depotFiche_de_stage']);
 
-      this.depotService.deleteDepotFiche_de_stageByEtudiantIdFromRemote(this.currentUser.id).subscribe(
+      /*this.depotService.deleteDepotFiche_de_stageByEtudiantIdFromRemote(this.currentUser.id).subscribe(
         () => console.log("Data deleted succesfully"),
         () => console.log("Error")     
-      );
+      );*/
   }
 
   getFile(fileData: FileData) {

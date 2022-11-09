@@ -54,6 +54,5 @@ export class EncadrantEditCommentaireFicheDeStageComponent implements OnInit {
   annuler(){
     this.router.navigate(['encadrantDepotFiche_de_stage', this.etudiant_email, this.etudiant_id]);
   }
-
-
+  
 }

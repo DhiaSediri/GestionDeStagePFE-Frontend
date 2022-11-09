@@ -1,37 +1,59 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+
+  <nav class="navbar navbar-expand navbar-dark bg-dark" style="margin: 0px 0px 0px;">
+    
     <a class="navbar-brand">Gestion des stages PFE</a>
+
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <!--<li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
+        <a href="/home" class="nav-link" routerLink="home">Home</a>
+      </li>-->
+
+      <!--<li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
       </li>-->
       <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <button mat-button [matMenuTriggerFor]="menu" class="nav-link dropdown-toggle">Admin Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item><a href="/listUser">Gérer les Utilisateurs</a></button>
+          <button mat-menu-item><a href="/listDocumentsDeStage">Gérer les Demandes de stages</a></button>
+          <button mat-menu-item><a href="/listDepotConventionDeStagePourAdmin">Gérer les Conventions de stages</a></button>
+          <button mat-menu-item><a href="/listeAffectations">Gérer les affectations de stages</a></button>
+          <button mat-menu-item><a href="/listOffresDeStagePourAdmin">Gérer la Bibliothèque des Offres de stages</a></button>
+          <button mat-menu-item><a href="/listRapportsDeStagePourAdmin">Gérer la Bibliothèque des Rapports de stages</a></button>
+          <button mat-menu-item><a href="/rendez-vousDeStagePourAdmin">Gérer le plan d'action de stage</a></button>
+          <button mat-menu-item><a href="/fichesDeStagePourAdmin">Gérer la Documentation de stage</a></button>
+        </mat-menu>
       </li>
 
-      <li class="nav-item dropdown" *ngIf="showAdminBoard">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin Board
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">   
-          <a class="dropdown-item" href="/listUser">Gérer les Utilisateurs</a>
-          <a class="dropdown-item" href="/listDocumentsDeStage">Gérer les Demandes de stages PFE</a>
-          <a class="dropdown-item" href="/listDepotConventionDeStagePourAdmin">Gérer les Conventions de stages PFE</a>
-          <a class="dropdown-item" href="/listeAffectations">Gérer les affectations</a>
-          <a class="dropdown-item" href="/listOffresDeStagePourAdmin">Gérer la Bibliothèque des Offres de stages PFE</a>
-          <a class="dropdown-item" href="/listRapportsDeStagePourAdmin">Gérer la Bibliothèque des Rapports de stages PFE</a>
-          <a class="dropdown-item" href="/rendez-vousDeStagePourAdmin">Gérer les Rendez-vous de stage PFE</a>
-          <a class="dropdown-item" href="/fichesDeStagePourAdmin">Gérer la Documentation de stage PFE</a>
-        </div>
-      </li>
-
-      <li class="nav-item" *ngIf="showStudentBoard">
+      <!--<li class="nav-item" *ngIf="showStudentBoard">
         <a href="/student" class="nav-link" routerLink="student">Student Board</a>
+      </li>-->
+      <li class="nav-item" *ngIf="showStudentBoard">
+        <button mat-button [matMenuTriggerFor]="menu" class="nav-link dropdown-toggle">Student Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item><a href="/listOffresDeStagePourEtudiant">Consulter la Bibliothèque des Offres de stages</a></button>
+          <button mat-menu-item><a href="/listRapportsDeStagePourEtudiant">Consulter la Bibliothèque des Rapports de stages</a></button>
+          <button mat-menu-item><a (click)="testerDemandeDeStage()" class="texte">Demander un stage</a></button>
+          <button mat-menu-item><a (click)="goToDownloadDocumentsDeStage()" class="texte">Télécharger les Documents de stage</a></button>
+          <button mat-menu-item><a (click)="testerDemandeDeStagePourGererDepots()" class="texte">Gérer les Dépôts de stage</a></button>
+          <button mat-menu-item><a href="/rendez-vousDeStage">Consulter le plan d'action de stage PFE</a></button>
+          <button mat-menu-item><a href="/fichesDeStage">Télécharger les Fiches de stage</a></button>
+        </mat-menu>
       </li>
-      <li class="nav-item" *ngIf="showaAcademicSupervisorBoard">
+
+      <!--<li class="nav-item" *ngIf="showaAcademicSupervisorBoard">
         <a href="/Academic_Supervisor" class="nav-link" routerLink="Academic_Supervisor">Academic Supervisor Board</a>
+      </li>-->
+      <li class="nav-item" *ngIf="showaAcademicSupervisorBoard">
+        <button mat-button [matMenuTriggerFor]="menu" class="nav-link dropdown-toggle">Academic Supervisor Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item><a href="/listEtudiantsPourEncadrant">Consulter la liste des étudiants</a></button>
+        </mat-menu>
       </li>
+
       <!--<li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>-->
@@ -41,22 +63,37 @@
       <!--<li class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
       </li>-->
+
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+          Login
+        </a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;
+
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+          LogOut
+        </a>
       </li>
     </ul>
+
   </nav>
 
-  <div class="container">
+  <div class="container-fluid">
     <router-outlet></router-outlet>
   </div>
 </div>

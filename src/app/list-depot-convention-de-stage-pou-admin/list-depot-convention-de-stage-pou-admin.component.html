@@ -1,6 +1,7 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<br>
 <div class="container"> 
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
   <div class="row" *ngIf="_conventionDeStagelist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
@@ -44,6 +45,6 @@
     <p>Pas de Conventions de stages</p>          
   </div><br>
 
-    <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListDepotConventionDeStageDEPOSEEPourAdmin()">Traiter les dépôts non encore traités</button>
+    <a href="/listDepotConventionDeStageDEPOSEEPourAdmin">Traiter les conventions de stage déposées</a>
 
 </div>

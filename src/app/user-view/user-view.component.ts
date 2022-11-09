@@ -31,7 +31,7 @@ export class UserViewComponent implements OnInit {
 
   goToList(){
     console.log("Go Back");
-    this.router.navigate(['listUser']);
+    this.router.navigate(['/listUser']);
   }
 
 }

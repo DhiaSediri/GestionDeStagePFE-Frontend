@@ -1,9 +1,10 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<br>
 <div class="container"> 
   <!-- Pour les icons des bouttons -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
   <div class="row" *ngIf="_documentsDeStagelist.length">
     <div class="col-xs-6 col-md-4">
       <div class="input-group">
@@ -62,10 +63,10 @@
 
   <div *ngIf="!_documentsDeStagelist.length">
     <p>Pas de demandes de stages</p>          
-  </div> 
+  </div><br>
 
-  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToAddDocumentsDeStage()">Ajouter une nouvelle demande de stage <i class="fa fa-plus"></i></button><br><br><br>
+  <a href="/addDocumentsDeStage">Ajouter une nouvelle demande de stage <i class="fa fa-plus"></i></a><br><br><br>
 
-  <button class="btn btn-light" style="color: dimgray; font-size: 24px" (click)="goToListDocumentsDeStageDEPOSEE()">Traiter les demandes de stages déposées</button>
+  <a href="/listDocumentsDeStageDEPOSEE">Traiter les demandes de stages déposées</a>
 
   </div>

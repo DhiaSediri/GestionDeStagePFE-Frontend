@@ -123,17 +123,17 @@ export class EncadrantDepotRapportPremiereVersionComponent implements OnInit {
     );
   }
 
-  goToEditCommentaireRapport_premiere_version(id : number){
-    console.log("id "+id);
-    this._router.navigate(['/editCommentaireFiche_de_stage', id]);
+  goToEditCommentaireRapport_premiere_version(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    console.log("commentaire_id "+commentaire_id);
+    this._router.navigate(['/encadrantEditCommentaireRapport_premiere_version', commentaire_id, etudiant_email, etudiant_id]);
   }
 
-  deleteCommentaireRapport_premiere_version(id : number){
-    this.commentaireService.deleteCommentaireByIdFromRemote(id).subscribe(
+  deleteCommentaireRapport_premiere_version(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    this.commentaireService.deleteCommentaireByIdFromRemote(commentaire_id).subscribe(
       () => {
         console.debug("Deleted Successfully");
         alert('Cette opération a été effectuée avec succès');
-        this._router.navigate(['/depotRapport_premiere_version']);
+        this._router.navigate(['/encadrantDepotRapport_premiere_version', etudiant_email, etudiant_id]);
       },
       () => {
         console.log("Exception Occured");

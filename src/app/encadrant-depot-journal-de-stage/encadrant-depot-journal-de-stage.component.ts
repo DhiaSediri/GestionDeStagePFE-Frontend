@@ -123,17 +123,17 @@ export class EncadrantDepotJournalDeStageComponent implements OnInit {
     );
   }
 
-  goToEditCommentaireJournal_de_stage(id : number){
-    console.log("id "+id);
-    this._router.navigate(['/editCommentaireJournal_de_stage', id]);
+  goToEditCommentaireJournal_de_stage(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    console.log("commentaire_id "+commentaire_id);
+    this._router.navigate(['/encadrantEditCommentaireJournal_de_stage', commentaire_id, etudiant_email, etudiant_id]);
   }
 
-  deleteCommentaireJournal_de_stage(id : number){
-    this.commentaireService.deleteCommentaireByIdFromRemote(id).subscribe(
+  deleteCommentaireJournal_de_stage(commentaire_id : number, etudiant_email: string, etudiant_id: number){
+    this.commentaireService.deleteCommentaireByIdFromRemote(commentaire_id).subscribe(
       () => {
         console.debug("Deleted Successfully");
         alert('Cette opération a été effectuée avec succès');
-        this._router.navigate(['/depotJournal_de_stage']);
+        this._router.navigate(['/encadrantDepotJournal_de_stage', etudiant_email, etudiant_id]);
       },
       () => {
         console.log("Exception Occured");

@@ -1,47 +1,72 @@
-<br><br><br><br><br><br><br><br>
-    <h1 class="h1">Déposer vos livrables</h1><br>
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
 
-    <div class="scrollmenu">
-        <!--<a href="/depotConvention_de_stage">Convention de stage<br>-->
-        <a (click)="testerConvention_de_stage()"><strong>Convention de stage</strong><br><br>
-            <img src="../assets/images/convention.png"/><br>
-            <p>{{depotConvention_de_stage.etatDepot}}</p>
-            <p *ngIf="!depotConvention_de_stage.etatDepot">VIDE</p>
-        </a>
-        <!--<a href="/depotFiche_de_stage">Fiche de stage<br>-->
-        <a (click)="testerFiche_de_stage()"><strong>Fiche de stage</strong><br><br>
-            <img src="../assets/images/fiche.png"/><br>
-            <p>{{depotFiche_de_stage.etatDepot}}</p>
-            <p *ngIf="!depotFiche_de_stage.etatDepot">VIDE</p>
-        </a>
-        <!--<a href="/depotBilan_periodique_debut_du_stage">Bilan périodique début du stage<br>-->
-        <a (click)="testerBilan_periodique_debut_du_stage()"><strong>Bilan périodique début du stage</strong><br><br>
-            <img src="../assets/images/bilan.png"/><br>
-            <p>{{depotBilan_periodique_debut_du_stage.etatDepot}}</p>
-            <p *ngIf="!depotBilan_periodique_debut_du_stage.etatDepot">VIDE</p>
-        </a>
-        <!--<a href="/depotBilan_periodique_milieu_du_stage">Bilan périodique milieu du stage<br>-->
-        <a (click)="testerBilan_periodique_milieu_du_stage()"><strong>Bilan périodique milieu du stage</strong><br><br>
-            <img src="../assets/images/bilan.png"/><br>
-            <p>{{depotBilan_periodique_milieu_du_stage.etatDepot}}</p>
-            <p *ngIf="!depotBilan_periodique_milieu_du_stage.etatDepot">VIDE</p>
-        </a>
-        <!--<a href="/depotBilan_periodique_fin_du_stage">Bilan périodique fin du stage<br>-->
-        <a (click)="testerBilan_periodique_fin_du_stage()"><strong>Bilan périodique fin du stage</strong><br><br>
-            <img src="../assets/images/bilan.png"/><br>
-            <p>{{depotBilan_periodique_fin_du_stage.etatDepot}}</p>
-            <p *ngIf="!depotBilan_periodique_fin_du_stage.etatDepot">VIDE</p>
-        </a>
-        <!--<a href="/depotRapport_premiere_version">Rapport premiere version<br>-->
-        <a (click)="testerRapport_premiere_version()"><strong>Rapport de stage</strong><br><br>
-            <img src="../assets/images/rapport.jpg"/><br>
-            <p>{{depotRapport_premiere_version.etatDepot}}</p>
-            <p *ngIf="!depotRapport_premiere_version.etatDepot">VIDE</p>
-        </a>
-        <!--<a href="/depotJournal_de_stage">Journal de stage<br>-->
-        <a (click)="testerJournal_de_stage()"><strong>Journal de stage</strong><br><br>
-            <img src="../assets/images/journal.png"/><br>
-            <p>{{depotJournal_de_stage.etatDepot}}</p>
-            <p *ngIf="!depotJournal_de_stage.etatDepot">VIDE</p>
-        </a>
-    </div>
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Dépot des livrables de stage</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+        <div class="heading">Dépot des livrables de stage</div><br>
+
+        <div class="scrollmenu">
+            <!--<a href="/depotConvention_de_stage">Convention de stage<br>-->
+            <a (click)="testerConvention_de_stage()"><strong>Convention de stage</strong><br><br>
+                <img src="../assets/images/convention.png"/><br>
+                <strong title="etatDepot">{{depotConvention_de_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotConvention_de_stage.etatDepot">VIDE</strong>
+            </a>
+            <!--<a href="/depotFiche_de_stage">Fiche de stage<br>-->
+            <a (click)="testerFiche_de_stage()"><strong>Fiche de stage</strong><br><br>
+                <img src="../assets/images/fiche.png"/><br>
+                <strong>{{depotFiche_de_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotFiche_de_stage.etatDepot">VIDE</strong>
+            </a>
+            <!--<a href="/depotBilan_periodique_debut_du_stage">Bilan périodique début du stage<br>-->
+            <a (click)="testerBilan_periodique_debut_du_stage()"><strong>Bilan périodique début du stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotBilan_periodique_debut_du_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotBilan_periodique_debut_du_stage.etatDepot">VIDE</strong>
+            </a>
+            <!--<a href="/depotBilan_periodique_milieu_du_stage">Bilan périodique milieu du stage<br>-->
+            <a (click)="testerBilan_periodique_milieu_du_stage()"><strong>Bilan périodique milieu du stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotBilan_periodique_milieu_du_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotBilan_periodique_milieu_du_stage.etatDepot">VIDE</strong>
+            </a>
+            <!--<a href="/depotBilan_periodique_fin_du_stage">Bilan périodique fin du stage<br>-->
+            <a (click)="testerBilan_periodique_fin_du_stage()"><strong>Bilan périodique fin du stage</strong><br><br>
+                <img src="../assets/images/bilan.png"/><br>
+                <strong>{{depotBilan_periodique_fin_du_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotBilan_periodique_fin_du_stage.etatDepot">VIDE</strong>
+            </a>
+            <!--<a href="/depotRapport_premiere_version">Rapport premiere version<br>-->
+            <a (click)="testerRapport_premiere_version()"><strong>Rapport de stage</strong><br><br>
+                <img src="../assets/images/rapport.jpg"/><br>
+                <strong>{{depotRapport_premiere_version.etatDepot}}</strong>
+                <strong *ngIf="!depotRapport_premiere_version.etatDepot">VIDE</strong>
+            </a>
+            <!--<a href="/depotJournal_de_stage">Journal de stage<br>-->
+            <a (click)="testerJournal_de_stage()"><strong>Journal de stage</strong><br><br>
+                <img src="../assets/images/journal.png"/><br>
+                <strong>{{depotJournal_de_stage.etatDepot}}</strong>
+                <strong *ngIf="!depotJournal_de_stage.etatDepot">VIDE</strong>
+            </a>
+        </div>
+
+    </div>            
+           
+  </body>
+
+</html>
+
+
+        
